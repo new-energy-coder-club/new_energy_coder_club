@@ -1,0 +1,290 @@
+{
+  "version": "1.0.0",
+  "created_at": "2025-09-18T02:53:02.549860",
+  "description": "新能源编程俱乐部标准化目录结构蓝图",
+  "principles": [
+    "一次点击原则：核心项目最多2层目录访问",
+    "英文标准化命名：使用kebab-case命名规范",
+    "功能导向分类：按项目类型和用途分类",
+    "时间维度组织：按年份和时间顺序组织",
+    "资源共享优化：共享资源集中管理",
+    "文档完整性：每个目录必须包含README文件",
+    "可扩展性：支持未来项目类型扩展",
+    "版本控制友好：避免特殊字符和空格"
+  ],
+  "root_directories": [
+    {
+      "name": "competitions",
+      "path": "competitions",
+      "description": "竞赛项目目录，按年份和竞赛类型组织",
+      "purpose": "存储所有竞赛相关项目，实现快速访问",
+      "max_depth": 3,
+      "naming_convention": "competitions/{year}/{competition-type}",
+      "required_files": [
+        "README.md"
+      ],
+      "optional_files": [
+        "CHANGELOG.md",
+        "CONTRIBUTORS.md"
+      ],
+      "subdirectories": [
+        "2024",
+        "2025",
+        "archive"
+      ],
+      "access_level": "core",
+      "examples": [
+        "competitions/2024/electronics-competition",
+        "competitions/2024/energy-saving-competition",
+        "competitions/2025/robotics-robocon"
+      ]
+    },
+    {
+      "name": "projects",
+      "path": "projects",
+      "description": "开发项目目录，按技术领域和项目类型组织",
+      "purpose": "存储所有开发项目，支持技术分类和快速定位",
+      "max_depth": 3,
+      "naming_convention": "projects/{technology}/{project-name}",
+      "required_files": [
+        "README.md"
+      ],
+      "optional_files": [
+        "CHANGELOG.md",
+        "LICENSE",
+        "requirements.txt"
+      ],
+      "subdirectories": [
+        "ai",
+        "embedded",
+        "robotics",
+        "research",
+        "templates"
+      ],
+      "access_level": "core",
+      "examples": [
+        "projects/ai/energy-monitoring",
+        "projects/embedded/nearlink-controller",
+        "projects/robotics/humanoid-robot"
+      ]
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "description": "共享资源目录，存储可复用的资源和工具",
+      "purpose": "集中管理共享资源，避免重复，提高复用性",
+      "max_depth": 2,
+      "naming_convention": "shared/{resource-type}",
+      "required_files": [
+        "README.md"
+      ],
+      "optional_files": [
+        "INDEX.md",
+        "USAGE.md"
+      ],
+      "subdirectories": [
+        "assets",
+        "libraries",
+        "models",
+        "tools",
+        "templates"
+      ],
+      "access_level": "important",
+      "examples": [
+        "shared/assets/images",
+        "shared/models/3d-parts",
+        "shared/tools/scripts"
+      ]
+    },
+    {
+      "name": "docs",
+      "path": "docs",
+      "description": "文档中心，存储所有项目文档和指南",
+      "purpose": "提供统一的文档入口，支持知识管理和传承",
+      "max_depth": 2,
+      "naming_convention": "docs/{doc-type}",
+      "required_files": [
+        "README.md",
+        "index.md"
+      ],
+      "optional_files": [
+        "CONTRIBUTING.md",
+        "FAQ.md"
+      ],
+      "subdirectories": [
+        "guides",
+        "api",
+        "tutorials",
+        "references",
+        "archive"
+      ],
+      "access_level": "important",
+      "examples": [
+        "docs/guides/project-setup",
+        "docs/tutorials/embedded-development",
+        "docs/api/robotics-framework"
+      ]
+    },
+    {
+      "name": "tools",
+      "path": "tools",
+      "description": "开发工具和自动化脚本目录",
+      "purpose": "提供开发和维护工具，支持自动化流程",
+      "max_depth": 2,
+      "naming_convention": "tools/{tool-category}",
+      "required_files": [
+        "README.md"
+      ],
+      "optional_files": [
+        "INSTALL.md",
+        "USAGE.md"
+      ],
+      "subdirectories": [
+        "automation",
+        "testing",
+        "deployment",
+        "monitoring",
+        "utilities"
+      ],
+      "access_level": "supporting",
+      "examples": [
+        "tools/automation/ci-cd",
+        "tools/testing/unit-tests",
+        "tools/deployment/docker"
+      ]
+    },
+    {
+      "name": "archive",
+      "path": "archive",
+      "description": "归档目录，存储历史项目和废弃内容",
+      "purpose": "保存历史记录，避免丢失重要信息",
+      "max_depth": 3,
+      "naming_convention": "archive/{year}/{category}",
+      "required_files": [
+        "README.md",
+        "ARCHIVE_INFO.md"
+      ],
+      "optional_files": [
+        "MIGRATION_LOG.md"
+      ],
+      "subdirectories": [
+        "2023",
+        "2024",
+        "deprecated",
+        "backup"
+      ],
+      "access_level": "supporting",
+      "examples": [
+        "archive/2023/old-competitions",
+        "archive/deprecated/legacy-tools",
+        "archive/backup/migration-backup"
+      ]
+    }
+  ],
+  "naming_rules": {
+    "directories": "kebab-case (小写字母，连字符分隔)",
+    "files": "kebab-case 或 snake_case",
+    "projects": "年份+类型+简短描述",
+    "competitions": "年份+竞赛类型+具体名称",
+    "research": "项目代号或简短英文描述",
+    "forbidden_chars": "空格、中文、特殊符号",
+    "max_length": "50字符以内"
+  },
+  "file_templates": {
+    "root_readme": "\n# 新能源编程俱乐部\n\n> 🚀 致力于新能源技术创新与人才培养的开源社区\n\n## 📁 目录结构\n\n```\n{{club_name}}/\n├── competitions/          # 🏆 竞赛项目\n├── projects/             # 💻 开发项目  \n├── shared/               # 📦 共享资源\n├── docs/                 # 📚 文档中心\n├── tools/                # 🔧 开发工具\n└── archive/              # 📋 历史归档\n```\n\n## 🎯 快速导航\n\n### 核心项目（一键访问）\n- [竞赛项目](./competitions/) - 各类竞赛参赛作品\n- [开发项目](./projects/) - 技术开发和研究项目\n\n### 重要资源\n- [共享资源](./shared/) - 可复用的资源和工具\n- [文档中心](./docs/) - 项目文档和开发指南\n\n### 支持工具\n- [开发工具](./tools/) - 自动化脚本和工具\n- [历史归档](./archive/) - 历史项目和备份\n\n## 📊 项目统计\n\n- 总项目数：{{total_projects}}\n- 竞赛项目：{{competition_count}}\n- 开发项目：{{project_count}}\n- 共享资源：{{shared_count}}\n\n## 🚀 快速开始\n\n1. **浏览竞赛项目**：`cd competitions/2024/`\n2. **查看开发项目**：`cd projects/ai/`\n3. **使用共享资源**：`cd shared/templates/`\n4. **阅读文档**：`cd docs/guides/`\n\n## 📝 贡献指南\n\n请参阅 [贡献指南](./docs/guides/contributing.md) 了解如何参与项目开发。\n\n## 📄 许可证\n\n本项目采用 [MIT License](./LICENSE) 开源协议。\n\n---\n\n💡 **提示**：使用 `find . -name \"README.md\" | head -10` 快速浏览项目结构\n",
+    "competition_readme": "\n# {{competition_name}}\n\n> {{competition_description}}\n\n## 📋 项目信息\n\n- **竞赛名称**：{{competition_full_name}}\n- **参赛时间**：{{competition_date}}\n- **团队成员**：{{team_members}}\n- **项目状态**：{{project_status}}\n- **获奖情况**：{{awards}}\n\n## 🎯 项目目标\n\n{{project_objectives}}\n\n## 🏗️ 技术架构\n\n{{technical_architecture}}\n\n## 📁 目录结构\n\n```\n{{project_name}}/\n├── src/                  # 源代码\n├── docs/                 # 项目文档\n├── hardware/             # 硬件设计文件\n├── tests/                # 测试文件\n├── assets/               # 资源文件\n└── README.md            # 项目说明\n```\n\n## 🚀 快速开始\n\n### 环境要求\n\n{{requirements}}\n\n### 安装步骤\n\n```bash\n{{installation_steps}}\n```\n\n### 运行项目\n\n```bash\n{{run_commands}}\n```\n\n## 📊 项目成果\n\n{{project_results}}\n\n## 🤝 团队成员\n\n{{team_details}}\n\n## 📝 更新日志\n\n查看 [CHANGELOG.md](./CHANGELOG.md) 了解项目更新历史。\n\n## 📄 许可证\n\n{{license_info}}\n",
+    "project_readme": "\n# {{project_name}}\n\n> {{project_description}}\n\n## 📋 项目信息\n\n- **项目类型**：{{project_type}}\n- **技术栈**：{{tech_stack}}\n- **开发状态**：{{development_status}}\n- **维护者**：{{maintainers}}\n- **最后更新**：{{last_updated}}\n\n## 🎯 项目特性\n\n{{project_features}}\n\n## 🏗️ 系统架构\n\n{{system_architecture}}\n\n## 📁 目录结构\n\n```\n{{project_name}}/\n├── src/                  # 源代码\n│   ├── main/            # 主要代码\n│   └── test/            # 测试代码\n├── docs/                # 项目文档\n├── config/              # 配置文件\n├── scripts/             # 脚本文件\n├── assets/              # 资源文件\n└── README.md           # 项目说明\n```\n\n## 🚀 快速开始\n\n### 环境要求\n\n{{requirements}}\n\n### 安装依赖\n\n```bash\n{{install_dependencies}}\n```\n\n### 配置项目\n\n```bash\n{{configuration_steps}}\n```\n\n### 运行项目\n\n```bash\n{{run_commands}}\n```\n\n## 📖 使用指南\n\n{{usage_guide}}\n\n## 🧪 测试\n\n```bash\n{{test_commands}}\n```\n\n## 🚀 部署\n\n{{deployment_guide}}\n\n## 🤝 贡献\n\n欢迎提交 Issue 和 Pull Request！\n\n## 📝 更新日志\n\n查看 [CHANGELOG.md](./CHANGELOG.md) 了解项目更新历史。\n\n## 📄 许可证\n\n{{license_info}}\n",
+    "shared_readme": "\n# {{resource_name}}\n\n> {{resource_description}}\n\n## 📋 资源信息\n\n- **资源类型**：{{resource_type}}\n- **适用项目**：{{applicable_projects}}\n- **维护者**：{{maintainers}}\n- **最后更新**：{{last_updated}}\n\n## 📁 资源列表\n\n{{resource_list}}\n\n## 🚀 使用方法\n\n{{usage_instructions}}\n\n## 📖 使用示例\n\n{{usage_examples}}\n\n## 🤝 贡献资源\n\n{{contribution_guide}}\n\n## 📝 更新日志\n\n{{changelog}}\n"
+  },
+  "migration_mapping": {
+    ".github\\workflows": "tools/workflows/workflows",
+    ".trae\\documents": "docs/misc/documents",
+    ".trae\\rules": "archive/uncategorized/rules",
+    "backup\\migration_20250918_021003": "archive/uncategorized/migration_20250918_021003",
+    "backup\\migration_20250918_021003\\competitions\\2024": "competitions/2025/other-competitions/2024",
+    "backup\\migration_20250918_021003\\projects": "projects/misc/projects",
+    "backup\\migration_20250918_021003\\projects\\ai": "projects/ai/ai",
+    "backup\\migration_20250918_021003\\projects\\embedded": "projects/embedded/embedded",
+    "backup\\migration_20250918_021003\\projects\\robotics": "projects/robotics/robotics",
+    "backup\\migration_20250918_021003\\projects\\templates": "projects/templates/templates",
+    "backup\\migration_20250918_021003\\projects\\科研「横向项目」": "projects/research/chinese-project-chinese-project",
+    "backup\\migration_20250918_021003\\shared\\models": "shared/models/models",
+    "competitions\\2024": "competitions/2024/other-competitions/2024",
+    "competitions\\2024\\electronics-competition": "competitions/2024/electronics-competition/electronics-competition",
+    "competitions\\2024\\electronics-competition\\2024电赛预选_EB25-SIG": "competitions/2024/electronics-competition/2024chinese-project_eb25-sig",
+    "competitions\\2024\\energy-saving": "competitions/2024/energy-saving-competition/energy-saving",
+    "competitions\\2024\\energy-saving\\2024节能减排大赛_Nearlink小车": "competitions/2024/energy-saving-competition/2024chinese-project_nearlinkchinese-project",
+    "competitions\\2024\\huawei-cloud-ai": "competitions/2024/ai-huawei-cloud/huawei-cloud-ai",
+    "competitions\\2024\\huawei-cloud-ai\\2024华为云（化工行业人工智能应用）": "competitions/2024/ai-huawei-cloud/2024chinese-project-chinese-project",
+    "competitions\\2024\\iot-design-huawei": "competitions/2024/iot-design-competition/iot-design-huawei",
+    "competitions\\2024\\iot-design-huawei\\2024物联网设计竞赛_Huawei数通": "competitions/2024/iot-design-competition/2024chinese-project_huaweichinese-project",
+    "competitions\\2024\\robocon": "competitions/2024/robotics-robocon/robocon",
+    "competitions\\2024\\robocon\\2024全国机器人竞赛_ROBOCON": "competitions/2024/robotics-robocon/2024chinese-project_robocon",
+    "competitions\\2024\\smart-car-outdoor": "competitions/2024/robotics-robocon/smart-car-outdoor",
+    "competitions\\2024\\smart-car-outdoor\\2024智能车室外赛比赛": "competitions/2024/robotics-robocon/2024chinese-project",
+    "competitions\\2025\\energy-saving\\2025节能减排大赛_Duma人形机器人": "competitions/2025/energy-saving-competition/2025chinese-project_dumachinese-project",
+    "competitions\\2025\\robocon\\2025全国机器人竞赛_ROBOCON": "competitions/2025/robotics-robocon/2025chinese-project_robocon",
+    "competitions\\2025\\traffic-design\\2025 交通设计大赛_开源": "competitions/2025/iot-design-competition/2025-chinese-project_chinese-project",
+    "competitions_new\\2024\\electronics": "competitions/2024/electronics-competition/electronics",
+    "competitions_new\\2024\\electronics\\2024电赛预选_EB25-SIG": "competitions/2024/electronics-competition/2024chinese-project_eb25-sig",
+    "competitions_new\\2024\\energy-saving": "competitions/2024/energy-saving-competition/energy-saving",
+    "competitions_new\\2024\\energy-saving\\2024节能减排大赛_Nearlink小车": "competitions/2024/energy-saving-competition/2024chinese-project_nearlinkchinese-project",
+    "competitions_new\\2024\\huawei-cloud-ai": "competitions/2024/ai-huawei-cloud/huawei-cloud-ai",
+    "competitions_new\\2024\\huawei-cloud-ai\\2024华为云（化工行业人工智能应用）": "competitions/2024/ai-huawei-cloud/2024chinese-project-chinese-project",
+    "competitions_new\\2024\\iot-design": "competitions/2024/iot-design-competition/iot-design",
+    "competitions_new\\2024\\iot-design\\2024物联网设计竞赛_Huawei数通": "competitions/2024/iot-design-competition/2024chinese-project_huaweichinese-project",
+    "competitions_new\\2024\\robocon": "competitions/2024/robotics-robocon/robocon",
+    "competitions_new\\2024\\robocon\\2024全国机器人竞赛_ROBOCON": "competitions/2024/robotics-robocon/2024chinese-project_robocon",
+    "competitions_new\\2024\\smart-car": "competitions/2024/robotics-robocon/smart-car",
+    "competitions_new\\2024\\smart-car\\2024智能车室外赛比赛": "competitions/2024/robotics-robocon/2024chinese-project",
+    "competitions_new\\2025\\energy-saving\\2025节能减排大赛_Duma人形机器人": "competitions/2025/energy-saving-competition/2025chinese-project_dumachinese-project",
+    "competitions_new\\2025\\robocon\\2025全国机器人竞赛_ROBOCON": "competitions/2025/robotics-robocon/2025chinese-project_robocon",
+    "competitions_new\\2025\\traffic-design\\2025 交通设计大赛_开源": "competitions/2025/iot-design-competition/2025-chinese-project_chinese-project",
+    "projects\\ai": "projects/ai/ai",
+    "projects\\ai\\energy-monitoring\\20250319流体工作站": "projects/ai/20250319chinese-project",
+    "projects\\embedded": "projects/embedded/embedded",
+    "projects\\embedded\\nearlink\\20250426星闪手柄": "projects/embedded/20250426chinese-project",
+    "projects\\robotics": "projects/robotics/robotics",
+    "projects\\robotics\\250510飞控通讯": "projects/robotics/250510chinese-project",
+    "projects\\robotics\\humanoid-robot\\人形机器人主线": "projects/robotics/chinese-project",
+    "projects\\templates": "projects/templates/templates",
+    "projects\\templates\\ai_project_template": "projects/ai/ai_project_template",
+    "projects\\templates\\ai_project_template\\config": "projects/ai/config",
+    "projects\\templates\\embedded_project_template": "projects/embedded/embedded_project_template",
+    "projects\\科研「横向项目」": "projects/research/chinese-project-chinese-project",
+    "projects\\科研「横向项目」\\3d-printing-sig": "projects/research/3d-printing-sig",
+    "projects\\科研「横向项目」\\dexterous-hand": "projects/research/dexterous-hand",
+    "projects\\科研「横向项目」\\mica-validation": "projects/research/mica-validation",
+    "projects\\科研「横向项目」\\mica-validation\\docs": "projects/research/docs",
+    "projects\\科研「横向项目」\\mica-validation\\meta-rtthread": "projects/research/meta-rtthread",
+    "projects\\科研「横向项目」\\pneumatic-system": "projects/research/pneumatic-system",
+    "projects_new\\ai": "projects/ai/ai",
+    "projects_new\\ai\\energy-monitoring\\20250319流体工作站": "projects/ai/20250319chinese-project",
+    "projects_new\\embedded": "projects/embedded/embedded",
+    "projects_new\\embedded\\nearlink\\20250426星闪手柄": "projects/embedded/20250426chinese-project",
+    "projects_new\\research": "projects/research/research",
+    "projects_new\\research\\3d-printing-sig": "projects/research/3d-printing-sig",
+    "projects_new\\research\\dexterous-hand": "projects/research/dexterous-hand",
+    "projects_new\\research\\mica-validation": "projects/research/mica-validation",
+    "projects_new\\research\\mica-validation\\docs": "projects/research/docs",
+    "projects_new\\research\\mica-validation\\meta-rtthread": "projects/research/meta-rtthread",
+    "projects_new\\research\\pneumatic-system": "projects/research/pneumatic-system",
+    "projects_new\\robotics": "projects/robotics/robotics",
+    "projects_new\\robotics\\250510飞控通讯": "projects/robotics/250510chinese-project",
+    "projects_new\\robotics\\humanoid-robot\\人形机器人主线": "projects/robotics/chinese-project",
+    "projects_new\\templates": "projects/templates/templates",
+    "projects_new\\templates\\ai_project_template": "projects/ai/ai_project_template",
+    "projects_new\\templates\\ai_project_template\\config": "projects/ai/config",
+    "projects_new\\templates\\embedded_project_template": "projects/embedded/embedded_project_template",
+    "shared\\images\\Image": "shared/assets/image",
+    "shared\\images\\screenshots": "shared/assets/screenshots",
+    "shared\\models": "shared/models/models",
+    "shared_new\\assets\\images\\Image": "shared/assets/image",
+    "shared_new\\assets\\images\\screenshots": "shared/assets/screenshots",
+    "shared_new\\models": "shared/models/models",
+    "templates\\competition": "competitions/2024/other-competitions/competition",
+    "templates\\documentation": "docs/misc/documentation",
+    "templates\\project": "projects/templates/project",
+    "templates\\research": "tools/templates/research"
+  }
+}

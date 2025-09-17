@@ -1,0 +1,312 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.9'
+
+jobs:
+  # 代码质量检查
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          fi
+
+      - name: Run ESLint
+        run: |
+          if [ -f .eslintrc.js ] || [ -f .eslintrc.json ]; then
+            npm run lint || echo "Lint script not found"
+          fi
+
+      - name: Run Prettier
+        run: |
+          if [ -f .prettierrc ]; then
+            npm run format:check || echo "Format check script not found"
+          fi
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Python dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+          if [ -f requirements-dev.txt ]; then
+            pip install -r requirements-dev.txt
+          fi
+
+      - name: Run Python linting
+        run: |
+          if [ -f setup.cfg ] || [ -f pyproject.toml ]; then
+            flake8 . || echo "Flake8 not configured"
+            black --check . || echo "Black not configured"
+          fi
+
+  # 文档验证
+  docs-validation:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate README files
+        run: |
+          echo "Validating README files..."
+          find . -name "README.md" -type f | while read file; do
+            echo "Checking $file"
+            if [ ! -s "$file" ]; then
+              echo "Error: $file is empty"
+              exit 1
+            fi
+          done
+
+      - name: Check for broken links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          config-file: '.github/workflows/markdown-link-check-config.json'
+
+      - name: Validate project structure
+        run: |
+          echo "Validating project structure..."
+          python scripts/structure_validator.py || echo "Structure validator not found"
+
+  # 项目构建测试
+  build-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    needs: [code-quality]
+    strategy:
+      matrix:
+        project-type: [web, mobile, desktop, embedded]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Build Web Projects
+        if: matrix.project-type == 'web'
+        run: |
+          echo "Building web projects..."
+          find projects_new/web -name "package.json" -type f | while read package; do
+            dir=$(dirname "$package")
+            echo "Building $dir"
+            cd "$dir"
+            npm ci || echo "No package-lock.json found"
+            npm run build || echo "No build script found"
+            cd - > /dev/null
+          done
+
+      - name: Build Mobile Projects
+        if: matrix.project-type == 'mobile'
+        run: |
+          echo "Building mobile projects..."
+          find projects_new/mobile -name "package.json" -o -name "pubspec.yaml" -o -name "build.gradle" | while read config; do
+            dir=$(dirname "$config")
+            echo "Found mobile project in $dir"
+            # Add specific mobile build commands here
+          done
+
+      - name: Build Desktop Projects
+        if: matrix.project-type == 'desktop'
+        run: |
+          echo "Building desktop projects..."
+          find projects_new/desktop -name "*.pro" -o -name "CMakeLists.txt" -o -name "Cargo.toml" | while read config; do
+            dir=$(dirname "$config")
+            echo "Found desktop project in $dir"
+            # Add specific desktop build commands here
+          done
+
+      - name: Build Embedded Projects
+        if: matrix.project-type == 'embedded'
+        run: |
+          echo "Building embedded projects..."
+          find projects_new/embedded -name "platformio.ini" -o -name "Makefile" | while read config; do
+            dir=$(dirname "$config")
+            echo "Found embedded project in $dir"
+            # Add specific embedded build commands here
+          done
+
+  # 安全扫描
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Dependency Check
+        run: |
+          echo "Checking for known vulnerabilities..."
+          if [ -f package.json ]; then
+            npm audit --audit-level moderate || echo "npm audit found issues"
+          fi
+          if [ -f requirements.txt ]; then
+            pip install safety
+            safety check || echo "safety check found issues"
+          fi
+
+  # 部署到测试环境
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build-test, security-scan, docs-validation]
+    if: github.ref == 'refs/heads/develop'
+    environment:
+      name: staging
+      url: https://staging.newenergy-club.org
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup deployment environment
+        run: |
+          echo "Setting up staging deployment..."
+          # Add staging deployment commands here
+
+      - name: Deploy documentation
+        run: |
+          echo "Deploying documentation to staging..."
+          # Add documentation deployment commands here
+
+      - name: Run smoke tests
+        run: |
+          echo "Running smoke tests on staging..."
+          # Add smoke test commands here
+
+  # 部署到生产环境
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build-test, security-scan, docs-validation]
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://newenergy-club.org
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup deployment environment
+        run: |
+          echo "Setting up production deployment..."
+          # Add production deployment commands here
+
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production..."
+          # Add production deployment commands here
+
+      - name: Update project registry
+        run: |
+          echo "Updating project registry..."
+          python scripts/update_registry.py || echo "Registry update script not found"
+
+      - name: Send deployment notification
+        run: |
+          echo "Sending deployment notification..."
+          # Add notification commands here
+
+  # 性能测试
+  performance-test:
+    name: Performance Test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup performance testing
+        run: |
+          echo "Setting up performance tests..."
+          # Add performance test setup here
+
+      - name: Run performance tests
+        run: |
+          echo "Running performance tests..."
+          # Add performance test commands here
+
+      - name: Generate performance report
+        run: |
+          echo "Generating performance report..."
+          # Add performance report generation here
+
+  # 清理和通知
+  cleanup-notify:
+    name: Cleanup and Notify
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production]
+    if: always()
+    steps:
+      - name: Cleanup artifacts
+        run: |
+          echo "Cleaning up build artifacts..."
+          # Add cleanup commands here
+
+      - name: Send success notification
+        if: success()
+        run: |
+          echo "Pipeline completed successfully!"
+          # Add success notification here
+
+      - name: Send failure notification
+        if: failure()
+        run: |
+          echo "Pipeline failed!"
+          # Add failure notification here
+
+      - name: Update project status
+        run: |
+          echo "Updating project status..."
+          python scripts/update_status.py || echo "Status update script not found"

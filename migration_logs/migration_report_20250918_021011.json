@@ -1,0 +1,154 @@
+{
+  "migration_time": "2025-09-18T02:10:11.450113",
+  "total_projects": 18,
+  "successful_migrations": 16,
+  "failed_migrations": 2,
+  "total_files": 279,
+  "total_size_mb": 231.03,
+  "details": [
+    {
+      "src_path": "competitions/2024/electronics-competition",
+      "dst_path": "competitions_new/2024/electronics",
+      "success": true,
+      "error": null,
+      "files_count": 21,
+      "size_mb": 32.34
+    },
+    {
+      "src_path": "competitions/2024/energy-saving",
+      "dst_path": "competitions_new/2024/energy-saving",
+      "success": true,
+      "error": null,
+      "files_count": 36,
+      "size_mb": 34.39
+    },
+    {
+      "src_path": "competitions/2024/huawei-cloud-ai",
+      "dst_path": "competitions_new/2024/huawei-cloud-ai",
+      "success": true,
+      "error": null,
+      "files_count": 3,
+      "size_mb": 0.02
+    },
+    {
+      "src_path": "competitions/2024/iot-design-huawei",
+      "dst_path": "competitions_new/2024/iot-design",
+      "success": true,
+      "error": null,
+      "files_count": 8,
+      "size_mb": 2.17
+    },
+    {
+      "src_path": "competitions/2024/robocon",
+      "dst_path": "competitions_new/2024/robocon",
+      "success": true,
+      "error": null,
+      "files_count": 12,
+      "size_mb": 5.73
+    },
+    {
+      "src_path": "competitions/2024/smart-car-outdoor",
+      "dst_path": "competitions_new/2024/smart-car",
+      "success": true,
+      "error": null,
+      "files_count": 10,
+      "size_mb": 1.79
+    },
+    {
+      "src_path": "competitions/2025/robocon",
+      "dst_path": "competitions_new/2025/robocon",
+      "success": true,
+      "error": null,
+      "files_count": 37,
+      "size_mb": 39.02
+    },
+    {
+      "src_path": "competitions/2025/traffic-design",
+      "dst_path": "competitions_new/2025/traffic-design",
+      "success": true,
+      "error": null,
+      "files_count": 1,
+      "size_mb": 0.0
+    },
+    {
+      "src_path": "competitions/2025/energy-saving",
+      "dst_path": "competitions_new/2025/energy-saving",
+      "success": true,
+      "error": null,
+      "files_count": 4,
+      "size_mb": 0.0
+    },
+    {
+      "src_path": "projects/ai",
+      "dst_path": "projects_new/ai",
+      "success": true,
+      "error": null,
+      "files_count": 6,
+      "size_mb": 0.31
+    },
+    {
+      "src_path": "projects/embedded",
+      "dst_path": "projects_new/embedded",
+      "success": true,
+      "error": null,
+      "files_count": 15,
+      "size_mb": 3.58
+    },
+    {
+      "src_path": "projects/robotics",
+      "dst_path": "projects_new/robotics",
+      "success": true,
+      "error": null,
+      "files_count": 3,
+      "size_mb": 0.01
+    },
+    {
+      "src_path": "projects/科研「横向项目」",
+      "dst_path": "projects_new/research",
+      "success": true,
+      "error": null,
+      "files_count": 39,
+      "size_mb": 8.88
+    },
+    {
+      "src_path": "projects/templates",
+      "dst_path": "projects_new/templates",
+      "success": true,
+      "error": null,
+      "files_count": 8,
+      "size_mb": 0.03
+    },
+    {
+      "src_path": "shared/images",
+      "dst_path": "shared_new/assets/images",
+      "success": true,
+      "error": null,
+      "files_count": 67,
+      "size_mb": 54.39
+    },
+    {
+      "src_path": "shared/models",
+      "dst_path": "shared_new/models",
+      "success": true,
+      "error": null,
+      "files_count": 9,
+      "size_mb": 48.37
+    },
+    {
+      "src_path": "shared/libraries",
+      "dst_path": "shared_new/libraries",
+      "success": false,
+      "error": "源路径不存在",
+      "files_count": 0,
+      "size_mb": 0
+    },
+    {
+      "src_path": "shared/tools",
+      "dst_path": "shared_new/tools",
+      "success": false,
+      "error": "源路径不存在",
+      "files_count": 0,
+      "size_mb": 0
+    }
+  ]
+}

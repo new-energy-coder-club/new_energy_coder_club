@@ -1,0 +1,60 @@
+# Altium Designer
+*.SchDoc
+*.PcbDoc
+*.PcbLib
+*.SchLib
+*.PrjPcb
+*.OutJob
+*.Gerber
+*. drill
+*.drl
+*.gbr
+*.gbl
+*.gtl
+*.gts
+*.gbp
+*.gtp
+*.gbo
+*.gto
+
+# uVision
+*.axf
+*.bak
+*.bin
+*.crf
+*.dep
+*.hex
+*.htm
+*.i
+*.lnp
+*.lst
+*.map
+*.o
+*.obj
+*.plg
+*.sce
+*.sct
+*.tmp
+*.uvguix.*
+*.uvoptx
+*.uvproj
+*.uvprojx
+
+# ESP-IDF
+build/
+.vscode/
+*.bin
+*.elf
+*.map
+*.sym
+*.srec
+*.log
+*.pyc
+__pycache__/
+
+# 通用忽略规则
+*.swp
+*.bak
+*.tmp
+*.DS_Store
+Thumbs.db

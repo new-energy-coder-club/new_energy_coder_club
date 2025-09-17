@@ -1,0 +1,108 @@
+{
+  "name": "{{PROJECT_NAME}}",
+  "version": "{{PROJECT_VERSION}}",
+  "description": "{{PROJECT_DESCRIPTION}}",
+  "main": "{{MAIN_FILE}}",
+  "scripts": {
+    "dev": "{{DEV_SCRIPT}}",
+    "build": "{{BUILD_SCRIPT}}",
+    "start": "{{START_SCRIPT}}",
+    "test": "{{TEST_SCRIPT}}",
+    "test:watch": "{{TEST_WATCH_SCRIPT}}",
+    "test:coverage": "{{TEST_COVERAGE_SCRIPT}}",
+    "lint": "{{LINT_SCRIPT}}",
+    "lint:fix": "{{LINT_FIX_SCRIPT}}",
+    "format": "{{FORMAT_SCRIPT}}",
+    "type-check": "{{TYPE_CHECK_SCRIPT}}",
+    "preview": "{{PREVIEW_SCRIPT}}",
+    "clean": "{{CLEAN_SCRIPT}}"
+  },
+  "keywords": [
+    "{{KEYWORD_1}}",
+    "{{KEYWORD_2}}",
+    "{{KEYWORD_3}}",
+    "nec",
+    "new-energy",
+    "coder-club"
+  ],
+  "author": {
+    "name": "{{AUTHOR_NAME}}",
+    "email": "{{AUTHOR_EMAIL}}",
+    "url": "{{AUTHOR_URL}}"
+  },
+  "license": "{{LICENSE}}",
+  "repository": {
+    "type": "git",
+    "url": "{{REPOSITORY_URL}}"
+  },
+  "bugs": {
+    "url": "{{ISSUES_URL}}"
+  },
+  "homepage": "{{HOMEPAGE_URL}}",
+  "engines": {
+    "node": "{{NODE_VERSION}}",
+    "npm": "{{NPM_VERSION}}"
+  },
+  "dependencies": {
+    "{{DEPENDENCY_1}}": "{{DEPENDENCY_1_VERSION}}",
+    "{{DEPENDENCY_2}}": "{{DEPENDENCY_2_VERSION}}"
+  },
+  "devDependencies": {
+    "{{DEV_DEPENDENCY_1}}": "{{DEV_DEPENDENCY_1_VERSION}}",
+    "{{DEV_DEPENDENCY_2}}": "{{DEV_DEPENDENCY_2_VERSION}}",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  },
+  "peerDependencies": {
+    "{{PEER_DEPENDENCY_1}}": "{{PEER_DEPENDENCY_1_VERSION}}"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "{{ESLINT_CONFIG}}"
+    ]
+  },
+  "prettier": {
+    "semi": {{PRETTIER_SEMI}},
+    "singleQuote": {{PRETTIER_SINGLE_QUOTE}},
+    "tabWidth": {{PRETTIER_TAB_WIDTH}},
+    "trailingComma": "{{PRETTIER_TRAILING_COMMA}}"
+  },
+  "jest": {
+    "testEnvironment": "{{JEST_ENVIRONMENT}}",
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": {{COVERAGE_BRANCHES}},
+        "functions": {{COVERAGE_FUNCTIONS}},
+        "lines": {{COVERAGE_LINES}},
+        "statements": {{COVERAGE_STATEMENTS}}
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "{{PRE_COMMIT_HOOK}}",
+      "commit-msg": "{{COMMIT_MSG_HOOK}}"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "{{LINT_STAGED_JS}}"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "{{LINT_STAGED_OTHER}}"
+    ]
+  }
+}

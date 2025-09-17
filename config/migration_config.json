@@ -1,0 +1,243 @@
+{
+  "migration_config": {
+    "version": "1.0.0",
+    "created_at": "2025-01-18",
+    "description": "仓库目录结构迁移配置文件",
+    "backup_enabled": true,
+    "verify_migration": true,
+    "preserve_git_history": true
+  },
+  "directory_mappings": {
+    "competitions": {
+      "source_base": "competitions",
+      "target_base": "competitions_new",
+      "mappings": {
+        "competitions/2024/electronics-competition": {
+          "target": "competitions_new/2024/electronics",
+          "priority": "high",
+          "description": "电子设计竞赛项目",
+          "estimated_size_mb": 50,
+          "file_types": ["code", "docs", "images"],
+          "special_handling": []
+        },
+        "competitions/2024/energy-saving": {
+          "target": "competitions_new/2024/energy-saving",
+          "priority": "high",
+          "description": "节能减排竞赛项目",
+          "estimated_size_mb": 30,
+          "file_types": ["code", "docs", "images"],
+          "special_handling": []
+        },
+        "competitions/2024/huawei-cloud-ai": {
+          "target": "competitions_new/2024/huawei-cloud-ai",
+          "priority": "high",
+          "description": "华为云AI竞赛项目",
+          "estimated_size_mb": 40,
+          "file_types": ["code", "docs", "models"],
+          "special_handling": ["large_files"]
+        },
+        "competitions/2024/iot-design-huawei": {
+          "target": "competitions_new/2024/iot-design",
+          "priority": "high",
+          "description": "物联网设计竞赛项目",
+          "estimated_size_mb": 25,
+          "file_types": ["code", "docs", "schematics"],
+          "special_handling": []
+        },
+        "competitions/2024/robocon": {
+          "target": "competitions_new/2024/robocon",
+          "priority": "high",
+          "description": "机器人竞赛项目",
+          "estimated_size_mb": 80,
+          "file_types": ["code", "docs", "images", "videos"],
+          "special_handling": ["large_files", "video_files"]
+        },
+        "competitions/2024/smart-car-outdoor": {
+          "target": "competitions_new/2024/smart-car",
+          "priority": "high",
+          "description": "智能车竞赛项目",
+          "estimated_size_mb": 60,
+          "file_types": ["code", "docs", "images"],
+          "special_handling": []
+        },
+        "competitions/2025/robocon": {
+          "target": "competitions_new/2025/robocon",
+          "priority": "medium",
+          "description": "2025年机器人竞赛项目",
+          "estimated_size_mb": 20,
+          "file_types": ["code", "docs"],
+          "special_handling": []
+        },
+        "competitions/2025/traffic-design": {
+          "target": "competitions_new/2025/traffic-design",
+          "priority": "medium",
+          "description": "交通设计竞赛项目",
+          "estimated_size_mb": 15,
+          "file_types": ["code", "docs"],
+          "special_handling": []
+        },
+        "competitions/2025/energy-saving": {
+          "target": "competitions_new/2025/energy-saving",
+          "priority": "medium",
+          "description": "2025年节能减排竞赛项目",
+          "estimated_size_mb": 10,
+          "file_types": ["code", "docs"],
+          "special_handling": []
+        }
+      }
+    },
+    "projects": {
+      "source_base": "projects",
+      "target_base": "projects_new",
+      "mappings": {
+        "projects/ai": {
+          "target": "projects_new/ai",
+          "priority": "high",
+          "description": "人工智能项目",
+          "estimated_size_mb": 100,
+          "file_types": ["code", "docs", "models", "datasets"],
+          "special_handling": ["large_files", "model_files"]
+        },
+        "projects/embedded": {
+          "target": "projects_new/embedded",
+          "priority": "high",
+          "description": "嵌入式系统项目",
+          "estimated_size_mb": 40,
+          "file_types": ["code", "docs", "schematics"],
+          "special_handling": []
+        },
+        "projects/robotics": {
+          "target": "projects_new/robotics",
+          "priority": "high",
+          "description": "机器人技术项目",
+          "estimated_size_mb": 120,
+          "file_types": ["code", "docs", "images", "videos", "models"],
+          "special_handling": ["large_files", "video_files", "model_files"]
+        },
+        "projects/科研「横向项目」": {
+          "target": "projects_new/research",
+          "priority": "high",
+          "description": "科研横向项目",
+          "estimated_size_mb": 80,
+          "file_types": ["code", "docs", "images", "models"],
+          "special_handling": ["chinese_naming", "large_files"]
+        },
+        "projects/templates": {
+          "target": "projects_new/templates",
+          "priority": "medium",
+          "description": "项目模板",
+          "estimated_size_mb": 20,
+          "file_types": ["code", "docs", "configs"],
+          "special_handling": []
+        }
+      }
+    },
+    "shared": {
+      "source_base": "shared",
+      "target_base": "shared_new",
+      "mappings": {
+        "shared/images": {
+          "target": "shared_new/assets/images",
+          "priority": "medium",
+          "description": "共享图片资源",
+          "estimated_size_mb": 200,
+          "file_types": ["images"],
+          "special_handling": ["large_files", "image_optimization"]
+        },
+        "shared/models": {
+          "target": "shared_new/models",
+          "priority": "medium",
+          "description": "3D模型文件",
+          "estimated_size_mb": 150,
+          "file_types": ["models"],
+          "special_handling": ["large_files", "model_files"]
+        },
+        "shared/libraries": {
+          "target": "shared_new/libraries",
+          "priority": "low",
+          "description": "共享代码库",
+          "estimated_size_mb": 30,
+          "file_types": ["code", "docs"],
+          "special_handling": []
+        },
+        "shared/tools": {
+          "target": "shared_new/tools",
+          "priority": "low",
+          "description": "工具脚本",
+          "estimated_size_mb": 10,
+          "file_types": ["scripts", "tools"],
+          "special_handling": []
+        }
+      }
+    }
+  },
+  "file_handling_rules": {
+    "large_files": {
+      "threshold_mb": 50,
+      "action": "verify_git_lfs",
+      "description": "检查大文件是否使用Git LFS"
+    },
+    "video_files": {
+      "extensions": [".mp4", ".avi", ".mov", ".mkv"],
+      "action": "compress_if_needed",
+      "description": "视频文件处理"
+    },
+    "model_files": {
+      "extensions": [".stl", ".obj", ".fbx", ".blend", ".step"],
+      "action": "verify_git_lfs",
+      "description": "3D模型文件处理"
+    },
+    "chinese_naming": {
+      "action": "rename_to_english",
+      "description": "中文命名转换为英文"
+    },
+    "image_optimization": {
+      "extensions": [".jpg", ".jpeg", ".png", ".bmp"],
+      "action": "optimize_if_large",
+      "threshold_kb": 1024,
+      "description": "图片优化处理"
+    }
+  },
+  "validation_rules": {
+    "file_count_match": {
+      "enabled": true,
+      "tolerance": 0,
+      "description": "验证文件数量匹配"
+    },
+    "size_match": {
+      "enabled": true,
+      "tolerance_kb": 1024,
+      "description": "验证文件大小匹配（允许1KB差异）"
+    },
+    "structure_integrity": {
+      "enabled": true,
+      "check_readme": true,
+      "check_main_files": true,
+      "description": "验证目录结构完整性"
+    }
+  },
+  "rollback_config": {
+    "enabled": true,
+    "keep_backups": 5,
+    "backup_compression": false,
+    "auto_cleanup_days": 30
+  },
+  "logging_config": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(levelname)s - %(message)s",
+    "file_rotation": true,
+    "max_log_files": 10
+  },
+  "performance_config": {
+    "parallel_processing": false,
+    "max_workers": 4,
+    "chunk_size_mb": 100,
+    "progress_reporting": true
+  },
+  "git_config": {
+    "preserve_history": true,
+    "create_migration_branch": false,
+    "commit_changes": false,
+    "tag_migration": false
+  }
+}
