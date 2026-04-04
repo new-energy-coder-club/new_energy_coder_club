@@ -1,0 +1,550 @@
+Total pages: 20
+
+=== PAGE 1 ===
+M3508 
+Accessories Kit
+User Guide
+使用说明
+ユーザーガイド
+2017.08
+V1.0
+
+
+=== PAGE 3 ===
+ 
+2
+Disclaimer 
+Thank you for purchasing the RoboMaster M3508 Accessories Kit (hereinafter 
+referred to as “product”). Read this disclaimer carefully before using this product. 
+By using this product, you hereby agree to this disclaimer and signify that you have 
+read it fully. Install and use this product in strict accordance with the User Guide. 
+SZ DJI TECHNOLOGY CO., LTD. and its affiliated companies assume no liability 
+for damage(s) or injuries incurred directly or indirectly from using, installing or 
+modifying this product improperly, including but not limited to using non-designated 
+accessories.
+DJI
+TM is a trademark of SZ DJI TECHNOLOGY CO., LTD. (abbreviated as “DJI”) 
+and its affiliated companies. Names of products, brands, etc., appearing in this 
+document are trademarks or registered trademarks of their respective owner 
+companies. This product and document are copyrighted by DJI with all rights 
+reserved. No part of this product or document shall be reproduced in any form 
+without the prior written consent or authorization of DJI.
+The final interpretation rights of this disclaimer is owned by DJI.
+Warning
+1.	Ensure there are no short circuits and all the cables are correctly connected.
+2.	Ensure that all parts are in good condition and replace them when necessary.
+3.	Be sure to use the product in strict accordance with the specifications (voltage, 
+current, etc.) listed in this document. Failure to do so may reduce the product 
+service life or even lead to permanent damage.
+Introduction
+Exclusively designed for the RoboMaster M3508 P19 Brushless DC Gear Motor and 
+C620 Brushless DC Motor Speed Controller, this M3508 Accessories Kit includes 
+several cables and a terminal board, creating a complete propulsion system driven 
+by four independent motors. 
+In the Box
+XT60 Power Cable (Female)×1 
+XT30 Extension Power Cable×4
+
+
+=== PAGE 4 ===
+3 
+Longer CAN Cable for C620×4 
+Longer 7-Pin M3508 Cable×4
+3-Phase M3508 Extension Cable×4 
+Insulation Patch×1 
+Terminal Board×1 
+Development Board Cable×1 
+Terminal Board Overview
+1
+4
+3
+5
+2
+[1]	8-Pin Port
+	
+Connects to the RoboMaster Development 
+Board* using the development board cable, 
+providing power to the development board 
+and sharing the development board’s CAN 
+bus. Its max continuous current is 20 A.
+[2]	CAN Pad
+	
+Additional CAN cables can be soldered here. 
+[3]	CAN Port
+	
+Connects to the CAN port on C620 speed 
+controller with the CAN cable. 
+[4]	XT30 Power Port
+	
+Connects to the power cable on the C620 speed 
+controller. Its max continuous current is 20 A.
+[5]	XT60 Power Cable
+	
+Connects to an external power source with a 
+max continuous current of 40 A.
+
+
+=== PAGE 5 ===
+ 
+4
+*	Please refer to the RoboMaster Development Board User Guide for detailed information 
+about this product. 
+Mounting the Terminal Board
+Refer to the dimensions below to mount the terminal board.
+• The terminal board is outfitted with mounting holes with a diameter of 3.20. 
+Use M3 screws to mount the board properly.
+• Do not cover the ports and pads while mounting, or the cables may not be 
+able to plug in/out.
+Connecting the Speed Controller and the Motor
+Make sure to disconnect all the power cables before connecting.
+1.	Connect a 2-Pin CAN cable if required. First solder the end of the CAN cable to 
+the CAN pad on the terminal board, then solder the other end to a compatible 
+device. Ensure the cable is soldered correctly. 
+2.	Stick the insulation patch onto the upper side of the terminal board (with the 
+RoboMaster logo). DO NOT cover the ports and pads on the terminal board 
+when attaching.
+60
+Mounting Holes
+45
+16
+32
+∅3.20
+Unit: mm
+
+
+=== PAGE 6 ===
+5 
+3.	Connect the speed controller and the terminal board using the cables provided 
+together with C620 speed controller, or the XT30 extension power cable and 
+the longer C620 CAN cable when necessary. Ensure the cables are securely 
+connected with the corresponding colors correctly matched. Refer to the C620 
+Brushless DC Motor Speed Controller User Guide for detailed information.
+4.	Connect the speed controller and the motor using the cables provided together 
+with C620 speed controller and M3508 motor, or the longer M3508 7-pin cable 
+and M3508 extension 3-phase cable when necessary. Ensure the cables are 
+securely connected with the corresponding colors correctly matched. Refer to 
+the M3508 Brushless DC Gear Motor User Guide for detailed information.
+5.	Connect the terminal board and the development board using the development 
+board cable if the development board is in use. Ensure the development board 
+and the terminal board share the same CAN bus. 
+6.	Secure the terminal board with the M3 screws. 
+7.	Connect to an external power source using the XT60 power cable. Make sure the 
+power supply is sufficient for your needs and the cable is correctly connected. 
+8.	Double-check that all the cables are correctly and firmly connected to ensure 
+that no short circuits or other problems occur.
+-
++
+To Development Board
+CAN Cable
+Power Supply
+7-pin Cable
+Male
+Female
+
+
+=== PAGE 7 ===
+ 
+6
+Specifications
+Name
+Ends
+Length
+Pin
+Continuous Current
+Development Board Cable
+Identical Ends
+40 cm
+8
+20 A
+XT60 Power Cable
+Male 
+30 cm
+2
+40 A
+XT30 Extension Power 
+Cable
+Male and 
+Female
+15 cm
+2
+20 A
+Longer C620 CAN Cable
+Identical Ends
+43 cm
+2
+N/A
+3-Phase M3508 Extension 
+Cable
+Male and 
+Female
+15 cm
+3
+20 A
+Longer M3508 7-Pin Cable
+Identical Ends
+32 cm
+7
+N/A
+
+
+=== PAGE 8 ===
+7 
+免责声明
+感谢您购买RoboMaster
+TM M3508 附件包。在使用之前，请仔细阅读本声明，一
+旦使用，即被视为对本声明全部内容的认可和接受。请严格遵守手册、产品说明
+和相关的法律法规、政策、准则安装和使用该产品。在使用产品过程中，用户承
+诺对自己的行为及因此而产生的所有后果负责。因用户不当使用、安装、改装造
+成的任何损失，DJI
+TM 将不承担法律责任。
+DJI 是深圳市大疆
+TM 创新科技有限公司及其关联公司的商标。本文出现的产品名
+称、品牌等，均为其所属公司的商标。本产品及手册为大疆创新版权所有。未经
+许可，不得以任何形式复制翻印。
+关于免责声明的最终解释权，归大疆创新所有。
+产品使用注意事项
+1. 确保电路无短路，接口按照需求正确连接。
+2. 使用前请检查各零部件是否完好。如有部件老化或损坏，请更换新部件。
+3. 请严格按照本文规定的工作环境（如电压、电流等参数）使用，否则将会对产
+品造成永久性损坏。
+简 介
+M3508 附件包内含集线板和丰富的连接线，专为RoboMaster M3508 直流无刷
+减速电机和C620 无刷电机调速器设计，搭配使用可组建一套四电机独立驱动的
+动力系统。
+物品清单
+长款C620 CAN 信号线×4 
+M3508 电机三相动力延长线×4 
+XT60 电源线（母头）×1 
+XT30 电源延长线×4 
+
+
+=== PAGE 9 ===
+ 
+8
+集线板×1 
+开发板连接线×1 
+长款M3508 电机7-Pin 数据线×4 
+绝缘贴片×1 
+接口说明
+[1] 8-Pin 开发板连接端口
+ 
+连接RoboMaster 主控开发板*，为开
+发板供电并连接开发板的CAN 网络，
+最大持续电流为20A。
+[2] CAN 焊盘
+ 
+可焊接额外的CAN 信号线。
+[3] CAN 信号端口
+ 
+通过CAN 信号线连接C620 电调的
+CAN 信号端口。
+[4] XT30 电源端口
+ 
+连接C620 电调电源线，最大持续电流
+为20A。
+[5] XT60 总电源
+ 
+电源输入端，连接外部电源，最大持续
+电流为40A。
+1
+4
+3
+5
+2
+* RoboMaster 开发板的详细说明，请参阅《RM 开发板使用说明》。
+
+
+=== PAGE 10 ===
+9 
+集线板安装尺寸图
+请按照集线板安装孔尺寸和大小将集线板安装至合适位置。
+• 集线板安装孔为 ∅3.20 通孔，请使用M3 的螺丝进行安装。
+• 安装时请注意确保安装位置合适，方便外接线插拔至集线板。
+安装连接
+安装连线前，请确保所有电源已经断开，切勿带电安装。
+1. 根据CAN 网络使用需求，用户在需要时可自备一根2-Pin CAN 信号线。首先将
+CAN 信号线一头焊接至集线板CAN 焊盘，另一头焊接至其他设备。焊接时注意
+线序，切勿接错。
+2. 将包装内的绝缘贴片背面撕开，然后粘贴至集线板正面带RoboMaster 标志一侧，
+请对齐集线板进行粘贴，切勿挡住集线板上方各接口。
+单位: mm
+60
+安装孔∅3.20
+45
+16
+32
+
+
+=== PAGE 11 ===
+ 
+10
+3. 根据需求使用C620 包装内自带的线材连接电调和集线板，或使用附件包中的
+XT30 电源延长线和长款C620 电调CAN 信号线分别连接C620 电调的电源接口
+和CAN 接口，连接时请注意线序，切勿接错。详细的连接方法及线序请参阅《C620
+无刷电机调速器使用说明》。
+4. 使用C620 和M3508 包装内的线材连接电调和电机，如有需要，请使用附件包
+中的长款M3508 电机7-Pin 数据线和M3508 电机三相动力延长线连接电调和电
+机，连接时注意线序，切勿接错。详细的连接方法请参阅《M3508 无刷直流减速
+电机使用说明》。
+5. 如需使用RoboMaster 主控开发板，请使用开发板连接线连接主控开发板和集线
+板，为开发板供电，并确保开发板的CAN 和集线板的CAN 连通在同一CAN 网
+络里。
+6. 使用M3 螺丝将集线板固定于合适位置。 
+7. 使用XT60 电源线连接外部电源，注意电源的供电能力是否符合需求，连接时注
+意正负极切勿接反。
+8. 连接完毕后请确认所有接线已稳固连接，无短路或者其他异常情况。
+连接开发板 
+CAN 信号线
+总电源线
+7-Pin 数据线
+公头
+母头
+-
++
+
+
+=== PAGE 12 ===
+11 
+线材参数
+名称
+接头
+长度
+针数
+持续电流
+开发板连接线
+双头
+40 cm
+8
+20A
+XT60 电源线
+母头
+30 cm
+2
+40A
+XT30 电源延长线
+一公一母
+15 cm
+2
+20A
+长款C620 电调CAN 信号线
+双头
+43 cm
+2
+N/A
+M3508 电机三相动力延长线
+一公一母
+15 cm
+3
+20A
+长款M3508 电机7-Pin 数据线
+双头
+32 cm
+7
+N/A
+
+
+=== PAGE 13 ===
+ 
+12
+免責事項 
+RoboMaster M3508 アクセサリーキット（以下「本製品」といいます）をご購入いただき
+ありがとうございます。本製品のご使用前に、この免責事項をよくお読みください。本
+製品を使用すると、この免責事項をすべて読み、これに同意したものとみなされます。本
+製品は、ユーザーガイドに記載されているとおりに取り付けて使用してください。SZ DJI 
+TECHNOLOGY CO., LTD. とその関連会社は、本製品が不適切な使用、取り付けまたは改造（指
+定外のアクセサリーの使用などが含まれます）により、直接または間接的な原因で生じた物
+的損害または人的被害についていかなる責任も負いません。
+DJI
+TM はSZ DJI TECHNOLOGY CO., LTD.（略して「DJI」）およびその関連会社の商標です。
+本書に記載されている製品、ブランドなどの名称は、その所有者である各社の商標または登
+録商標です。本製品および本書は、不許複製・禁無断転載を原則とするDJI の著作物のため、
+DJI から書面による事前承認または許諾を得ることなく何らかの形で本製品または文書のい
+かなる部分も複製することは固く禁じられています。
+本免責事項の最終解釈権限はDJI が有します。
+警告
+1. 短絡がなく、すべてのケーブルが正しく接続されていることを確認してください。
+2. すべての部品が良好な状態であることを確認し、必要に応じて部品を交換してください。
+3. 本製品は、本書に記載している各仕様（電圧、電流など）を厳守してご使用ください。仕
+様が守られなかった場合は製品寿命が短くなり、また製品に修復不能な損傷が発生するお
+それもあります。
+はじめに
+M3508 アクセサリーキットは、RoboMaster M3508 P19 ブラシレス直流ギアモーターと
+C620 ブラシレス直流モーター速度コントローラー専用に設計されています。また、数本の
+ケーブルと端子盤で構成され、独立した4 個のモーターで駆動する完全な推進システムを構
+築します。 
+同梱物
+XT60 電源ケーブル（メス）× 1 
+XT30 延長電源ケーブル× 4 
+
+
+=== PAGE 14 ===
+13 
+C620 CAN ケーブル（ロングタイプ）× 4 
+M3508 7 ピンケーブル（ロングタイプ）× 4
+M3508 三相延長ケーブル× 4 
+絶縁パッチ× 1 
+端子盤× 1 
+開発ボードケーブル× 1 
+端子盤の概要
+1
+4
+3
+5
+2
+[1] 8 ピンポート
+ 
+開発ボードケーブルを使用してRoboMaster 開発ボ
+ード* に接続し、開発ボードに電力を供給して、開
+発ボードのCAN バスを共有します。最大連続電流
+は20A です。
+[2] CAN パッド
+ 
+ここに追加のCAN ケーブルをはんだ付けできます。 
+[3] CAN ポート
+ 
+CAN ケーブルでC620 速度コントローラーのCAN
+ポートに接続します。 
+[4] XT30 電源ポート
+ 
+C620 速度コントローラーの電源ケーブルに接続し
+ます。最大連続電流は20A です。
+[5] XT60 電源ケーブル
+ 
+最大連続電流40A の外部電源に接続します。
+
+
+=== PAGE 15 ===
+ 
+14
+* 本製品の詳細については、『RoboMaster 開発ボードユーザーガイド』を参照してください。 
+端子盤の取り付け
+端子盤を取り付ける際は、以下の寸法を参照してください。
+• 端子盤には直径3.20 の取り付け穴があります。M3 ネジを使用して端子盤を正し
+く取り付けます。
+• 取り付け作業時には、端子盤やパッドを覆わないでください。ケーブルの抜き差
+しができなくなる可能性があります。
+速度コントローラーとモーターの接続
+接続する前に、必ずすべての電源ケーブルを抜いてください。
+1. 必要に応じて2 ピンCAN ケーブルを接続します。まず、CAN ケーブルの端子を端子盤の
+CAN パッドにはんだ付けし、もう一方の端子を互換性のある機器にはんだ付けします。
+ケーブルが正しくはんだ付けされていることを確認します。 
+2. 端子盤（RoboMaster のロゴ付き）の上部に絶縁パッチを取り付けます。取り付けるときに、
+端子盤のポートやパッドを覆わないでください。
+60
+取り付け穴
+45
+16
+32
+∅3.20
+単位：mm
+
+
+=== PAGE 16 ===
+15 
+3. C620 速度コントローラーに付属しているケーブル、または必要に応じてXT30 延長電源
+ケーブルとC620 CAN ケーブル（ロングタイプ）を使用して、速度コントローラーと端
+子盤を接続します。対応する色が正しく合うようにケーブルをしっかり接続してください。
+詳細については、『C620 ブラシレス直流モーター速度コントローラーユーザーガイド』
+を参照してください。
+4. C620 速度コントローラーとM3508 モーターに付属しているケーブル、または必要に応じ
+て7 ピンM3508 ケーブル（ロングタイプ）とM3508 延長三相ケーブルを使用して、速度
+コントローラーとモーターを接続します。対応する色が正しく合うようにケーブルをしっ
+かり接続してください。詳細については、『M3508 ブラシレス直流ギアモーターユーザ
+ーガイド』を参照してください。
+5. 開発ボードを使用する場合は、開発ボードケーブルで端子盤と開発ボードを接続します。
+開発ボードと端子盤が同じCAN バスを共有していることを確認します。 
+6. 端子盤をM3 ネジで固定します。 
+7. XT60 電源ケーブルを使用して、外部電源に接続します。電源が用途に対して十分である
+ことと、ケーブルが正しく接続されていることを確認します。 
+8. 短絡などの問題が発生しないように、すべてのケーブルが正しくしっかりと接続されてい
+ることを再確認します。
+-
++
+開発ボードへ
+CAN ケーブル
+電源
+7 ピンケーブル
+オス
+メス
+
+
+=== PAGE 17 ===
+ 
+16
+仕様
+名称
+端子
+長さ
+ピン
+連続電流
+開発ボードケーブル
+同一端子
+40 cm
+8
+20 A
+XT60 電源ケーブル
+オス 
+30 cm
+2
+40 A
+XT30 延長電源ケーブル
+オス／メス
+15 cm
+2
+20 A
+C620 CAN ケーブル
+（ロングタイプ）
+同一端子
+43 cm
+2
+なし
+M3508 三相延長ケーブル
+オスとメス
+15 cm
+3
+20 A
+M3508 7 ピンケーブル
+（ロングタイプ）
+同一端子
+32 cm
+7
+なし
+
+
+=== PAGE 18 ===
+17 
+FCC Compliance
+This device complies with Part 15 of the FCC Rules. Operation is subject to the 
+following two conditions: (1) This device may not cause harmful interference, and (2) 
+This device must accept any interference received, including interference that may 
+cause undesired operation.
+Any changes or modifications not expressly approved by the party responsible for 
+compliance could void the user’s authority to operate the equipment.
+EU Compliance Statement: SZ DJI TECHNOLOGY CO., LTD. hereby declares that 
+this device is in compliance with the essential requirements and other relevant 
+provisions of the Directive 2014/30/EU.
+A copy of the EU Declaration of Conformity is available online at www.dji.com/euro-
+compliance
+EU contact address: DJI GmbH, Industriestrasse. 12, 97618, Niederlauer, Germany
+Environmentally friendly disposal
+Old electrical appliances must not be disposed of together with the 
+residual waste, but have to be disposed of separately. The disposal at 
+the communal collecting point via private persons is for free. The owner of 
+old appliances is responsible to bring the appliances to these collecting 
+points or to similar collection points. With this little personal effort, you contribute to 
+recycle valuable raw materials and the treatment of toxic substances.
+IC Compliance
+This device complies with ICES-003 standard. Operation is subject to the following 
+two conditions: (1) this device may not cause interference, and (2) this device must 
+accept any interference, including interference that may cause undesired operation 
+of the device.
+
+
+=== PAGE 20 ===
+Copyright © 2017 DJI All Rights Reserved.
+WWW.ROBOMASTER.COM
+Printed in China.
+are trademarks of DJI.
+and
+
+DONE
