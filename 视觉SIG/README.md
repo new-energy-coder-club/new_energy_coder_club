@@ -39,7 +39,7 @@
 | **卢永杰** | 260120 | 工业相机 SDK 实操 (C#+Winform+海康) | [B站视频](https://www.bilibili.com/video/BV1VnBTBiE7R) |
 | **卢永杰** | 260121 | OpenCV+YOLO 实时目标检测 | [B站视频](https://www.bilibili.com/video/BV1M7oMYXE5h) |
 | **卢永杰** | 260125 | 树莓派5 部署 YOLOv8/v11 | [B站视频](https://www.bilibili.com/video/BV1zCWYzvEA7) |
-| **卢永杰** | 260608 | 智能小车导航步骤详细解析 | [导航文档](https://pan.baidu.com/s/1ADRmbWKzY8QsT6fkmDRxCw?pwd=1111 提取码: 1111) |
+| **卢永杰** | 260608 | 智能小车导航步骤详细解析 | [导航文档](https://pan.baidu.com/s/1yPYpDq6S5BoL-HMRktYizg?pwd=1111) |
 | **郭童童** | 260204 | 中科大电控合集END | - |
 | **郭童童** | 260310 | 合工大硬件 | - |
 | **郭童童** | 260126 | 树莓派 5 学习 erwp | [Yahboom教程](https://www.yahboom.com/study/raspberry5) |
