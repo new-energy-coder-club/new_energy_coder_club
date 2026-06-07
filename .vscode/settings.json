@@ -1,0 +1,16 @@
+{
+    "workbench.colorCustomizations": {
+        "sideBar.background": "#1f2329",
+        "activityBar.background": "#2A2E37",
+        "titleBar.activeBackground": "#2A2E37",
+        "editor.background": "#181B20",
+        "terminal.background": "#181B20",
+        "panel.background": "#181B20",
+        "dropdown.background": "#181B20",
+        "dropdown.listBackground": "#181B20",
+        "editorGroupHeader.tabsBackground": "#1F2229",
+        "tab.inactiveBackground": "#23282E",
+        "menu.background": "#2A2F37",
+        "menu.selectionBackground": "#0E629D"
+    }
+}

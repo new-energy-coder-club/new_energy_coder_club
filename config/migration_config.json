@@ -188,8 +188,10 @@
       "description": "3D模型文件处理"
     },
     "chinese_naming": {
-      "action": "rename_to_english",
-      "description": "中文命名转换为英文"
+      "action": "preserve_chinese",
+      "description": "保持中文命名，优先使用中文",
+      "fallback_english": true,
+      "encoding": "utf-8"
     },
     "image_optimization": {
       "extensions": [".jpg", ".jpeg", ".png", ".bmp"],

@@ -1,0 +1,178 @@
+# 基础镜像配置
+FROM node:18-alpine AS base
+# ===========================================
+# {{PROJECT_NAME}} Docker配置文件
+# ===========================================
+# 多阶段构建，优化镜像大小和安全性
+
+# ===========================================
+# 构建阶段
+# ===========================================
+FROM {{BASE_IMAGE}}:{{BASE_IMAGE_VERSION}} AS builder
+
+# 设置工作目录
+WORKDIR /app
+
+# 设置环境变量
+ENV NODE_ENV=production
+ENV NPM_CONFIG_REGISTRY={{NPM_REGISTRY}}
+
+# 复制package文件
+COPY package*.json ./
+COPY yarn.lock* ./
+
+# 安装依赖
+RUN {{INSTALL_COMMAND}} && \
+    {{CACHE_CLEAN_COMMAND}}
+
+# 复制源代码
+COPY . .
+
+# 构建应用
+RUN {{BUILD_COMMAND}}
+
+# ===========================================
+# 生产阶段
+# ===========================================
+FROM {{RUNTIME_IMAGE}}:{{RUNTIME_IMAGE_VERSION}} AS production
+
+# 安装必要的系统包
+RUN {{SYSTEM_UPDATE_COMMAND}} && \
+    {{SYSTEM_INSTALL_COMMAND}} \
+        {{SYSTEM_PACKAGES}} && \
+    {{SYSTEM_CLEAN_COMMAND}}
+
+# 创建非root用户
+RUN groupadd -r {{APP_USER}} && \
+    useradd -r -g {{APP_USER}} -s /bin/false {{APP_USER}}
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制构建产物
+COPY --from=builder --chown={{APP_USER}}:{{APP_USER}} /app/{{BUILD_OUTPUT_DIR}} ./{{BUILD_OUTPUT_DIR}}
+COPY --from=builder --chown={{APP_USER}}:{{APP_USER}} /app/package*.json ./
+COPY --from=builder --chown={{APP_USER}}:{{APP_USER}} /app/node_modules ./node_modules
+
+# 复制配置文件
+COPY --chown={{APP_USER}}:{{APP_USER}} {{CONFIG_FILES}} ./
+
+# 创建必要的目录
+RUN mkdir -p {{REQUIRED_DIRS}} && \
+    chown -R {{APP_USER}}:{{APP_USER}} {{REQUIRED_DIRS}}
+
+# 设置权限
+RUN chmod +x {{EXECUTABLE_FILES}}
+
+# 切换到非root用户
+USER {{APP_USER}}
+
+# 暴露端口
+EXPOSE {{EXPOSE_PORT}}
+
+# 健康检查
+HEALTHCHECK --interval={{HEALTH_INTERVAL}} \
+            --timeout={{HEALTH_TIMEOUT}} \
+            --start-period={{HEALTH_START_PERIOD}} \
+            --retries={{HEALTH_RETRIES}} \
+    CMD {{HEALTH_CHECK_COMMAND}}
+
+# 设置启动命令
+CMD ["{{START_COMMAND}}"]
+
+# ===========================================
+# 开发阶段 (可选)
+# ===========================================
+FROM {{BASE_IMAGE}}:{{BASE_IMAGE_VERSION}} AS development
+
+# 设置工作目录
+WORKDIR /app
+
+# 设置环境变量
+ENV NODE_ENV=development
+ENV NPM_CONFIG_REGISTRY={{NPM_REGISTRY}}
+
+# 安装开发工具
+RUN {{DEV_TOOLS_INSTALL_COMMAND}}
+
+# 复制package文件
+COPY package*.json ./
+COPY yarn.lock* ./
+
+# 安装所有依赖（包括开发依赖）
+RUN {{DEV_INSTALL_COMMAND}}
+
+# 复制源代码
+COPY . .
+
+# 暴露端口
+EXPOSE {{DEV_PORT}}
+EXPOSE {{DEBUG_PORT}}
+
+# 启动开发服务器
+CMD ["{{DEV_START_COMMAND}}"]
+
+# ===========================================
+# 测试阶段 (可选)
+# ===========================================
+FROM builder AS test
+
+# 运行测试
+RUN {{TEST_COMMAND}}
+
+# 生成测试报告
+RUN {{TEST_COVERAGE_COMMAND}}
+
+# ===========================================
+# 标签和元数据
+# ===========================================
+LABEL maintainer="{{MAINTAINER_EMAIL}}"
+LABEL version="{{PROJECT_VERSION}}"
+LABEL description="{{PROJECT_DESCRIPTION}}"
+LABEL org.opencontainers.image.title="{{PROJECT_NAME}}"
+LABEL org.opencontainers.image.description="{{PROJECT_DESCRIPTION}}"
+LABEL org.opencontainers.image.version="{{PROJECT_VERSION}}"
+LABEL org.opencontainers.image.authors="{{PROJECT_AUTHORS}}"
+LABEL org.opencontainers.image.url="{{PROJECT_URL}}"
+LABEL org.opencontainers.image.source="{{SOURCE_URL}}"
+LABEL org.opencontainers.image.vendor="{{VENDOR_NAME}}"
+LABEL org.opencontainers.image.licenses="{{LICENSE}}"
+LABEL org.opencontainers.image.created="{{BUILD_DATE}}"
+LABEL org.opencontainers.image.revision="{{GIT_COMMIT}}"
+
+# ===========================================
+# 使用说明
+# ===========================================
+# 
+# 构建生产镜像:
+# docker build --target production -t {{PROJECT_NAME}}:latest .
+# 
+# 构建开发镜像:
+# docker build --target development -t {{PROJECT_NAME}}:dev .
+# 
+# 运行生产容器:
+# docker run -d -p {{EXPOSE_PORT}}:{{EXPOSE_PORT}} \
+#   --name {{PROJECT_NAME}} \
+#   -e NODE_ENV=production \
+#   {{PROJECT_NAME}}:latest
+# 
+# 运行开发容器:
+# docker run -d -p {{DEV_PORT}}:{{DEV_PORT}} \
+#   --name {{PROJECT_NAME}}-dev \
+#   -v $(pwd):/app \
+#   -e NODE_ENV=development \
+#   {{PROJECT_NAME}}:dev
+# 
+# 查看日志:
+# docker logs {{PROJECT_NAME}}
+# 
+# 进入容器:
+# docker exec -it {{PROJECT_NAME}} /bin/sh
+# 
+# 停止容器:
+# docker stop {{PROJECT_NAME}}
+# 
+# 删除容器:
+# docker rm {{PROJECT_NAME}}
+# 
+# ===========================================

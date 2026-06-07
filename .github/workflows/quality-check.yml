@@ -1,0 +1,215 @@
+name: Repository Quality Check
+
+# 触发条件
+on:
+  # 推送到主分支时触发
+  push:
+    branches: [ main, master ]
+  # 创建Pull Request时触发
+  pull_request:
+    branches: [ main, master ]
+  # 定时触发（每周一上午9点）
+  schedule:
+    - cron: '0 9 * * 1'
+  # 手动触发
+  workflow_dispatch:
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 检出代码
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 获取完整历史记录
+    
+    # 设置Python环境
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    # 安装依赖
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || echo "No requirements.txt found"
+    
+    # 创建必要目录
+    - name: Create directories
+      run: |
+        mkdir -p quality_reports
+        mkdir -p docs
+    
+    # 运行质量检查
+    - name: Run quality monitor
+      run: |
+        python scripts/quality_monitor.py . --verbose
+      continue-on-error: true
+    
+    # 生成第二阶段优化报告
+    - name: Generate phase 2 report
+      run: |
+        python scripts/phase2_report_generator.py . --verbose
+      continue-on-error: true
+    
+    # 上传质量报告作为构建产物
+    - name: Upload quality reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: quality-reports
+        path: |
+          quality_reports/
+          *报告*.md
+          第二阶段优化报告*.md
+        retention-days: 30
+    
+    # 检查质量阈值
+    - name: Check quality threshold
+      run: |
+        python -c "
+        import json
+        import glob
+        import re
+        
+        # 查找最新的质量监控报告
+        reports = glob.glob('quality_reports/质量监控报告_*.md')
+        if not reports:
+            print('未找到质量监控报告')
+            exit(1)
+        
+        latest_report = max(reports)
+        print(f'检查报告: {latest_report}')
+        
+        # 读取报告内容
+        with open(latest_report, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # 提取总体得分
+        score_match = re.search(r'总体得分[：:]*\s*(\d+(?:\.\d+)?)分', content)
+        if not score_match:
+            print('无法从报告中提取得分')
+            exit(1)
+        
+        score = float(score_match.group(1))
+        print(f'当前质量得分: {score}分')
+        
+        # 设置质量阈值
+        threshold = 75.0
+        
+        if score < threshold:
+            print(f'⚠️ 质量得分 {score} 低于阈值 {threshold}，需要改进！')
+            exit(1)
+        else:
+            print(f'✅ 质量得分 {score} 达到阈值要求 {threshold}')
+        "
+    
+    # 创建质量徽章数据
+    - name: Create quality badge
+      run: |
+        python -c "
+        import json
+        import glob
+        import re
+        
+        # 查找最新的质量监控报告
+        reports = glob.glob('quality_reports/质量监控报告_*.md')
+        if reports:
+            latest_report = max(reports)
+            with open(latest_report, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # 提取得分和等级
+            score_match = re.search(r'总体得分[：:]*\s*(\d+(?:\.\d+)?)分', content)
+            level_match = re.search(r'质量等级[：:]*\s*(\w+)', content)
+            
+            if score_match and level_match:
+                score = float(score_match.group(1))
+                level = level_match.group(1)
+                
+                # 确定徽章颜色
+                if score >= 90:
+                    color = 'brightgreen'
+                elif score >= 80:
+                    color = 'green'
+                elif score >= 70:
+                    color = 'yellow'
+                elif score >= 60:
+                    color = 'orange'
+                else:
+                    color = 'red'
+                
+                # 创建徽章数据
+                badge_data = {
+                    'schemaVersion': 1,
+                    'label': 'Quality',
+                    'message': f'{score:.1f} ({level})',
+                    'color': color
+                }
+                
+                with open('quality-badge.json', 'w') as f:
+                    json.dump(badge_data, f)
+                
+                print(f'质量徽章已创建: {score:.1f}分 ({level})')
+        "
+    
+    # 上传徽章数据
+    - name: Upload badge data
+      uses: actions/upload-artifact@v3
+      with:
+        name: quality-badge
+        path: quality-badge.json
+        retention-days: 30
+    
+    # 评论PR（仅在PR触发时）
+    - name: Comment on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const glob = require('glob');
+          
+          // 查找最新的质量监控报告
+          const reports = glob.sync('quality_reports/质量监控报告_*.md');
+          if (reports.length === 0) {
+            console.log('未找到质量监控报告');
+            return;
+          }
+          
+          const latestReport = reports.sort().pop();
+          const content = fs.readFileSync(latestReport, 'utf8');
+          
+          // 提取关键信息
+          const scoreMatch = content.match(/总体得分[：:]*\s*(\d+(?:\.\d+)?)分/);
+          const levelMatch = content.match(/质量等级[：:]*\s*(\w+)/);
+          
+          if (scoreMatch && levelMatch) {
+            const score = parseFloat(scoreMatch[1]);
+            const level = levelMatch[1];
+            
+            let emoji = '✅';
+            if (score < 60) emoji = '❌';
+            else if (score < 70) emoji = '⚠️';
+            else if (score < 80) emoji = '🟡';
+            else if (score < 90) emoji = '🟢';
+            
+            const comment = `## ${emoji} 代码质量检查报告
+            
+            **总体得分**: ${score}分  
+            **质量等级**: ${level}
+            
+            详细报告请查看构建产物中的质量报告文件。
+            
+            ${score < 75 ? '⚠️ **注意**: 质量得分低于推荐阈值，建议在合并前进行改进。' : '✅ 质量检查通过！'}
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+          }
