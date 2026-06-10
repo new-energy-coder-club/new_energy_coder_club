@@ -1,0 +1,11 @@
+# Git LFS: track large binary assets to keep clone/pull lighter.
+*.step filter=lfs diff=lfs merge=lfs -text
+*.stp filter=lfs diff=lfs merge=lfs -text
+*.vsdx filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.dwg filter=lfs diff=lfs merge=lfs -text
+*.dxf filter=lfs diff=lfs merge=lfs -text
+*.apwz filter=lfs diff=lfs merge=lfs -text
+*.hch filter=lfs diff=lfs merge=lfs -text
+*.kmodel filter=lfs diff=lfs merge=lfs -text
