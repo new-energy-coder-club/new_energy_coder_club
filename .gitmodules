@@ -4,4 +4,4 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/new-energy-coder-club/docs.git
-	branch = import/from-new_energy_coder_club
+	branch = main
