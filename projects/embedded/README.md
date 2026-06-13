@@ -1,72 +1,47 @@
-# Embedded
+# Embedded — HXC 嵌入式开发项目
 
-> 项目目录
+> HXC 战队 ESP32-S3 主控板（Board A）核心开发目录
 
-## 📋 目录概览
+## 📋 目录内容
 
-本目录包含以下内容：
+| 路径 | 说明 |
+|------|------|
+| `HXC_A_Usage_Guide.md` | HXC_A 板级开发使用说明（推荐先读） |
+| `ESP32_platformio_temple_project/` | ⬆️ 上游子模块 — CQUPTHXC 的 ESP32 PlatformIO 模板项目 |
 
-### 📁 子目录
+**上游项目：** https://github.com/CQUPTHXC/ESP32_platformio_temple_project
 
-- **[nearlink](nearlink/)**: 项目目录
+## 🚀 快速开始
 
-### 📄 文件列表
+```powershell
+# 编译
+cd ESP32_platformio_temple_project
+pio run --environment temple_project
 
-#### Markdown 文档
+# 烧录
+pio run --target upload --environment temple_project
 
-- `README.md` (5.2 KB)
+# 串口监视
+pio device monitor -b 115200
+```
 
+## 🛠️ 开发指南
 
-## 🚀 使用说明
+- [环境搭建指南](../../docs/guides/development-setup.md) — 新设备从零搭建
+- [Vibe Coding 调试指南](../../docs/guides/vibe-coding-debug.md) — 跨工作区调试工作流
+- [HXC_A 使用说明](HXC_A_Usage_Guide.md) — 板级详细使用说明
 
-### 环境要求
+## 📌 硬件配置速查
 
-请确保您的开发环境满足以下要求：
-
-- Python 3.8+
-- Git
-- 相关依赖包（见各项目的requirements.txt）
-
-### 快速开始
-
-1. 进入项目目录：
-   ```bash
-   cd projects\embedded
-   ```
-
-2. 查看具体项目：
-   ```bash
-   ls -la
-   ```
-
-3. 阅读项目文档：
-   ```bash
-   cat README.md
-   ```
-
-## 📚 相关文档
-
-- [返回上级目录](../README.md)
-- [项目主页](../../README.md)
-- [开发指南](../../docs/guides/)
-- [API文档](../../docs/api/)
-
-## 🤝 贡献指南
-
-欢迎提交 Issue 和 Pull Request 来改进项目！
-
-1. Fork 本仓库
-2. 创建特性分支
-3. 提交更改
-4. 发起 Pull Request
-
-## 📞 联系我们
-
-如有问题，请通过以下方式联系：
-
-- 提交 [Issue](../../issues)
-- 发送邮件至 contact@new-energy-coder-club.org
+| 参数 | 值 |
+|------|-----|
+| MCU | ESP32-S3 (rev v0.2) |
+| Flash | 16MB (QIO OPI) |
+| PSRAM | 8MB |
+| CAN TX | GPIO8 |
+| CAN RX | GPIO18 |
+| 串口 | USB CDC (115200, 8N1) |
 
 ---
 
-*最后更新: 2025-09-18 03:02:50*
+*HXC 战队 — 常州工学院 NEC 机器人团队*
