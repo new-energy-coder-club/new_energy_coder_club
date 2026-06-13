@@ -27,9 +27,9 @@
 
 | 场景 | 说明 | 关键入口 |
 |------|------|----------|
-| 🆕 **新设备环境搭建** | 从零搭建 PlatformIO + ESP32-S3 开发环境 | [环境搭建指南](docs/guides/development-setup.md) |
+| 🆕 **新设备环境搭建** | 从零搭建 PlatformIO + ESP32-S3 开发环境 | [环境搭建指南](docs/development-setup.md) |
 | 🔧 **固件开发与调试** | 基于上游模板进行位控/电流/位置控制开发 | [HXC_A 使用说明](projects/embedded/HXC_A_Usage_Guide.md) |
-| 🔄 **跨工作区协作** | Vibe Coding 多机调试、代码同步 | [调试工作流](docs/guides/vibe-coding-debug.md) |
+| 🔄 **跨工作区协作** | Vibe Coding 多机调试、代码同步 | [调试工作流](docs/vibe-coding-debug.md) |
 | 📚 **设备文档维护** | 板级使用说明、硬件参数、调试技巧 | [嵌入式项目](projects/embedded/) |
 | 🤖 **AI Skills 托管** | **149 个** AI Coding Skills，跨 Claude Code / Trae / QClaw / Kimi | [Skills 目录](skills/) |
 | 🛠️ **AI 工具配置** | AtomCode / Kimi CLI / Claude CLI / Trae / Kimi Code 项目级配置 | [AI 工具配置](#-ai-工具配置) |
@@ -50,43 +50,29 @@
 ## 📋 仓库结构
 
 ```
-📦 new_energy_coder_club (SKill)
+📦 new_energy_coder_club (SKill) — 精简优化版
 │
-├── 📁 projects/embedded/                       ← 嵌入式固件主目录
+├── 📁 projects/embedded/                       ← 嵌入式固件
 │   ├── 📄 HXC_A_Usage_Guide.md                 ← 板级开发使用说明（必读）
-│   ├── 📁 ESP32_platformio_temple_project/     ← ⬆️ 上游子模块 (CQUPTHXC)
-│   └── 📄 README.md                            ← 嵌入式项目入口
+│   └── 📁 ESP32_platformio_temple_project/     ← ⬆️ 上游子模块 (CQUPTHXC)
 │
-├── 📁 skills/                                  ← 🤖 149 个 AI Coding Skills
-│   ├── lark-*/                                 (飞书办公套件 ×25)
+├── 📁 skills/                                  ← 🤖 149 个 AI Coding Skills (44 MB)
+│   ├── lark-*/                                 (飞书办公 ×25)
 │   ├── qclaw-*/                                (QClaw 平台 ×6)
 │   ├── tencent-*/                              (腾讯生态 ×4)
-│   ├── react-*/ frontend-*/ web-*/             (前端开发 ×9)
-│   ├── pv-*/                                   (新能源光伏 ×2)
-│   ├── TRAE-*/                                 (TRAE 内置 ×3)
-│   ├── docx/ pdf/ pptx/ xlsx/                  (文档处理 ×4)
-│   ├── kimi-*/ claude-*/ gemini-*/             (AI CLI 调用器 ×6)
-│   └── ...                                     (其他独立技能 ×90+)
+│   ├── react-*/ frontend-*/ web-*/             (前端 ×9)
+│   ├── pv-*/                                   (光伏 ×2)
+│   ├── docx/ pdf/ pptx/ xlsx/                  (文档 ×4)
+│   ├── kimi-*/ claude-*/ gemini-*/             (AI CLI ×6)
+│   └── ...                                     (其余 93 个)
 │
-├── 📁 docs/guides/                             ← 开发文档
+├── 📁 docs/                                    ← 核心开发文档
 │   ├── 📄 development-setup.md                 ← 新设备环境搭建
-│   └── 📄 vibe-coding-debug.md                 ← 跨工作区调试工作流
+│   └── 📄 vibe-coding-debug.md                 ← 跨工作区调试
 │
-├── 📁 .atomcode/                               ← 🏗️ AtomCode IDE 配置
-│   ├── 📄 project-instructions.md
-│   └── 📁 skills/hxc-esp-a-board/
-│
-├── 📁 .kimi/                                   ← 💻 Kimi CLI 配置
-│   └── 📄 project-instructions.md
-│
-├── 📁 .trae/                                   ← 🔷 Trae IDE 配置
-│   └── 📄 project-instructions.md
-│
-├── 📁 competitions/                            ← 竞赛项目存档
-├── 📁 projects/                                ← 其他项目
-├── 📁 shared/                                  ← 共享资源
-├── 📁 tools/                                   ← 开发工具
-├── 📁 archive/                                 ← 历史归档
+├── 📁 .atomcode/                               ← 🏗️ AtomCode IDE
+├── 📁 .kimi/                                   ← 💻 Kimi CLI
+├── 📁 .trae/                                   ← 🔷 Trae IDE
 ├── 📄 .gitignore                               ← Git 忽略规则
 └── 📄 .gitmodules                              ← 子模块配置
 ```
@@ -160,8 +146,8 @@ python send_cmd.py "s"        # 停止
 
 | 目标 | 入口 | 说明 |
 |------|------|------|
-| 第一次搭建环境 | [环境搭建指南](docs/guides/development-setup.md) | 前置依赖、安装步骤、验证清单 |
-| 快速调试电机 | [Vibe Coding 调试](docs/guides/vibe-coding-debug.md) | 调试工作流、命令速查、故障处理 |
+| 第一次搭建环境 | [环境搭建指南](docs/development-setup.md) | 前置依赖、安装步骤、验证清单 |
+| 快速调试电机 | [Vibe Coding 调试](docs/vibe-coding-debug.md) | 调试工作流、命令速查、故障处理 |
 | 理解板级设计 | [HXC_A 使用说明](projects/embedded/HXC_A_Usage_Guide.md) | 硬件参数、CAN/串口约定、三类工程用法 |
 | 浏览全部技能 | [Skills 目录](skills/) | 149 个 AI Coding Skills |
 
@@ -383,9 +369,9 @@ skill-name/
 ### 重要文档
 
 - [项目贡献指南](CONTRIBUTING.md)
-- [项目索引](PROJECT_INDEX.md)
-- [优化总结](PROJECT_OPTIMIZATION_SUMMARY.md)
-- [清理报告](cleanup_report.md)
+- [HXC_A 使用说明](projects/embedded/HXC_A_Usage_Guide.md)
+- [环境搭建指南](docs/development-setup.md)
+- [调试工作流](docs/vibe-coding-debug.md)
 
 ---
 
