@@ -22,6 +22,7 @@
 | **CAN TX** | GPIO8 |
 | **CAN RX** | GPIO18 |
 | **调试继电器** | GPIO9 |
+| **BOOT 按钮** | GPIO0 |
 | **串口** | USB CDC (115200, 8N1) |
 
 ## 环境搭建
@@ -41,11 +42,13 @@ C:\Users\<USERNAME>\.venv_hxc\Scripts\pio.exe --version
 
 ### 2. 检测 ESP32-S3 串口
 
+ESP32-S3 的 USB VID 为 `303A`。每次复位或换 USB 口后，COM 端口号可能变化，建议先检测再配置。
+
 ```powershell
 C:\Users\<USERNAME>\.venv_hxc\Scripts\python.exe -c "import serial.tools.list_ports as lp; print([(p.device, p.hwid) for p in lp.comports() if '303A' in (p.hwid or '')])"
 ```
 
-预期输出类似：`[('COM5', 'USB VID:PID=303A:1001 SER=10:20:BA:59:30:40')]`
+预期输出类似：`[('COM5', 'USB VID:PID=303A:1001 SER=10:20:BA:59:30:40')]` 或 `[('COM8', 'USB VID:PID=303A:1001 SER=94:A9:90:E0:FC:48')]`
 
 ## 工作流
 
@@ -111,6 +114,8 @@ Expand-Archive -Path "D:\eg\HCX_A_N630.zip" -DestinationPath C:\Users\<USERNAME>
 
 #### 4.2 修改 platformio.ini
 
+将 `<COM_PORT>` 替换为实际检测到的端口（如 `COM5` 或 `COM8`）：
+
 ```ini
 [env:temple_project]
 platform = espressif32
@@ -127,10 +132,10 @@ build_flags =
     -D CORE_DEBUG_LEVEL=ARDUHAL_LOG_LEVEL_VERBOSE
     -D CONFIG_ARDUHAL_LOG_COLORS=1
 
-; 串口和烧录设置
+; 串口和烧录设置（根据实际检测结果修改）
 monitor_speed = 115200
-monitor_port = COM5
-upload_port = COM5
+monitor_port = <COM_PORT>
+upload_port = <COM_PORT>
 monitor_dtr = 0
 monitor_rts = 0
 
@@ -165,7 +170,7 @@ C:\Users\<USERNAME>\.venv_hxc\Scripts\pio.exe run --environment temple_project
 PLATFORM: Espressif 32 (6.12.0) > Espressif ESP32-S3-DevKitC-1-N16R8 (16 MB QD, 8 MB OPI PSRAM)
 HARDWARE: ESP32S3 240MHz, 320KB RAM, 16MB Flash
 RAM:   5.8% (used 19020 bytes from 327680 bytes)
-Flash: 4.3% (used 282329 bytes from 6553600 bytes)
+Flash: 4.3% (used 282589 bytes from 6553600 bytes)
 ========================= [SUCCESS] =========================
 ```
 
@@ -186,10 +191,12 @@ C:\Users\<USERNAME>\.venv_hxc\Scripts\pio.exe run --target upload --environment 
 
 ### 7. 串口通信测试
 
+将 `<COM_PORT>` 替换为实际端口：
+
 ```python
 import serial, time
 
-ser = serial.Serial('COM5', 115200, timeout=2)
+ser = serial.Serial('<COM_PORT>', 115200, timeout=2)
 ser.dtr = False
 ser.rts = False
 time.sleep(3)  # 等待 USB CDC 枚举和 boot 消息
@@ -206,6 +213,10 @@ boot
 CAN driver ok
 CAN start ok
 relay OFF
+relay pulse test
+relay ON
+relay OFF
+relay pulse done
 ready: p, p deg, r deg, c A, s, d [0/1]
 CAN tx=6/0 rx=0 S=--- M=I R=0 | wait VESC | out=0.000A
 ```
@@ -227,7 +238,7 @@ CAN tx=6/0 rx=0 S=--- M=I R=0 | wait VESC | out=0.000A
 ```python
 import serial, sys, time
 
-ser = serial.Serial('COM5', 115200, timeout=2)
+ser = serial.Serial('<COM_PORT>', 115200, timeout=2)
 ser.dtr = False
 ser.rts = False
 time.sleep(1)
@@ -243,6 +254,54 @@ print(data.decode('utf-8', 'replace'))
 
 ser.close()
 ```
+
+## 调试继电器
+
+调试继电器连接在 **GPIO9**，支持三种控制方式：
+
+### 1. 上电自动自检脉冲
+
+上电约 3 秒后，继电器自动闭合 200ms 然后断开，用于验证继电器硬件正常：
+
+```
+relay pulse test
+relay ON
+relay OFF
+relay pulse done
+```
+
+### 2. BOOT 按钮长按控制
+
+- **按住 BOOT 按钮** → 继电器闭合（`R=1`）
+- **松开 BOOT 按钮** → 继电器断开（`R=0`）
+
+实现代码（在 `loop()` 中）：
+
+```cpp
+static constexpr gpio_num_t BOOT_PIN = GPIO_NUM_0;
+
+void loop() {
+    // BOOT 按钮长按控制继电器：按住闭合，松开断开
+    bool boot_pressed = gpio_get_level(BOOT_PIN) == 0;  // BOOT 按下为低电平
+    if (boot_pressed) {
+        if (!relay_state) set_relay(true);
+    } else {
+        if (relay_state) set_relay(false);
+    }
+
+    // ... 其他逻辑
+}
+```
+
+> ⚠️ **注意**：上电启动时不要按住 BOOT，否则 ESP32-S3 会进入下载模式。等串口输出 `ready:` 后再按 BOOT。
+
+### 3. 串口命令控制
+
+- `d`：翻转继电器状态
+- `d 1`：闭合继电器
+- `d 0`：断开继电器
+
+常用场景：控制 VESC/电机供电、复位外部设备、隔离调试电路。
 
 ## 基础旋转测试流程
 
@@ -272,14 +331,6 @@ send: p 0
 send: s
 ```
 
-## 调试继电器
-
-调试继电器连接在 **GPIO9**，可通过串口命令控制：
-
-- 上电默认：**断开**（`relay OFF`）
-- 状态在串口状态行显示为 `R=0`（断开）或 `R=1`（闭合）
-- 常用场景：控制 VESC/电机供电、复位外部设备、隔离调试电路
-
 ## 常见问题
 
 ### 1. COM 端口访问被拒绝
@@ -293,11 +344,11 @@ taskkill /f /im pio.exe
 taskkill /f /im python.exe
 ```
 
-### 2. 烧录时 "Could not open COMxx, the port doesn't exist"
+### 2. 烧录时 "Could not open COMxx, the port is busy or doesn't exist"
 
-原因：ESP32-S3 复位后 USB 重新枚举，COM 端口号可能变化
+原因：ESP32-S3 复位后 USB 重新枚举，COM 端口号可能变化（例如从 COM5 变为 COM8）
 
-解决：
+解决：重新检测端口并更新 `platformio.ini` 中的 `monitor_port` / `upload_port`
 
 ```powershell
 C:\Users\<USERNAME>\.venv_hxc\Scripts\python.exe -c "import serial.tools.list_ports as lp; print([p.device for p in lp.comports() if '303A' in (p.hwid or '')])"
@@ -330,6 +381,12 @@ Warning! Ignore unknown configuration option `build.mcu`
 
 这是已知警告，用于 `merge_bins.py` 脚本，不影响编译和烧录。
 
+### 7. 上电时按住 BOOT 导致无法启动
+
+原因：BOOT（GPIO0）是 ESP32-S3 的 strapping 引脚，上电时按住会进入下载模式
+
+解决：上电时松开 BOOT，等串口输出 `ready:` 后再按 BOOT 控制继电器
+
 ## 环境验证清单
 
 | 检查项 | 预期结果 |
@@ -338,6 +395,8 @@ Warning! Ignore unknown configuration option `build.mcu`
 | 构建输出显示 N16R8 | 16MB Flash, 8MB OPI PSRAM |
 | 烧录成功 | Hash of data verified |
 | 串口输出 `boot` / `CAN driver ok` / `CAN start ok` | 固件运行正常 |
+| 上电 3 秒继电器自检 | 听到/看到继电器吸合一次 |
+| 长按 BOOT | 继电器闭合，松开后断开 |
 | CAN 通信正常 | tx/rx 持续递增 |
 | erpm 读数 | 静止时 ≈0，旋转时变化 |
 | 输入电压 | 22.9V（锂电池供电） |
