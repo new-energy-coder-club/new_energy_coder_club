@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://gitee.com/darrenpig/new_energy_coder_club">
-    <img src="./shared/images/Image/Logo.png" alt="Logo" width="120">
+    <img src="./shared/images/Logo.png" alt="Logo" width="120">
   </a>
 
   <h1 align="center">NEC 新能源开发者社区</h1>
@@ -185,8 +185,8 @@ new_energy_coder_club/
         <li><a href="./projects/ai/5axis-fluid-workstation/">🧠 5轴流体工作站</a> - 智能能源管理系统 · <a href="https://github.com/Darrenpig/5-axis-fluid-workstation">GitHub</a></li>
         <li><a href="./projects/robotics/mechdog-k230-kfs/">🐶 轮腿机器狗 K230 KFS</a> - 基于K230/KFS的轮腿机器狗工程</li>
         <li><a href="./docs/start-here/60min.md">🚀 Quickstart（新人上手）</a> · <a href="./docs/start-here/first-good-issue.md">First Good Issue</a> · <a href="https://gitee.com/darrenpig/new_energy_coder_club/issues">Join</a></li>
-        <li><a href="./projects/科研「横向项目」/README.md">🔬 科研横向项目</a> - 产学研合作项目总览</li>
-        <li><a href="./projects/科研「横向项目」/mica-validation/README.md">🎯 MICA验证项目</a> - 关键性验证与文档系统</li>
+        <li><a href="./projects/research-horizontal/README.md">🔬 科研横向项目</a> - 产学研合作项目总览</li>
+        <li><a href="./projects/research-horizontal/mica-validation/README.md">🎯 MICA验证项目</a> - 关键性验证与文档系统</li>
         <li><a href="./projects/templates/README.md">🛠️ 项目模板</a> - 标准化开发模板</li>
       </ul>
     </td>
@@ -214,12 +214,12 @@ new_energy_coder_club/
       </ul>
     </td>
     <td valign="top" width="50%">
-      <h4>科研「横向项目」快速入口</h4>
+      <h4>research-horizontal 快速入口</h4>
       <ul>
-        <li><a href="./projects/科研「横向项目」/3d-printing-sig.md">📄 3d-printing-sig</a></li>
-        <li><a href="./projects/科研「横向项目」/AGL-openEuler.md">📄 AGL-openEuler</a></li>
-        <li><a href="./projects/科研「横向项目」/dexterous-hand.md">📄 dexterous-hand</a></li>
-        <li><a href="./projects/科研「横向项目」/pneumatic-system.md">📄 pneumatic-system</a></li>
+        <li><a href="./projects/research-horizontal/3d-printing-sig.md">📄 3d-printing-sig</a></li>
+        <li><a href="./projects/research-horizontal/AGL-openEuler.md">📄 AGL-openEuler</a></li>
+        <li><a href="./projects/research-horizontal/dexterous-hand.md">📄 dexterous-hand</a></li>
+        <li><a href="./projects/research-horizontal/pneumatic-system.md">📄 pneumatic-system</a></li>
         <li><a href="./projects/robotics/mechdog-k230-kfs/">📄 K230-KFS</a></li>
         <li><a href="./projects/ai/5axis-fluid-workstation/">📄 5轴流体工作站</a></li>
       </ul>
@@ -268,7 +268,7 @@ new_energy_coder_club/
 
 
 ### Roadmap 项目探索地图
-![2025Roadmap](./shared/images/Image/Roadmap.png)                      
+![2025Roadmap](./shared/images/Roadmap.png)                      
 ---
 
 <!-- CONTACT -->
@@ -349,7 +349,7 @@ new_energy_coder_club/
 
 想要快速了解项目？观看下面的演示动画：
 
-![UR机器人路径规划演示](./projects/科研「横向项目」/image/UR5路径规划.gif)
+![UR机器人路径规划演示](./projects/research-horizontal/image/UR5路径规划.gif)
 *UR机器人路径规划演示 - 展示机器人运动控制能力*
 
 ![百度网盘加速演示](./shared/images/technical/百度网盘加速.gif)  

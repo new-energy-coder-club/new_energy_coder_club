@@ -56,7 +56,7 @@
 
 ### 代码类（type:feature/type:bug）
 - ✅ 有最小复现/最小验证
-- ✅ 不破坏现有 Demo（至少跑通 `docs/nec_quickstart`）
+- ✅ 不破坏现有 Demo（至少跑通 `docs/nec-quickstart`）
 - ✅ PR 描述里写清楚“怎么验证”
 
 ---
@@ -83,7 +83,7 @@
    - 验收：写清楚“需要什么硬件/软件/预估时间/常见坑”
 
 ### B. 仓库维护类（适合愿意学 Git 的新人）
-5. **repo：为 docs/nec_quickstart 增加一个 `--help` 示例截图**
+5. **repo：为 docs/nec-quickstart 增加一个 `--help` 示例截图**
    - 标签：`good first issue` `type:docs` `difficulty:1` `area:repo`
 
 6. **repo：补一个 PR 模板里的检查项（比如运行 demo 的 checkbox）**

@@ -6,7 +6,7 @@ Use this space to list resources you find helpful and would like to give credit 
 更多致谢名单请参见主仓库 README 的入口：[致谢名单](../../README.md#ack-list)
 
 ## 感谢以下赞助伙伴，以及全体开发者们
-![Vi2024](../../shared/images/Image/Warehouse%20Member%20Advocacy%20Vi2024.png)
+![Vi2024](../../shared/images/Warehouse%20Member%20Advocacy%20Vi2024.png)
 
 我们衷心感谢那些来自萝马车圈、艾迈斯科技、深圳米尔电子、openEuler社区、易百纳社区、Rt-theard社区、NXP社区、华为云社区的合作伙伴，他们的软硬件支持，纪念品、连接器、工业主板、开发板和服务器代金券......为项目的进行提供了坚实的支持。
 
@@ -56,7 +56,7 @@ Use this space to list resources you find helpful and would like to give credit 
 |10 | Lazymieie-ness            | Developer | 机械设计        | @孙如婕      |<img src="https://img.shields.io/badge/Mechanic-fedcba" alt="License">|
 
 ### 最近案例：Duma小人形机器人Demo
-![Duma](../../shared/images/Image/Duma_image.png)
+![Duma](../../shared/images/Duma_image.png)
 
 ### 近期工作：
 - 宇树 GO8010-6 电机驱动控制 https://vsislab.github.io/RoboTamer/

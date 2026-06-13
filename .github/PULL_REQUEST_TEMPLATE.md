@@ -3,7 +3,7 @@
 - [ ] 关联 Issue：#xxx（或贴链接）
 
 ## 如何验证
-- [ ] 我已本地跑通：`python docs/nec_quickstart/hello_nec.py --seconds 5`
+- [ ] 我已本地跑通：`python docs/nec-quickstart/hello_nec.py --seconds 5`
 - [ ] 我已检查文档链接不 404（如适用）
 - [ ] 我已补充必要的截图/日志（如适用）
 

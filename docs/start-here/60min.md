@@ -11,8 +11,8 @@
 
 ## 你将获得什么
 
-- ✅ 能跑起来：`python docs/nec_quickstart/hello_nec.py`  
-- ✅ 会产出：生成 `docs/nec_quickstart/out/run_log.csv`（仿真轨迹日志）
+- ✅ 能跑起来：`python docs/nec-quickstart/hello_nec.py`  
+- ✅ 会产出：生成 `docs/nec-quickstart/out/run_log.csv`（仿真轨迹日志）
 - ✅ 能贡献：完成一次标准 Git 提交 & PR
 - ✅ 下一步明确：从 `good first issue` 开始做真实任务
 
@@ -51,13 +51,13 @@ python --version
 直接运行：
 
 ```bash
-python docs/nec_quickstart/hello_nec.py --seconds 20
+python docs/nec-quickstart/hello_nec.py --seconds 20
 ```
 
 你应该看到：
 
 * 控制台输出：运行摘要 + 一个 ASCII 轨迹图
-* 生成文件：`docs/nec_quickstart/out/run_log.csv`
+* 生成文件：`docs/nec-quickstart/out/run_log.csv`
 
 > 如果你没看到 `out/run_log.csv`，先看本文末尾《常见问题》。
 
@@ -121,7 +121,7 @@ PR 标题建议：
 
 PR 描述里写清楚：
 
-* 我跑通了 `docs/nec_quickstart/hello_nec.py`
+* 我跑通了 `docs/nec-quickstart/hello_nec.py`
 * 我新增了新人墙记录
 * 我想继续认领一个 `good first issue`
 
@@ -166,17 +166,17 @@ PR 描述里写清楚：
 * macOS：可以用 `python3` 代替 `python`
 
 ```bash
-python3 docs/nec_quickstart/hello_nec.py --seconds 20
+python3 docs/nec-quickstart/hello_nec.py --seconds 20
 ```
 
 ### 2) 运行了但没有生成 `out/run_log.csv`
 
 * 确认你在仓库根目录
-* 确认路径存在：`docs/nec_quickstart/`
+* 确认路径存在：`docs/nec-quickstart/`
 * 再运行一次：
 
 ```bash
-python docs/nec_quickstart/hello_nec.py --seconds 5 --out docs/nec_quickstart/out
+python docs/nec-quickstart/hello_nec.py --seconds 5 --out docs/nec-quickstart/out
 ```
 
 ### 3) 我不知道下一步做什么

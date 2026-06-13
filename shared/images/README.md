@@ -36,8 +36,8 @@
 ### 🔗 引用方式
 在README或其他文档中引用图片时，请使用相对路径：
 ```markdown
-![Logo](./shared/images/Image/Logo.png)
-![Roadmap](./shared/images/Image/Roadmap.png)
+![Logo](./shared/images/Logo.png)
+![Roadmap](./shared/images/Roadmap.png)
 ```
 
 ### 📏 图片规格建议

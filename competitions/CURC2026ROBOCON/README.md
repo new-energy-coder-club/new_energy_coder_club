@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://gitee.com/darrenpig/new_energy_coder_club">
-    <img src="https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/Logo.png" alt="Logo" width="120">
+    <img src="https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Logo.png" alt="Logo" width="120">
   </a>
 
   <h1 align="center">NEC 新能源开发者社区</h1>

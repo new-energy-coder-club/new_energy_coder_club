@@ -12,7 +12,7 @@
 ### 💻 嵌入式系统 (Embedded)
 - 范围: NearLink、BSP、Rt-Thread、openEuler 等
 - **[星闪技术 (NearLink)](./embedded/)**
-  - [20250426星闪手柄](./embedded/20250426星闪手柄/) - 基于WS63的星闪手柄开发项目
+  - [20250426星闪手柄](./星闪手柄/) - 基于WS63的星闪手柄开发项目
 
 ### 🦾 机器人技术 (Robotics)
 - 范围: 人形机器人、飞控通讯、移动机器人等
@@ -21,11 +21,11 @@
 
 ### 🔬 科研项目 (Research Projects)
 - 范围: 产学研合作与文档系统
-- **[横向项目](./科研「横向项目」/)** - 产学研合作项目
-  - [人形机器人UMI低成本灵巧手](./科研「横向项目」/dexterous-hand/) - 高性价比灵巧手研发
-  - [气缸控制系统](./科研「横向项目」/pneumatic-system/) - 高精度气动控制
-  - [3D打印成型组](./科研「横向项目」/3d-printing-team/) - 专业3D打印服务
-  - [MICA关键性验证](./科研「横向项目」/mica-validation/) - 混合关键部署框架
+- **[横向项目](./research-horizontal/)** - 产学研合作项目
+  - [人形机器人UMI低成本灵巧手](./research-horizontal/dexterous-hand/) - 高性价比灵巧手研发
+  - [气缸控制系统](./research-horizontal/pneumatic-system/) - 高精度气动控制
+  - [3D打印成型组](./research-horizontal/3d-printing-team/) - 专业3D打印服务
+  - [MICA关键性验证](./research-horizontal/mica-validation/) - 混合关键部署框架
 
 ### 🧩 项目模板 (Templates)
 - **[模板目录](./templates/README.md)** - 标准化模板（AI/嵌入式/机器人）
@@ -33,10 +33,10 @@
 ## 🚀 快速导航
 
 ### 按技术栈分类
-- **嵌入式开发**: [星闪手柄](./embedded/20250426星闪手柄/), [HCX调试项目](./科研「横向项目」/)
+- **嵌入式开发**: [星闪手柄](./星闪手柄/), [HCX调试项目](./research-horizontal/)
 - **机器人控制**: [人形机器人](./robotics/humanoid-robot/), [飞控通讯](./robotics/250510飞控通讯/)
 - **AI应用**: [流体工作站](./ai/energy-monitoring/20250319流体工作站/)
-- **产业合作**: [横向项目目录](./科研「横向项目」/)
+- **产业合作**: [横向项目目录](./research-horizontal/)
 
 ### 按项目状态分类
 - **进行中**: 飞控通讯项目 (交付日期: 6.30)

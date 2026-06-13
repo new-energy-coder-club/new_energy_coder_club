@@ -7,13 +7,13 @@
 在仓库根目录执行：
 
 ```bash
-python docs/nec_quickstart/hello_nec.py --seconds 20
+python docs/nec-quickstart/hello_nec.py --seconds 20
 ```
 
 输出：
 
 * 控制台：运行摘要 + ASCII 轨迹图
-* 文件：`docs/nec_quickstart/out/run_log.csv`
+* 文件：`docs/nec-quickstart/out/run_log.csv`
 
 ## 常见问题
 
