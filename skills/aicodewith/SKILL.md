@@ -15,7 +15,7 @@ metadata: {"openclaw": {"emoji": "🤖"}}
 ```json
 {
   "base_url": "https://api.with7.cn/v1",
-  "api_key": "sk-acw-f59cdeef-bd5bf29080ea508c",
+  "api_key": "sk-acw-YOUR_API_KEY_HERE",
   "provider_name": "aicodewith",
   "openclaw_config": "~/.qclaw/openclaw.json"
 }
