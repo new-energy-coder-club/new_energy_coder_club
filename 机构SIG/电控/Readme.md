@@ -49,5 +49,3 @@
 | **田旺旺** | 260131 | B站最新Trae全套实战保姆级教程，一周从入门到精通全集 | [B站视频](https://www.bilibili.com/video/BV1hdsjzjEhZ)|
 | **秦榛** | 260414 | 观看了Gitee 仓库培训 | （https://scn0bdoc8zxg.feishu.cn/minutes/obcnea38d9j8g8s4u938tmd9）
 *(请保持格式统一：`YYMMDD @姓名 内容 [链接]` 或表格形式)*
-<<<<<<< HEAD
-=======
