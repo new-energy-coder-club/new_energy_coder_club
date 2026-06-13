@@ -1,0 +1,19 @@
+# 运行时生成的输出文件
+output/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 脚本运行时的临时数据和输出
+scripts/data/
+scripts/output/
+
+# 虚拟环境
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/

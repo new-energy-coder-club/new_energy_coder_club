@@ -15,7 +15,8 @@
 - 📁 总目录数: 991
 - 📄 总文件数: 2484
 - 📖 README文件: 436
-- 🔄 最后更新: 2025-09-18 03:02:50
+- 🔄 最后更新: 2026-06-14
+- 🤖 Claude Skills: 50 个
 
 ### 🎯 优化成果
 
@@ -87,6 +88,20 @@ docs/
 
 **快速访问:** [API文档](docs\api/) | [使用指南](docs\guides/) | [教程文档](docs\tutorials/) | [参考文档](docs\references/)
 
+### 🤖 Claude Skills
+
+AI 辅助编程与办公自动化技能库
+
+```
+skills/
+├── lark-*/          # 飞书办公套件 (25 个)
+├── pv-*/            # 新能源光伏 (2 个)
+├── acad-paper-*/    # 学术论文 (3 个)
+└── ...              # 共 50 个技能
+```
+
+**快速访问:** [飞书套件](#-飞书lark-办公套件-25个) | [新能源光伏](#-新能源--光伏-2个) | [学术论文](#-学术论文写作-3个) | [开发工具](#-开发工具--ai-工程-6个) | [全部 Skills](skills/)
+
 ### 🛠️ 工具集
 
 开发和自动化工具
@@ -109,13 +124,14 @@ tools/
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/new-energy-coder-club/repository.git
-cd repository
+git clone https://gitee.com/darrenpig/new_energy_coder_club.git
+cd new_energy_coder_club
 ```
 
 ### 2. 浏览项目
 
 - **📋 项目导航**: 查看 [完整项目索引](PROJECT_INDEX.md) - 所有项目的快速导航
+- **🤖 Claude Skills**: 查看 [`skills/`](skills/) 目录 - 50 个 AI 辅助编程技能
 - **🏆 竞赛项目**: 查看 [`competitions/`](competitions/) 目录
 - **💻 开发项目**: 查看 [`projects/`](projects/) 目录
 - **📚 共享资源**: 查看 [`shared/`](shared/) 目录
@@ -161,6 +177,137 @@ cd repository
 - [Electronics Competition](competitions/2024/electronics-competition/)
 - [Energy Saving Competition](competitions/2024/energy-saving-competition/)
 
+
+## 🤖 Claude Skills 技能库
+
+本仓库收录了 **50 个** Claude Code Skills，覆盖飞书办公、学术写作、新能源光伏、开发工具、效率自动化等多个领域。所有 Skill 存放在 [`skills/`](skills/) 目录下。
+
+### 📊 技能分类总览
+
+#### 🏢 飞书/Lark 办公套件 (25个)
+
+飞书生态全流程覆盖：从通讯录、即时通讯、日历日程，到文档、表格、任务、审批、邮件、视频会议、知识库。
+
+| Skill | 功能说明 |
+|-------|---------|
+| [lark-shared](skills/lark-shared/) | CLI 共享基础：配置初始化、认证登录、权限管理 |
+| [lark-contact](skills/lark-contact/) | 通讯录：按姓名/邮箱解析 open_id，反查员工信息 |
+| [lark-im](skills/lark-im/) | 即时通讯：收发消息、群聊管理、文件上传下载 |
+| [lark-calendar](skills/lark-calendar/) | 日历日程：查看/创建/更新日程、预定会议室、忙闲查询 |
+| [lark-doc](skills/lark-doc/) | 云文档 v2：创建/编辑/搜索飞书文档，DocxXML & Markdown |
+| [lark-sheets](skills/lark-sheets/) | 电子表格：工作表管理、单元格读写、公式、筛选视图 |
+| [lark-base](skills/lark-base/) | 多维表格：建表、字段管理、记录读写、仪表盘 |
+| [lark-task](skills/lark-task/) | 任务管理：创建待办、子任务、清单、协作成员 |
+| [lark-approval](skills/lark-approval/) | 审批 API：审批实例与任务管理 |
+| [lark-mail](skills/lark-mail/) | 邮箱：起草/发送/回复/转发/搜索邮件 |
+| [lark-drive](skills/lark-drive/) | 云空间：文件上传下载、文件夹管理、权限、导入导出 |
+| [lark-wiki](skills/lark-wiki/) | 知识库：知识空间管理、成员管理、节点层级结构 |
+| [lark-minutes](skills/lark-minutes/) | 妙记：音视频转文字、会议纪要、AI 总结/待办/章节 |
+| [lark-vc](skills/lark-vc/) | 视频会议：查询会议记录、获取纪要产物 |
+| [lark-vc-agent](skills/lark-vc-agent/) | 会议机器人：代用户加入/离开会议、实时事件监听 |
+| [lark-okr](skills/lark-okr/) | OKR：目标与关键结果管理、进展记录 |
+| [lark-slides](skills/lark-slides/) | 幻灯片：创建/编辑演示文稿（XML 协议） |
+| [lark-whiteboard](skills/lark-whiteboard/) | 画板：导出/DLS/PlantUML/Mermaid 编辑 |
+| [lark-markdown](skills/lark-markdown/) | Markdown：创建/查看/编辑 Markdown 文件 |
+| [lark-event](skills/lark-event/) | 事件订阅：WebSocket 实时监听飞书事件 |
+| [lark-attendance](skills/lark-attendance/) | 考勤打卡：查询打卡记录 |
+| [lark-openapi-explorer](skills/lark-openapi-explorer/) | OpenAPI 探索：挖掘原生飞书 API |
+| [lark-skill-maker](skills/lark-skill-maker/) | 自定义 Skill 创建：封装飞书 API 为可复用 Skill |
+| [lark-workflow-meeting-summary](skills/lark-workflow-meeting-summary/) | 会议纪要工作流：汇总并生成结构化报告 |
+| [lark-workflow-standup-report](skills/lark-workflow-standup-report/) | 日程待办摘要：日程 + 任务一站式概览 |
+
+#### ☀️ 新能源 & 光伏 (2个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [pv-station-rating](skills/pv-station-rating/) | 工商业光伏电站分层分级评分 (A/B/C/D + 十分制) |
+| [pv-storage-bom](skills/pv-storage-bom/) | 光伏+储能系统标准产品 BOM 清单生成 |
+
+#### 📝 学术论文写作 (3个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [acad-paper-prompter](skills/acad-paper-prompter/) | 学术论文写作助手：润色、翻译、回复信、文献综述、选刊 |
+| [paper-scaffold](skills/paper-scaffold/) | 论文目录标准化：CIT/国际会议/通用模板 |
+| [latex-win](skills/latex-win/) | Windows LaTeX 编译修复：XeLaTeX/CJK/PDF 锁定 |
+
+#### 💻 开发工具 & AI 工程 (6个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [agent-browser](skills/agent-browser/) | 浏览器自动化 CLI：导航、表单、截图、数据提取 |
+| [kimi-webbridge](skills/kimi-webbridge/) | Kimi WebBridge：AI 操控真实浏览器 |
+| [clean-code-zh](skills/clean-code-zh/) | 《代码整洁之道》审查与重构 |
+| [planning-with-files](skills/planning-with-files/) | Manus 式文件规划：task_plan/findings/progress |
+| [harness](skills/harness/) | 多会话自治 Agent：进度检查点、故障恢复 |
+| [agentic-loop](skills/agentic-loop/) | Agentic Loop 防护：工具调用上限与重复检测 |
+
+#### 📊 效率 & 日程 (4个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [productivity-automation-kit](skills/productivity-automation-kit/) | 效率自动化工具箱：工作流模板 + 日程管理 + 任务提醒 |
+| [plan-my-day](skills/plan-my-day/) | 能量优化每日计划 |
+| [study-habits](skills/study-habits/) | 学习习惯管理：间隔重复、主动回忆 |
+| [ai-dev-dashboard](skills/ai-dev-dashboard/) | PowerShell AI 开发面板 |
+
+#### 🔍 搜索 & 资讯 (3个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [baidu-search](skills/baidu-search/) | 百度 AI 搜索：网页/百科/秒懂百科/AI 智能生成 |
+| [news](skills/news/) | 新闻资讯：中文新闻 + 全球 AI 技术资讯 |
+| [news-extractor](skills/news-extractor/) | 新闻提取：公众号/头条/网易/搜狐/腾讯 |
+
+#### 🎨 设计 & 发布 (3个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [web-design](skills/web-design/) | 网页设计部署：Tailwind CSS + Cloudflare Pages |
+| [mintlify](skills/mintlify/) | Mintlify 文档站点构建 |
+| [xiaohongshu-images](skills/xiaohongshu-images/) | 小红书 3:4 图文生成 |
+
+#### 📄 简历 & 求职 (2个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [resume-builder](skills/resume-builder/) | 简历生成器：Reactive Resume JSON 输出 |
+| [resume-optimizer](skills/resume-optimizer/) | 简历优化：PDF 导出、ATS 分析 |
+
+#### 💬 社交数据 & 工具 (2个)
+
+| Skill | 功能说明 |
+|-------|---------|
+| [wx-cli-wechat-local-data](skills/wx-cli-wechat-local-data/) | 微信本地数据查询导出 |
+| [find-skills](skills/find-skills/) | SkillHub 技能搜索与管理 |
+
+### 📁 Skills 目录结构
+
+```
+skills/
+├── lark-*/          # 飞书办公套件 (25 个)
+├── pv-*/            # 新能源光伏 (2 个)
+├── acad-paper-*/    # 学术论文 (3 个，含 latex-win)
+├── agent-*/         # 浏览器/Agent 工具 (3 个，含 kimi-webbridge)
+├── productivity-*/  # 效率工具 (1 个)
+└── ...              # 其他技能
+```
+
+每个 Skill 目录包含 `SKILL.md`（核心定义文件）以及可选的 `references/`（参考文档）、`scripts/`（执行脚本）、`templates/`（模板文件）。
+
+### 🚀 如何使用 Skills
+
+1. 将 `skills/` 目录复制到 `~/.claude/skills/`：
+   ```bash
+   cp -r skills/* ~/.claude/skills/
+   ```
+
+2. 或在 Claude Code 中通过 SkillHub 安装：
+   ```
+   /find-skills 搜索并安装需要的技能
+   ```
+
+更多 Skill 开发与使用指南，参见 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code/skills)。
 
 ## 🛠️ 技术栈
 
