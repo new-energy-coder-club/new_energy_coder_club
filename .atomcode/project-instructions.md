@@ -12,6 +12,7 @@ docs/guides/vibe-coding-debug.md                     ← 调试工作流指南
 ## 常用技能
 
 - **hxc-esp-a-board**：HXC ESP32-S3 主控板环境搭建、烧录、测试
+- **fix-everything-windows**：修复 Windows voidtools Everything 文件搜索工具
 - **clean-code-zh**：C++ 代码审查与重构
 - **acad-paper-prompter**：技术文档润色
 
