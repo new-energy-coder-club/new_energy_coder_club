@@ -1,0 +1,3 @@
+[submodule "projects/embedded/ESP32_platformio_temple_project"]
+	path = projects/embedded/ESP32_platformio_temple_project
+	url = https://github.com/CQUPTHXC/ESP32_platformio_temple_project.git
