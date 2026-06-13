@@ -34,6 +34,8 @@
 ├── 📁 tools/                                ← 开发工具
 ├── 📁 .kimi/
 │   └── 📄 project-instructions.md           ← Kimi CLI 项目配置
+├── 📁 .trae/
+│   └── 📄 project-instructions.md           ← Trae IDE 项目配置
 └── 📁 .atomcode/
     ├── 📄 project-instructions.md           ← AtomCode 项目指令
     └── 📁 skills/                           ← AtomCode 本地 Skill
@@ -160,22 +162,39 @@ kimi --print --final-message -C -p "继续分析"
 # 单次任务
 claude -p "分析项目结构" --add-dir "."
 
-# 允许工具执行（YOLO 模式）
+# 允许工具执行
 claude -p "创建测试文件" --permission-mode acceptEdits
 ```
 
-**Skills 目录:** 本仓库 `skills/` 目录可直接复制到 `~/.claude/skills/` 使用。
+**Skills 目录:** 本仓库 `skills/` 目录可直接复制到 `~/.claude/skills/` 使用（50 个 Skills）。
+
+### 🖥️ Kimi Code IDE（桌面版）
+
+**安装路径:** `C:/Users/29711/AppData/Local/Programs/kimi-desktop/Kimi.exe`
+
+在 Kimi Code IDE 中打开本目录后，项目自动注册到 `~/.kimi/kimi.json`，CLI 可通过 `--continue` 续接 IDE 会话。
+
+### 🔷 Trae IDE
+
+**配置文件:** [`.trae/`](.trae/)
+
+| 文件 | 说明 |
+|------|------|
+| [`project-instructions.md`](.trae/project-instructions.md) | Trae IDE 项目指令 |
+
+Trae IDE 支持 Skill 市场（marketplace），已安装 60+ Skills，包括 `lark-*`、`baidu-search`、`pv-storage-bom` 等。
 
 ### ⚡ 工具选择指南
 
 | 任务场景 | 推荐工具 | 原因 |
 |----------|---------|------|
 | 嵌入式 C++ 开发 | Kimi CLI / AtomCode | kimi-for-coding 专长 |
-| 飞书办公自动化 | Claude Code + lark-* skills | Skill 生态完整 |
+| 飞书办公自动化 | Claude Code / Trae + lark-* skills | Skill 生态完整 |
 | 多步骤自动化 | Claude Code | 工具调用 + 文件操作 |
 | 硬件调试分析 | AtomCode Skill | 一键环境搭建 |
 | 代码审查重构 | Kimi CLI / Claude Code | 按复杂度选择 |
 | 文档撰写翻译 | Kimi CLI | 长文本处理优 |
+| IDE 内 AI 辅助 | Trae / Kimi Code | 原生 IDE 体验 |
 
 ## 🤖 Claude Skills 技能库
 

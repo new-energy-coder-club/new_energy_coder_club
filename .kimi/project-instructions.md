@@ -68,3 +68,12 @@ kimi --print --final-message -w "." -p "根据 skills/lark-base/ 的 SKILL.md，
 | 飞书文档/表格操作 | Claude Code (lark-* skills) | Skill 生态 |
 | 项目结构分析 | 两者皆可 | 按需选择 |
 | 多步骤自动化 | Claude Code | 工具调用能力 |
+
+## 🖥️ Kimi Code IDE（桌面版）
+
+Kimi Desktop 是 Moonshot AI 的桌面 IDE，安装在：
+```
+C:/Users/29711/AppData/Local/Programs/kimi-desktop/Kimi.exe
+```
+
+**项目工作区注册：** 在 Kimi Code IDE 中打开本目录后，会自动注册到 `~/.kimi/kimi.json` 的 `work_dirs` 列表中，之后 CLI 的 `--continue` 可续接 IDE 中的会话。
