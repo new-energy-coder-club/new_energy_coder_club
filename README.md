@@ -1,182 +1,121 @@
-# 新能源编程俱乐部 🚀
+# HXC ESP A Board — 核心设备仓库 🚀
 
-> 致力于新能源技术与编程技术的融合创新
+> HXC 战队 ESP32-S3 主控板（Board A）开发环境搭建、固件烧录、电机调试
 
-[![GitHub stars](https://img.shields.io/github/stars/new-energy-coder-club/repository?style=social)](https://github.com/new-energy-coder-club/repository)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Last Updated](https://img.shields.io/badge/last%20updated-2025.09.18-green.svg)](#)
 
-## 📋 项目概览
+## 🎯 分支定位
 
-本仓库是新能源编程俱乐部的主要代码仓库，包含了我们在各类竞赛、项目开发、技术研究等方面的成果。
+本分支 (`SKill`) 是 **HXC ESP A Board 核心设备维护仓库**，用于：
 
-### 📊 仓库统计
+| 场景 | 说明 |
+|------|------|
+| 🆕 **新设备环境搭建** | 从零搭建 PlatformIO + ESP32-S3 开发环境 |
+| 🔧 **固件开发与调试** | 基于上游模板进行位控/电流/位置控制开发 |
+| 🔄 **跨工作区协作** | Vibe Coding 多机调试、代码同步 |
+| 📚 **设备文档维护** | 板级使用说明、硬件参数、调试技巧 |
+| 🤖 **Claude Skills 托管** | 50 个 Claude Code AI Skills，覆盖飞书/光伏/论文/开发等场景 |
 
-- 📁 总目录数: 991
-- 📄 总文件数: 2484
-- 📖 README文件: 436
-- 🔄 最后更新: 2026-06-14
-- 🤖 Claude Skills: 50 个
-
-### 🎯 优化成果
-
-经过目录结构优化，现已实现**两次点击原则**：
-- 📈 **可达性提升**: 83.5% 的项目可在2次点击内访问README
-- 🗂️ **扁平化结构**: 简化了深层嵌套目录
-- 📋 **导航索引**: 提供完整的项目导航 → [查看项目索引](PROJECT_INDEX.md)
-- ✅ **验证报告**: 详细的可达性分析 → [查看验证报告](accessibility_verification.md)
-
-## 🗂️ 目录结构
-
-### 🏆 竞赛项目
-
-各类编程竞赛和技术竞赛项目
+## 📋 目录结构
 
 ```
-competitions/
-├── 2024/
-├── 2025/
-├── archive/
+📦 new_energy_coder_club (SKill)
+├── 📁 projects/embedded/
+│   ├── 📄 HXC_A_Usage_Guide.md              ← 板级开发使用说明（必读）
+│   ├── 📁 ESP32_platformio_temple_project/  ← ⬆️ 上游子模块
+│   └── 📄 README.md                         ← 嵌入式项目入口
+├── 📁 docs/guides/
+│   ├── 📄 development-setup.md              ← 新设备环境搭建
+│   └── 📄 vibe-coding-debug.md              ← 跨工作区调试工作流
+├── 📁 skills/                               ← 🤖 50 个 Claude Code Skills
+├── 📁 competitions/                         ← 竞赛项目存档
+├── 📁 projects/                             ← 其他项目
+├── 📁 shared/                               ← 共享资源
+├── 📁 tools/                                ← 开发工具
+└── 📁 .atomcode/
+    └── 📄 project-instructions.md           ← AtomCode 项目指令
 ```
 
-**快速访问:** [2024年竞赛项目](competitions\2024/) | [2025年竞赛项目](competitions\2025/) | [历史竞赛项目](competitions\archive/)
+## ⬆️ 上游项目
 
-### 💻 开发项目
-
-各类技术开发和研究项目
-
-```
-projects/
-├── ai/
-├── embedded/
-├── research/
-├── robotics/
-├── templates/
-```
-
-**快速访问:** [人工智能项目](projects\ai/) | [嵌入式项目](projects\embedded/) | [机器人项目](projects\robotics/) | [科研项目](projects\research/) | [项目模板](projects\templates/)
-
-### 📚 共享资源
-
-共享的代码库、工具和资源
-
-```
-shared/
-├── assets/
-├── images/
-├── libraries/
-├── models/
-├── templates/
-└── ... (1 more)
-```
-
-**快速访问:** [静态资源](shared\assets/) | [代码库](shared\libraries/) | [数据模型](shared\models/) | [代码模板](shared\templates/) | [开发工具](shared\tools/)
-
-### 📖 文档中心
-
-技术文档和使用指南
-
-```
-docs/
-├── api/
-├── archive/
-├── guides/
-├── misc/
-├── references/
-└── ... (1 more)
-```
-
-**快速访问:** [API文档](docs\api/) | [使用指南](docs\guides/) | [教程文档](docs\tutorials/) | [参考文档](docs\references/)
-
-### 🤖 Claude Skills
-
-AI 辅助编程与办公自动化技能库
-
-```
-skills/
-├── lark-*/          # 飞书办公套件 (25 个)
-├── pv-*/            # 新能源光伏 (2 个)
-├── acad-paper-*/    # 学术论文 (3 个)
-└── ...              # 共 50 个技能
-```
-
-**快速访问:** [飞书套件](#-飞书lark-办公套件-25个) | [新能源光伏](#-新能源--光伏-2个) | [学术论文](#-学术论文写作-3个) | [开发工具](#-开发工具--ai-工程-6个) | [全部 Skills](skills/)
-
-### 🛠️ 工具集
-
-开发和自动化工具
-
-```
-tools/
-├── automation/
-├── deployment/
-├── monitoring/
-├── templates/
-├── testing/
-└── ... (2 more)
-```
-
-**快速访问:** [自动化工具](tools\automation/) | [测试工具](tools\testing/) | [监控工具](tools\monitoring/) | [实用工具](tools\utilities/) | [工作流程](tools\workflows/)
-
+| 项目 | 链接 | 说明 |
+|------|------|------|
+| ESP32 PlatformIO 模板 | [CQUPTHXC/ESP32_platformio_temple_project](https://github.com/CQUPTHXC/ESP32_platformio_temple_project) | 作为 git submodule 引用，`projects/embedded/` 下 |
+| 社区主仓库 | [new-energy-coder-club](https://github.com/new-energy-coder-club/new_energy_coder_club.git) | 社区同步 |
 
 ## 🚀 快速开始
 
-### 1. 克隆仓库
+### 克隆仓库
 
-```bash
-git clone https://gitee.com/darrenpig/new_energy_coder_club.git
+```powershell
+git clone -b SKill https://gitee.com/darrenpig/new_energy_coder_club.git
 cd new_energy_coder_club
+git submodule update --init --recursive
 ```
 
-### 2. 浏览项目
+### 编译 & 烧录
 
-- **📋 项目导航**: 查看 [完整项目索引](PROJECT_INDEX.md) - 所有项目的快速导航
-- **🤖 Claude Skills**: 查看 [`skills/`](skills/) 目录 - 50 个 AI 辅助编程技能
-- **🏆 竞赛项目**: 查看 [`competitions/`](competitions/) 目录
-- **💻 开发项目**: 查看 [`projects/`](projects/) 目录
-- **📚 共享资源**: 查看 [`shared/`](shared/) 目录
-- **📖 技术文档**: 查看 [`docs/`](docs/) 目录
-- **🛠️ 开发工具**: 查看 [`tools/`](tools/) 目录
-- **📊 可达性报告**: 查看 [验证报告](accessibility_verification.md) - 目录结构优化效果
+```powershell
+cd projects\embedded\ESP32_platformio_temple_project
 
-### 3. 参与贡献
+# 编译
+pio run --environment temple_project
 
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开 Pull Request
+# 烧录（自动检测 COM 口）
+pio run --target upload --environment temple_project
+```
 
-## 📚 重要文档
+### 串口调试
 
-- [项目贡献指南](CONTRIBUTING.md)
-- [代码规范](docs/guides/coding-standards.md)
-- [开发环境搭建](docs/guides/development-setup.md)
-- [项目管理流程](docs/guides/project-management.md)
+```powershell
+# 串口监视
+pio device monitor -b 115200
 
-## 🏆 近期成果
+# 发送指令（停止电机）
+python send_cmd.py "s"
+```
 
-### 2025年项目
+### 安装 Claude Skills
 
-- [energy-saving](competitions/2025/energy-saving/)
-- [energy-saving-competition](competitions/2025/energy-saving-competition/)
-- [iot-design-competition](competitions/2025/iot-design-competition/)
-- [robocon](competitions/2025/robocon/)
-- [robotics-robocon](competitions/2025/robotics-robocon/)
-- [traffic-design](competitions/2025/traffic-design/)
-- [energy-monitoring](projects/ai/energy-monitoring/)
-- [humanoid-robot](projects/robotics/humanoid-robot/)
-- [project-250510](projects/robotics/project-250510/)
-- [nearlink](projects/embedded/nearlink/)
+```powershell
+# 将所有 Skills 复制到 Claude Code skills 目录
+cp -r skills/* ~/.claude/skills/
+```
 
+## 🛠️ 开发入口速查
 
-### 2024年成果
+| 目标 | 入口 | 推荐文档 |
+|------|------|----------|
+| 第一次搭建环境 | → [环境搭建指南](docs/guides/development-setup.md) | 前置依赖、安装步骤、验证清单 |
+| 快速调试电机 | → [Vibe Coding 调试](docs/guides/vibe-coding-debug.md) | 调试工作流、命令速查、故障处理 |
+| 理解板级设计 | → [HXC_A 使用说明](projects/embedded/HXC_A_Usage_Guide.md) | 硬件参数、CAN/串口约定、三类工程用法 |
 
-- [Ai Huawei Cloud](competitions/2024/ai-huawei-cloud/)
-- [Robotics Robocon](competitions/2024/robotics-robocon/)
-- [Electronics Competition](competitions/2024/electronics-competition/)
-- [Energy Saving Competition](competitions/2024/energy-saving-competition/)
+## 🤖 硬件参数速查
 
+| 参数 | 值 |
+|------|-----|
+| **MCU** | ESP32-S3 (rev v0.2, N16R8) |
+| **Flash / PSRAM** | 16MB / 8MB |
+| **CAN TX / RX** | GPIO8 / GPIO18 |
+| **串口** | USB CDC (115200, 8N1) |
+| **CAN 协议** | TWAI 1Mbps (经典 CAN) |
+
+## 🔌 常用命令
+
+```powershell
+pio run --environment temple_project                    # 编译
+pio run --target upload --environment temple_project    # 烧录
+pio device monitor -b 115200                            # 串口监视
+python send_cmd.py "c 0.3"                              # 电流模式 0.3A
+python send_cmd.py "p 90"                               # 绝对位置 90°
+python send_cmd.py "s"                                  # 停止
+```
+
+## 🧩 关联 AtomCode Skill
+
+本分支包含 `.atomcode/skills/hxc-esp-a-board/SKILL.md`，为 AtomCode IDE 提供 HXC Board A 的开发环境自动化配置能力。
+
+详见 [SKILL.md](.atomcode/skills/hxc-esp-a-board/SKILL.md)。
 
 ## 🤖 Claude Skills 技能库
 
@@ -295,49 +234,16 @@ skills/
 
 每个 Skill 目录包含 `SKILL.md`（核心定义文件）以及可选的 `references/`（参考文档）、`scripts/`（执行脚本）、`templates/`（模板文件）。
 
-### 🚀 如何使用 Skills
-
-1. 将 `skills/` 目录复制到 `~/.claude/skills/`：
-   ```bash
-   cp -r skills/* ~/.claude/skills/
-   ```
-
-2. 或在 Claude Code 中通过 SkillHub 安装：
-   ```
-   /find-skills 搜索并安装需要的技能
-   ```
-
 更多 Skill 开发与使用指南，参见 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code/skills)。
 
-## 🛠️ 技术栈
+## 👥 团队
 
-### 编程语言
-- **Python**: 人工智能、数据分析、自动化脚本
-- **C/C++**: 嵌入式开发、系统编程
-- **JavaScript/TypeScript**: 前端开发、Node.js应用
-- **MATLAB**: 工程计算、仿真建模
-
-### 技术领域
-- **人工智能**: 机器学习、深度学习、计算机视觉
-- **嵌入式系统**: 单片机、RTOS、物联网
-- **机器人技术**: 控制算法、路径规划、传感器融合
-- **新能源技术**: 能源管理、智能电网、储能系统
-
-## 👥 团队成员
-
-我们是一个充满活力的技术团队，专注于新能源与编程技术的结合。
-
-- **指导老师**: [教师姓名]
-- **技术负责人**: [负责人姓名]
-- **项目经理**: [经理姓名]
-- **核心开发者**: [开发者列表]
+新能源编程俱乐部 (New Energy Coder Club) — 致力于新能源技术与编程技术的融合创新。
 
 ## 📞 联系我们
 
 - **邮箱**: contact@new-energy-coder-club.org
 - **官网**: https://new-energy-coder-club.org
-- **QQ群**: [群号]
-- **微信群**: [二维码]
 
 ## 📄 许可证
 
@@ -350,7 +256,7 @@ skills/
 ---
 
 <div align="center">
-  <strong>新能源编程俱乐部</strong><br>
+  <strong>HXC ESP A Board — 核心设备仓库 (SKill 分支)</strong><br>
   <em>Innovation • Technology • Sustainability</em><br><br>
   <img src="https://img.shields.io/badge/Made%20with-❤️-red.svg" alt="Made with Love">
 </div>
