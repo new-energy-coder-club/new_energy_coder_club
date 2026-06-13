@@ -1,0 +1,2 @@
+# 本地安装依赖（随仓库克隆后执行 npm install 生成）
+node_modules/

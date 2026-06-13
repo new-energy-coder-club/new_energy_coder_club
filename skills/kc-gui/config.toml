@@ -1,0 +1,18 @@
+model_name = ""
+multimodal_name = ""
+model_provider = "openai"
+api_key = ""
+temperature = 0.20000000298023224
+max_tokens = 32000
+base_url = ""
+timeout = 60
+
+[gui]
+close_behavior = "exit"
+
+[scheduler]
+enabled = true
+
+[window_whitelist]
+enabled = true
+processes = ["QQMusic", "WeMeetApp", "QClaw",  "wegame" ,"browser" , "cloudmusic", "steam","steamwebhelper" ,"哔哩哔哩","qyclient" ,"qqlive"]

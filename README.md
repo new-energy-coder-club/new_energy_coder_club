@@ -14,7 +14,7 @@
 | 🔧 **固件开发与调试** | 基于上游模板进行位控/电流/位置控制开发 |
 | 🔄 **跨工作区协作** | Vibe Coding 多机调试、代码同步 |
 | 📚 **设备文档维护** | 板级使用说明、硬件参数、调试技巧 |
-| 🤖 **Claude Skills 托管** | 50 个 Claude Code AI Skills，覆盖飞书/光伏/论文/开发等场景 |
+| 🤖 **Claude Skills 托管** | 149 个 Claude Code AI Skills，覆盖飞书/光伏/论文/开发等场景 |
 
 ## 📋 目录结构
 
@@ -27,7 +27,7 @@
 ├── 📁 docs/guides/
 │   ├── 📄 development-setup.md              ← 新设备环境搭建
 │   └── 📄 vibe-coding-debug.md              ← 跨工作区调试工作流
-├── 📁 skills/                               ← 🤖 50 个 Claude Code Skills
+├── 📁 skills/                               ← 🤖 149 个 AI Coding Skills
 ├── 📁 competitions/                         ← 竞赛项目存档
 ├── 📁 projects/                             ← 其他项目
 ├── 📁 shared/                               ← 共享资源
@@ -198,120 +198,212 @@ Trae IDE 支持 Skill 市场（marketplace），已安装 60+ Skills，包括 `l
 
 ## 🤖 Claude Skills 技能库
 
-本仓库收录了 **50 个** Claude Code Skills，覆盖飞书办公、学术写作、新能源光伏、开发工具、效率自动化等多个领域。所有 Skill 存放在 [`skills/`](skills/) 目录下。
+本仓库收录了 **149 个** AI Coding Skills，整合自 Claude Code、Trae IDE、QClaw、OpenClaw、Kimi 等平台的本地 Skill 生态。所有 Skill 存放在 [`skills/`](skills/) 目录下。
 
-### 📊 技能分类总览
+### 📊 技能分类总览 (149个)
 
 #### 🏢 飞书/Lark 办公套件 (25个)
 
-飞书生态全流程覆盖：从通讯录、即时通讯、日历日程，到文档、表格、任务、审批、邮件、视频会议、知识库。
+飞书生态全流程覆盖：通讯录、即时通讯、日历日程、文档、表格、任务、审批、邮件、视频会议、知识库。
 
-| Skill | 功能说明 |
-|-------|---------|
-| [lark-shared](skills/lark-shared/) | CLI 共享基础：配置初始化、认证登录、权限管理 |
-| [lark-contact](skills/lark-contact/) | 通讯录：按姓名/邮箱解析 open_id，反查员工信息 |
-| [lark-im](skills/lark-im/) | 即时通讯：收发消息、群聊管理、文件上传下载 |
-| [lark-calendar](skills/lark-calendar/) | 日历日程：查看/创建/更新日程、预定会议室、忙闲查询 |
-| [lark-doc](skills/lark-doc/) | 云文档 v2：创建/编辑/搜索飞书文档，DocxXML & Markdown |
-| [lark-sheets](skills/lark-sheets/) | 电子表格：工作表管理、单元格读写、公式、筛选视图 |
-| [lark-base](skills/lark-base/) | 多维表格：建表、字段管理、记录读写、仪表盘 |
-| [lark-task](skills/lark-task/) | 任务管理：创建待办、子任务、清单、协作成员 |
-| [lark-approval](skills/lark-approval/) | 审批 API：审批实例与任务管理 |
-| [lark-mail](skills/lark-mail/) | 邮箱：起草/发送/回复/转发/搜索邮件 |
-| [lark-drive](skills/lark-drive/) | 云空间：文件上传下载、文件夹管理、权限、导入导出 |
-| [lark-wiki](skills/lark-wiki/) | 知识库：知识空间管理、成员管理、节点层级结构 |
-| [lark-minutes](skills/lark-minutes/) | 妙记：音视频转文字、会议纪要、AI 总结/待办/章节 |
-| [lark-vc](skills/lark-vc/) | 视频会议：查询会议记录、获取纪要产物 |
-| [lark-vc-agent](skills/lark-vc-agent/) | 会议机器人：代用户加入/离开会议、实时事件监听 |
-| [lark-okr](skills/lark-okr/) | OKR：目标与关键结果管理、进展记录 |
-| [lark-slides](skills/lark-slides/) | 幻灯片：创建/编辑演示文稿（XML 协议） |
-| [lark-whiteboard](skills/lark-whiteboard/) | 画板：导出/DLS/PlantUML/Mermaid 编辑 |
-| [lark-markdown](skills/lark-markdown/) | Markdown：创建/查看/编辑 Markdown 文件 |
-| [lark-event](skills/lark-event/) | 事件订阅：WebSocket 实时监听飞书事件 |
-| [lark-attendance](skills/lark-attendance/) | 考勤打卡：查询打卡记录 |
-| [lark-openapi-explorer](skills/lark-openapi-explorer/) | OpenAPI 探索：挖掘原生飞书 API |
-| [lark-skill-maker](skills/lark-skill-maker/) | 自定义 Skill 创建：封装飞书 API 为可复用 Skill |
-| [lark-workflow-meeting-summary](skills/lark-workflow-meeting-summary/) | 会议纪要工作流：汇总并生成结构化报告 |
-| [lark-workflow-standup-report](skills/lark-workflow-standup-report/) | 日程待办摘要：日程 + 任务一站式概览 |
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| lark-shared | CLI 共享基础 | | lark-contact | 通讯录 |
+| lark-im | 即时通讯 | | lark-calendar | 日历日程 |
+| lark-doc | 云文档 v2 | | lark-sheets | 电子表格 |
+| lark-base | 多维表格 | | lark-task | 任务管理 |
+| lark-approval | 审批 API | | lark-mail | 邮箱 |
+| lark-drive | 云空间 | | lark-wiki | 知识库 |
+| lark-minutes | 妙记 | | lark-vc | 视频会议 |
+| lark-vc-agent | 会议机器人 | | lark-okr | OKR |
+| lark-slides | 幻灯片 | | lark-whiteboard | 画板 |
+| lark-markdown | Markdown | | lark-event | 事件订阅 |
+| lark-attendance | 考勤打卡 | | lark-openapi-explorer | OpenAPI 探索 |
+| lark-skill-maker | 自定义 Skill | | lark-workflow-meeting-summary | 会议纪要工作流 |
+| lark-workflow-standup-report | 日程待办摘要 |
+
+#### 🤖 AI CLI 调用器 (6个)
+
+本地 AI CLI 调度能力，实现 Claude ⇄ Kimi ⇄ Gemini ⇄ AI Code With 互调。
+
+| Skill | 说明 |
+|-------|------|
+| [kimi-cli](skills/kimi-cli/) | 调用本地 Kimi CLI (`kimi-for-coding`, `kimi-k2-thinking-turbo`) |
+| [claude-cli](skills/claude-cli/) | 调用本地 Claude Code CLI（工具调用/文件操作） |
+| [gemini-cli](skills/gemini-cli/) | 调用本地 Gemini CLI |
+| [aicodewith](skills/aicodewith/) | AI Code With 中转服务配置与调用 |
+| [trae-assistant](skills/trae-assistant/) | Trae IDE 代理：委托任务到 Trae Desktop |
+| [persona-switch](skills/persona-switch/) | AI 角色切换：在不同模型/人格间切换 |
+
+#### 🌐 前端 & 设计开发 (14个)
+
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| react-best-practices | React 最佳实践 | | react-native-skills | React Native 开发 |
+| shadcn | shadcn/ui 组件 | | frontend-design | 前端设计 |
+| frontend-skill | 前端通用 | | web-design-guidelines | Web 设计规范 |
+| web-artifacts-builder | Web Artifact 构建 | | webapp-testing | Web 应用测试 |
+| canvas-design | Canvas 设计 | | algorithmic-art | 算法艺术 |
+| brand-guidelines | 品牌指南 | | theme-factory | 主题工厂 |
+| chart-visualization | 图表可视化 | | web-design | Tailwind + CF Pages |
+
+#### 🔧 开发工程 & 工作流 (17个)
+
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| clean-code-zh | 代码整洁之道 | | security-best-practices | 安全最佳实践 |
+| git-commit | Git 提交规范 | | gh-cli | GitHub CLI |
+| github-skill | GitHub 操作 | | test-driven-development | TDD 测试驱动 |
+| spec-to-implementation | 规格→实现 | | composition-patterns | 组合模式 |
+| hook-analyzer-skill | Hook 分析 | | screenshot | 截图 |
+| writing-plans | 计划编写 | | executing-plans | 计划执行 |
+| defuddle | 代码解混淆 | | planning-with-files | Manus 式文件规划 |
+| harness | 多会话自治 Agent | | agentic-loop | Agentic Loop 防护 |
+| agent-browser | 浏览器自动化 CLI |
+
+#### 🔍 搜索 & 资讯聚合 (8个)
+
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| baidu-search | 百度 AI 搜索 | | online-search | 在线搜索 |
+| multi-search-engine | 多引擎搜索 | | news | 新闻资讯 |
+| news-extractor | 新闻提取 | | news-summary | 新闻摘要 |
+| neodata-financial-search | 金融数据搜索 | | tech-news-digest | 技术资讯摘要 |
+
+#### 📄 文档 & 办公文件 (7个)
+
+| Skill | 说明 |
+|-------|------|
+| [docx](skills/docx/) | Word 文档生成与编辑 |
+| [pdf](skills/pdf/) | PDF 文件处理 |
+| [pptx](skills/pptx/) | PPT 演示文稿生成 |
+| [xlsx](skills/xlsx/) | Excel 电子表格生成 |
+| [doc-coauthoring](skills/doc-coauthoring/) | 文档协作撰写 |
+| [file-skill](skills/file-skill/) | 通用文件操作 |
+| [email-skill](skills/email-skill/) | 邮件操作 |
+
+#### 📡 集成 & 平台连接 (14个)
+
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| tencent-docs | 腾讯文档 | | tencent-meeting-mcp | 腾讯会议 MCP |
+| tencent-survey | 腾讯问卷 | | tencent-news | 腾讯新闻 |
+| wecomcli-setup | 企微 CLI 配置 | | wecom-weisheng-scrm | 企微微盛 SCRM |
+| weiyun | 微云 | | youdaonote | 有道笔记 |
+| notion | Notion | | ima | 腾讯 IMA |
+| kdocs | 金山文档 | | imap-smtp-email | 邮件协议 |
+| tme-openapi | TME OpenAPI | | flyai | FlyAI |
+
+#### 🎓 学术 & 论文 (6个)
+
+| Skill | 说明 |
+|-------|------|
+| [acad-paper-prompter](skills/acad-paper-prompter/) | 学术论文写作助手：润色/翻译/回复信/选刊 |
+| [paper-scaffold](skills/paper-scaffold/) | 论文目录标准化 (CIT/国际会议/通用) |
+| [latex-win](skills/latex-win/) | Windows LaTeX 编译修复 |
+| [cit-thesis-writer](skills/cit-thesis-writer/) | CIT 毕业论文写作 |
+| [gradpilot](skills/gradpilot/) | 研究生学业助手 |
+| [patent-application-cn](skills/patent-application-cn/) | 中国专利申请撰写 |
 
 #### ☀️ 新能源 & 光伏 (2个)
 
-| Skill | 功能说明 |
-|-------|---------|
+| Skill | 说明 |
+|-------|------|
 | [pv-station-rating](skills/pv-station-rating/) | 工商业光伏电站分层分级评分 (A/B/C/D + 十分制) |
-| [pv-storage-bom](skills/pv-storage-bom/) | 光伏+储能系统标准产品 BOM 清单生成 |
+| [pv-storage-bom](skills/pv-storage-bom/) | 光伏+储能系统标准产品 BOM 清单 |
 
-#### 📝 学术论文写作 (3个)
+#### 🏗️ QClaw/OpenClaw 平台 (15个)
 
-| Skill | 功能说明 |
-|-------|---------|
-| [acad-paper-prompter](skills/acad-paper-prompter/) | 学术论文写作助手：润色、翻译、回复信、文献综述、选刊 |
-| [paper-scaffold](skills/paper-scaffold/) | 论文目录标准化：CIT/国际会议/通用模板 |
-| [latex-win](skills/latex-win/) | Windows LaTeX 编译修复：XeLaTeX/CJK/PDF 锁定 |
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| qclaw-cron-skill | 定时任务 | | qclaw-env | 环境管理 |
+| qclaw-rules | 规则引擎 | | qclaw-skill-creator | Skill 创建器 |
+| qclaw-text-file | 文本文件操作 | | qclaw-openclaw | OpenClaw 集成 |
+| self-improving | 自我改进 | | self-improving-agent | 自我改进 Agent |
+| session-logs | 会话日志 | | skill-vetter | Skill 审查 |
+| public-skill | 公共技能 | | content-factory | 内容工厂 |
+| cloud-upload-backup | 云端备份 | | mcporter | MCP 导入导出 |
+| mcp-builder | MCP 构建器 |
 
-#### 💻 开发工具 & AI 工程 (6个)
+#### 📊 效率 & 头脑风暴 (9个)
 
-| Skill | 功能说明 |
-|-------|---------|
-| [agent-browser](skills/agent-browser/) | 浏览器自动化 CLI：导航、表单、截图、数据提取 |
-| [kimi-webbridge](skills/kimi-webbridge/) | Kimi WebBridge：AI 操控真实浏览器 |
-| [clean-code-zh](skills/clean-code-zh/) | 《代码整洁之道》审查与重构 |
-| [planning-with-files](skills/planning-with-files/) | Manus 式文件规划：task_plan/findings/progress |
-| [harness](skills/harness/) | 多会话自治 Agent：进度检查点、故障恢复 |
-| [agentic-loop](skills/agentic-loop/) | Agentic Loop 防护：工具调用上限与重复检测 |
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| productivity-automation-kit | 效率自动化 | | plan-my-day | 每日计划 |
+| study-habits | 学习习惯 | | brainstorming | 头脑风暴 |
+| consulting-analysis | 咨询分析 | | report-generator-skill | 报告生成 |
+| ai-dev-dashboard | AI 开发面板 | | ai-data-analysis | AI 数据分析 |
+| ai-promotion-query | AI 推广查询 |
 
-#### 📊 效率 & 日程 (4个)
+#### 💬 社交 & 微信生态 (8个)
 
-| Skill | 功能说明 |
-|-------|---------|
-| [productivity-automation-kit](skills/productivity-automation-kit/) | 效率自动化工具箱：工作流模板 + 日程管理 + 任务提醒 |
-| [plan-my-day](skills/plan-my-day/) | 能量优化每日计划 |
-| [study-habits](skills/study-habits/) | 学习习惯管理：间隔重复、主动回忆 |
-| [ai-dev-dashboard](skills/ai-dev-dashboard/) | PowerShell AI 开发面板 |
-
-#### 🔍 搜索 & 资讯 (3个)
-
-| Skill | 功能说明 |
-|-------|---------|
-| [baidu-search](skills/baidu-search/) | 百度 AI 搜索：网页/百科/秒懂百科/AI 智能生成 |
-| [news](skills/news/) | 新闻资讯：中文新闻 + 全球 AI 技术资讯 |
-| [news-extractor](skills/news-extractor/) | 新闻提取：公众号/头条/网易/搜狐/腾讯 |
-
-#### 🎨 设计 & 发布 (3个)
-
-| Skill | 功能说明 |
-|-------|---------|
-| [web-design](skills/web-design/) | 网页设计部署：Tailwind CSS + Cloudflare Pages |
-| [mintlify](skills/mintlify/) | Mintlify 文档站点构建 |
-| [xiaohongshu-images](skills/xiaohongshu-images/) | 小红书 3:4 图文生成 |
-
-#### 📄 简历 & 求职 (2个)
-
-| Skill | 功能说明 |
-|-------|---------|
-| [resume-builder](skills/resume-builder/) | 简历生成器：Reactive Resume JSON 输出 |
-| [resume-optimizer](skills/resume-optimizer/) | 简历优化：PDF 导出、ATS 分析 |
-
-#### 💬 社交数据 & 工具 (2个)
-
-| Skill | 功能说明 |
-|-------|---------|
+| Skill | 说明 |
+|-------|------|
 | [wx-cli-wechat-local-data](skills/wx-cli-wechat-local-data/) | 微信本地数据查询导出 |
-| [find-skills](skills/find-skills/) | SkillHub 技能搜索与管理 |
+| [wechat-cli-export](skills/wechat-cli-export/) | 微信数据 CLI 导出 |
+| [nec-wechat-sync](skills/nec-wechat-sync/) | NEC 微信同步 |
+| [corporate-deep-query](skills/corporate-deep-query/) | 企业深度查询 |
+| [xiaohongshu-images](skills/xiaohongshu-images/) | 小红书 3:4 图文 |
+| [xiaohongshu-skills](skills/xiaohongshu-skills/) | 小红书技能集 |
+| [kimi-webbridge](skills/kimi-webbridge/) | Kimi 真实浏览器操控 |
+| [xbrowser](skills/xbrowser/) | 浏览器扩展 |
+
+#### 🛠️ TRAE 内置 & 其他 (18个)
+
+| Skill | 说明 | | Skill | 说明 |
+|-------|------|-|-------|------|
+| TRAE-code-review | TRAE 代码审查 | | TRAE-debugger | TRAE 调试器 |
+| TRAE-generate-mini-app | TRAE 小程序生成 | | data-analysis | 数据分析 |
+| redis-development | Redis 开发 | | find-skills | SkillHub 技能搜索 |
+| dogfood | 内部测试 | | aippt | AI PPT 生成 |
+| weather-advisor | 天气顾问 | | slack-gif-creator | Slack GIF |
+| fbs_bookwriter | FBS 书籍撰写 | | wendao-partner-qclaw-skill | 问道伙伴 |
+| chuangye | 创业助手 | | bdpan-storage | 百度网盘 |
+| kc-gui | KC GUI | | github-skill | GitHub |
+| resume-builder | 简历生成器 | | resume-optimizer | 简历优化 |
 
 ### 📁 Skills 目录结构
 
 ```
 skills/
-├── lark-*/          # 飞书办公套件 (25 个)
-├── pv-*/            # 新能源光伏 (2 个)
-├── acad-paper-*/    # 学术论文 (3 个，含 latex-win)
-├── agent-*/         # 浏览器/Agent 工具 (3 个，含 kimi-webbridge)
-├── productivity-*/  # 效率工具 (1 个)
-└── ...              # 其他技能
+├── lark-*/              # 飞书办公套件 (25 个)
+├── qclaw-*/             # QClaw 平台 (6 个)
+├── tencent-*/           # 腾讯生态 (4 个)
+├── react-*/             # React 开发 (2 个)
+├── web-*/               # Web 开发 (5 个)
+├── frontend-*/          # 前端 (2 个)
+├── pv-*/                # 新能源光伏 (2 个)
+├── TRAE-*/              # TRAE 内置 (3 个)
+├── xiaohongshu-*/       # 小红书 (2 个)
+├── news-*/              # 新闻资讯 (3 个)
+├── ai-*/                # AI 工具 (3 个)
+├── resume-*/            # 简历 (2 个)
+├── wechat-*/ wecom-*/   # 微信/企微 (4 个)
+├── kimi-*/ claude-*/    # AI CLI (5 个)
+├── docx/ pdf/ pptx/ xlsx/  # 文档处理 (4 个)
+└── ...                  # 其他独立技能 (80+ 个)
 ```
 
 每个 Skill 目录包含 `SKILL.md`（核心定义文件）以及可选的 `references/`（参考文档）、`scripts/`（执行脚本）、`templates/`（模板文件）。
+
+### 🚀 如何使用 Skills
+
+1. **Claude Code:** 将 `skills/` 复制到 `~/.claude/skills/`
+   ```bash
+   cp -r skills/* ~/.claude/skills/
+   ```
+
+2. **Trae IDE:** 将 `skills/` 复制到 `~/.trae/skills/`
+   ```bash
+   cp -r skills/* ~/.trae/skills/
+   ```
+
+3. **QClaw/OpenClaw:** 将 `skills/` 复制到 `~/.qclaw/skills/`
+   ```bash
+   cp -r skills/* ~/.qclaw/skills/
+   ```
+
+4. 或在各平台通过 SkillHub/市场搜索安装
 
 更多 Skill 开发与使用指南，参见 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code/skills)。
 

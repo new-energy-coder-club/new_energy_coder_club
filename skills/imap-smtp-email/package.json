@@ -1,0 +1,38 @@
+{
+  "name": "imap-smtp-email",
+  "version": "1.1.0",
+  "description": "Configurable IMAP/SMTP personal email skill for QClaw. Supports 163, 126, 188, yeah, Gmail, Outlook, QQ, Foxmail, Yahoo, Sina, Sohu, 139, Exmail QQ, Aliyun, and other standard providers.",
+  "main": "scripts/imap.js",
+  "scripts": {
+    "check": "node scripts/imap.js check",
+    "fetch": "node scripts/imap.js fetch",
+    "search": "node scripts/imap.js search",
+    "send": "node scripts/smtp.js send",
+    "test:smtp": "node scripts/smtp.js test"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "imap": "^0.8.19",
+    "imap-simple": "^5.1.0",
+    "mailparser": "^3.9.3",
+    "nodemailer": "^7.0.13"
+  },
+  "keywords": [
+    "imap",
+    "smtp",
+    "email",
+    "gmail",
+    "outlook",
+    "qq",
+    "163",
+    "126",
+    "188",
+    "yahoo",
+    "sina",
+    "sohu",
+    "aliyun",
+    "skill"
+  ],
+  "author": "QClaw",
+  "license": "MIT"
+}

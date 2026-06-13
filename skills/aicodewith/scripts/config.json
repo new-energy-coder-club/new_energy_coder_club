@@ -1,0 +1,12 @@
+{
+  "base_url": "https://api.with7.cn/v1",
+  "api_key": "sk-acw-f59cdeef-bd5bf29080ea508c",
+  "provider_name": "aicodewith",
+  "openclaw_config": "~/.qclaw/openclaw.json",
+  "reasoning_patterns": [
+    "deepseek-r1",
+    "kimi-k2-thinking",
+    "thinking",
+    "qwq-"
+  ]
+}
