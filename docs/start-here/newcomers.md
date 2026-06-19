@@ -8,3 +8,4 @@
 ---
 
 - @example_id｜方向：软件｜目标：完成第一个 good first issue｜设备：Windows｜时间：2025-12-24
+- @冯茂荣 |机械|目标：完成第一个 good first issue|设备：Windows|时间：2026-6-19
