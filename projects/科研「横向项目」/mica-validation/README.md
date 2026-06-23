@@ -440,18 +440,18 @@ Read the Docs 是专业的文档托管平台，提供更强大的功能和更好
 
 #### 新手入门 (⏱️ 30分钟)
 1. [项目概览](./README.md#项目概览) - 了解项目背景和目标
-2. [环境搭建](./docs/getting_started/installation.rst) - 配置开发环境
-3. [第一个示例](./docs/getting_started/quickstart.rst) - 运行Hello World
+2. [环境搭建](https://mica-validation.readthedocs.io/getting_started/installation/) - 配置开发环境
+3. [第一个示例](https://mica-validation.readthedocs.io/getting_started/quickstart/) - 运行Hello World
 
 #### 进阶开发 (⏱️ 2小时)
-1. [架构设计](./docs/user_guide/architecture.rst) - 理解系统架构
-2. [配置指南](./docs/user_guide/configuration.rst) - 自定义配置
-3. [集成开发](./docs/developer_guide/integration.rst) - 集成RT-Thread
+1. [架构设计](https://mica-validation.readthedocs.io/user_guide/architecture/) - 理解系统架构
+2. [配置指南](https://mica-validation.readthedocs.io/user_guide/configuration/) - 自定义配置
+3. [集成开发](https://mica-validation.readthedocs.io/developer_guide/integration/) - 集成RT-Thread
 
 #### 专家级应用 (⏱️ 1天)
-1. [性能优化](./docs/developer_guide/performance.rst) - 系统调优
-2. [故障排除](./docs/user_guide/troubleshooting.rst) - 问题诊断
-3. [贡献代码](./docs/developer_guide/contributing.rst) - 参与开源
+1. [性能优化](https://mica-validation.readthedocs.io/developer_guide/performance/) - 系统调优
+2. [故障排除](https://mica-validation.readthedocs.io/user_guide/troubleshooting/) - 问题诊断
+3. [贡献代码](https://mica-validation.readthedocs.io/developer_guide/contributing/) - 参与开源
 
 ---
 
