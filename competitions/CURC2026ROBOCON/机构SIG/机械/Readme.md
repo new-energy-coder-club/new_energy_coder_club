@@ -22,6 +22,7 @@
 | **彭柯尹** | 260126 | 学习华科机械培训，了解滑轨与滑块以及抓取结构| [B站视频](https://b23.tv/j4KWkuj) |
 | **张孟驰** | 260130 | 学习华科机械培训第二讲 | [B站视频](https://b23.tv/gmS5vhw) |
 | **毕卫亭** | 260130 | 完成华科机械培训，优化上梅林任务图纸中 | [B站视频](https://www.bilibili.com/video/BV1DgnHzmEXK) |
+| **冯茂荣** | 260624 | 练习sw、参与26届排球组装配 | https://www.bilibili.com/video/BV1df4y1z7iR |
 *(请保持格式统一：`YYMMDD @姓名 内容 [链接]` 或表格形式)*
 
 ---
