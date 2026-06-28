@@ -37,23 +37,23 @@ Use this space to list resources you find helpful and would like to give credit 
 |19 | 25  | 23光电二    | 硬件电控组组长        | 单广志    |<img src="https://img.shields.io/badge/嵌入式-fedcba" alt="License"> <img src="https://img.shields.io/badge/电控-blue" alt="License"> <img src="https://img.shields.io/badge/上位机-8A2BE2" alt="License">|
 |20 | 25  | 23机二      | 机械组组长        | 刘锦和    |<img src="https://img.shields.io/badge/机械_设计-fedcba" alt="License">|
 |21 | 25  | 23机三      | 成员             | 陈恺鑫    |<img src="https://img.shields.io/badge/机械-172a88" alt="License">|
-|22 | 25  | 22计算机      | maintainer           | 闻志伟    |<img src="https://img.shields.io/badge/Nearlink-green" alt="License"> <img src="https://img.shields.io/badge/STM32-fedcba" alt="License">|
+|22 | 25  | 22计算机      | maintainer           | [姓名已脱敏]    |<img src="https://img.shields.io/badge/Nearlink-green" alt="License"> <img src="https://img.shields.io/badge/STM32-fedcba" alt="License">|
 
 ---
 
 ## 工业设计SIG
 |序号 |Wechat ID | 方向 |职位 | 名称  | 技能 |
 |---|---|---|---|---|---|
-| 1 | wwwwlR6              | Wachter  | 需求对接        | @皎月        |<img src="https://img.shields.io/badge/开源运营-blue" alt="License">|
-| 2 | wyj102194728         | Designer  | **工业设计**    | @ikkOoOo    |<img src="https://img.shields.io/badge/模型渲染-fedcba" alt="License">|   
-| 3 | wxid_h42wf4z6rjek22  | Designer  | 场景设计        | @陈思家     |<img src="https://img.shields.io/badge/家庭场景-green" alt="License">|
-| 4 | ryf456814327         | Sponsor   | 工业设计        | @洪都拉斯    |<img src="https://img.shields.io/badge/人形小组-green" alt="License">|
-| 5 | yy2112248888         | Designer  | 三维建模        | @王璐瑶      |<img src="https://img.shields.io/badge/硬件小组-green" alt="License">|
-| 6 | zgj16788             | Wachter  | 三维建模        | @造梦暖屋    |<img src="https://img.shields.io/badge/MOD人形-green" alt="License">|
-| 7 | richellelee_77       | Designer  | 产品设计        | @richelle   |<img src="https://img.shields.io/badge/maintainer-fedcba" alt="License">|  
-| 8 | pky123678            | Developer | 机械设计        | @彭柯尹      |<img src="https://img.shields.io/badge/Mechanic-fedcba" alt="License">|    
-| 9 | WULA114514_          | Wachter  | 数字设计        | @Ranjok     |<img src="https://img.shields.io/badge/maintainer-fedcba" alt="License">|  
-|10 | Lazymieie-ness            | Developer | 机械设计        | @孙如婕      |<img src="https://img.shields.io/badge/Mechanic-fedcba" alt="License">|
+| 1 | [已脱敏]              | Wachter  | 需求对接        | @[已脱敏]        |<img src="https://img.shields.io/badge/开源运营-blue" alt="License">|
+| 2 | [已脱敏]         | Designer  | **工业设计**    | @[已脱敏]    |<img src="https://img.shields.io/badge/模型渲染-fedcba" alt="License">|   
+| 3 | [已脱敏]  | Designer  | 场景设计        | @[已脱敏]     |<img src="https://img.shields.io/badge/家庭场景-green" alt="License">|
+| 4 | [已脱敏]         | Sponsor   | 工业设计        | @[已脱敏]    |<img src="https://img.shields.io/badge/人形小组-green" alt="License">|
+| 5 | [已脱敏]         | Designer  | 三维建模        | @[已脱敏]      |<img src="https://img.shields.io/badge/硬件小组-green" alt="License">|
+| 6 | [已脱敏]             | Wachter  | 三维建模        | @[已脱敏]    |<img src="https://img.shields.io/badge/MOD人形-green" alt="License">|
+| 7 | [已脱敏]       | Designer  | 产品设计        | @[已脱敏]   |<img src="https://img.shields.io/badge/maintainer-fedcba" alt="License">|  
+| 8 | [已脱敏]            | Developer | 机械设计        | @[已脱敏]      |<img src="https://img.shields.io/badge/Mechanic-fedcba" alt="License">|    
+| 9 | [已脱敏]          | Wachter  | 数字设计        | @[已脱敏]     |<img src="https://img.shields.io/badge/maintainer-fedcba" alt="License">|  
+|10 | [已脱敏]            | Developer | 机械设计        | @[已脱敏]      |<img src="https://img.shields.io/badge/Mechanic-fedcba" alt="License">|
 
 ### 最近案例：Duma小人形机器人Demo
 ![Duma](../../shared/images/Duma_image.png)
