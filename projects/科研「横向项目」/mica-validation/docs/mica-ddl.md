@@ -103,7 +103,7 @@ feat: 添加RT-Thread RTOS支持到MCS框架
 - 提供完整的构建和部署脚本
 - 支持多平台部署（qemu-arm64, 树莓派等）
 
-Signed-off-by: Your Name <your.email@example.com>
+Signed-off-by: [姓名] <[邮箱]>
 ```
 
 ### ⚖️ 5. 许可证检查

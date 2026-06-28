@@ -23,7 +23,7 @@
 
 | 角色 | 负责人 | 职责范围 | 联系方式 |
 |------|--------|----------|----------|
-| 项目负责人 | @DarrenPig | 整体规划、元件采购、BSP开发 | darrenpig@outlook.com |
+| 项目负责人 | @DarrenPig | 整体规划、元件采购、BSP开发 | [联系邮箱已脱敏] |
 | 硬件工程师 | @杨鑫海 | 传感器选型、硬件布线、电源管理 | - |
 | 算法工程师 | @单广志 | Modbus协议、数据采集、算法开发 | - |
 | 前端工程师 | @殷统创 | Qt HMI界面、可视化设计、用户体验 | - |
@@ -261,7 +261,7 @@ python src/ai_models/predictive_maintenance.py
 ## 📞 技术支持
 
 ### 紧急联系
-- **技术问题**: @DarrenPig (darrenpig@outlook.com)
+- **技术问题**: @DarrenPig ([联系邮箱已脱敏])
 - **硬件问题**: @杨鑫海
 - **软件问题**: @单广志
 - **界面问题**: @殷统创
@@ -277,7 +277,7 @@ python src/ai_models/predictive_maintenance.py
 如果您遇到任何问题，请优先在以下位置提交：
 1. **[GitHub Issues](https://github.com/Darrenpig/5-axis-fluid-workstation/issues)** - 主仓库问题跟踪
 2. **[Gitee Issues](https://gitee.com/darrenpig/5-axis-fluid-workstation/issues)** - 镜像仓库问题跟踪
-3. **邮件支持**: darrenpig@outlook.com (紧急问题)
+3. **邮件支持**: [联系邮箱已脱敏] (紧急问题)
 
 > ⚡ 提示：完整源代码、硬件设计文件和详细开发文档都在主仓库中！
 

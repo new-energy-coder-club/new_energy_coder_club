@@ -536,7 +536,7 @@ void sensor_fusion_update(SensorData *data, VehicleState *state) {
 
 ### 📧 技术支持
 - **项目邮箱**: electronics@newenergy-club.com
-- **技术QQ群**: 987654321
+- **技术QQ群**: [QQ群号请见官网或社群公告]
 - **微信技术群**: 扫码加入
 - **在线文档**: [项目文档站](https://docs.newenergy-club.com/electronics)
 

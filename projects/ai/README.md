@@ -198,14 +198,14 @@ cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git
 ### 获取帮助
 - **技术讨论**: 加入AI技术交流群 (联系@DarrenPig)
 - **文档问题**: 提交GitHub Issue
-- **紧急支持**: darrenpig@outlook.com
-- **项目合作**: 22230635@czu.cn
+- **紧急支持**: [联系邮箱已脱敏]
+- **项目合作**: [联系邮箱请见官网或提交 Issue]
 
 ## 📞 核心团队
 
 | 角色 | 负责人 | 联系方式 | 负责领域 |
 |------|--------|----------|----------|
-| 项目负责人 | @DarrenPig | darrenpig@outlook.com | 整体规划、技术架构 |
+| 项目负责人 | @DarrenPig | [联系邮箱已脱敏] | 整体规划、技术架构 |
 | 算法工程师 | @单广志 | - | 模型开发、算法优化 |
 | 硬件工程师 | @杨鑫海 | - | 传感器、数据采集 |
 | 前端工程师 | @殷统创 | - | HMI界面、可视化 |

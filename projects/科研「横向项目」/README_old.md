@@ -160,7 +160,7 @@
 ## 📞 联系方式
 
 ### 项目负责人
-- **DarrenPig**: 22230635@czu.cn
+- **DarrenPig**: [联系邮箱请见官网或提交 Issue]
 - **项目主页**: [Gitee仓库](https://gitee.com/darrenpig/new_energy_coder_club)
 - **技术交流**: [飞书文档](https://wwd6b1oeu5f.feishu.cn/drive/folder/J5VWftjN1lTzdQd9xEUcnOxGn4u)
 

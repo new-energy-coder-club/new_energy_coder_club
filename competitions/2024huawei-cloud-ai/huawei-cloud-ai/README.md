@@ -450,9 +450,9 @@ while True:
 - **竞赛官网**: [华为云竞赛平台](https://competition.huaweicloud.com/)
 
 ### 📧 技术交流
-- **邮箱**: darrenpig@example.com
+- **邮箱**: [邮箱占位符，请替换为真实邮箱]
 - **微信群**: 扫码加入技术交流群
-- **QQ群**: 123456789
+- **QQ群**: [QQ群号请见官网或社群公告]
 - **技术博客**: [CSDN博客](https://blog.csdn.net/darrenpig)
 
 ---
