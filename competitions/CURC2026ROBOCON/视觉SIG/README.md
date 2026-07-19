@@ -50,6 +50,7 @@
 | **白逸鸣** | 260121 | 哈工大竞培营课程 (第一讲) | [B站视频](https://www.bilibili.com/video/BV1iH4jz4EPo) |
 | **白逸鸣** | 260126 | 哈工大竞培营课程 (第二讲) | [B站视频](https://www.bilibili.com/video/BV1iH4jz4EPo) |
 | **卞乐凌** | 260131 | 从零开始制作RoboMaster步兵机器人全集 | [B站视频](https://www.bilibili.com/video/BV1g14y1j7Zi) |
+|  **肖长婷**  |  260719  |  计算机视觉实战项目  |[B站视频]（https://www.bilibili.com/video/BV14A411C7ZE?t=2.3&p=4）
 
 *(请保持格式统一：`YYMMDD @姓名 内容 [链接]` 或表格形式)*
 
