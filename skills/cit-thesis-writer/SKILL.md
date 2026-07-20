@@ -1,3 +1,8 @@
+---
+name: cit-thesis-writer
+description: 在常州工学院（CIT）毕业设计 LaTeX 模板（如 overleaf-cit-template）中撰写、修改、润色毕业论文内容时使用，提供符合 CIT 格式规范的学术写作辅助。
+---
+
 # CIT Thesis Writer
 
 常州工学院（CIT）毕业设计说明书 LaTeX 写作辅助 Skill。
