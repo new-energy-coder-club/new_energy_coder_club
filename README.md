@@ -1,9 +1,9 @@
 # HXC ESP A Board — AI 增强核心设备仓库 🚀
 
-> HXC 战队 ESP32-S3 主控板（Board A）| 149 个 AI Coding Skills | 多工具链配置
+> HXC 战队 ESP32-S3 主控板（Board A）| 150 个 AI Coding Skills | 多工具链配置
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-149-blue)](skills/)
+[![Skills](https://img.shields.io/badge/skills-150-blue)](skills/)
 [![Last Updated](https://img.shields.io/badge/updated-2026.06.14-green)]()
 
 ---
@@ -15,7 +15,7 @@
 - [🚀 快速开始](#-快速开始)
 - [🔌 硬件与命令](#-硬件与命令)
 - [🤖 AI 工具配置](#-ai-工具配置) — AtomCode · Kimi CLI · Claude Code · Trae · Kimi Code
-- [📚 Skills 技能库](#-skills-技能库) — 149 个技能完整索引
+- [📚 Skills 技能库](#-skills-技能库) — 150 个技能完整索引
 - [🛡️ 安全说明](#️-安全说明)
 - [👥 团队与贡献](#-团队与贡献)
 
@@ -31,14 +31,14 @@
 | 🔧 **固件开发与调试** | 基于上游模板进行位控/电流/位置控制开发 | [HXC_A 使用说明](projects/embedded/HXC_A_Usage_Guide.md) |
 | 🔄 **跨工作区协作** | Vibe Coding 多机调试、代码同步 | [调试工作流](docs/vibe-coding-debug.md) |
 | 📚 **设备文档维护** | 板级使用说明、硬件参数、调试技巧 | [嵌入式项目](projects/embedded/) |
-| 🤖 **AI Skills 托管** | **149 个** AI Coding Skills，跨 Claude Code / Trae / QClaw / Kimi | [Skills 目录](skills/) |
+| 🤖 **AI Skills 托管** | **150 个** AI Coding Skills，跨 Claude Code / Trae / QClaw / Kimi | [Skills 目录](skills/) |
 | 🛠️ **AI 工具配置** | AtomCode / Kimi CLI / Claude CLI / Trae / Kimi Code 项目级配置 | [AI 工具配置](#-ai-工具配置) |
 
 ### 📊 仓库统计
 
 | 指标 | 数值 |
 |------|------|
-| Skills 总数 | **149** |
+| Skills 总数 | **150** |
 | Skill 文件 | 1,954 |
 | 有效数据来源 | 6 个平台（Claude / QClaw / Trae / OpenClaw / Agents / Kimi） |
 | Skills 体积 | ~44 MB |
@@ -56,7 +56,7 @@
 │   ├── 📄 HXC_A_Usage_Guide.md                 ← 板级开发使用说明（必读）
 │   └── 📁 ESP32_platformio_temple_project/     ← ⬆️ 上游子模块 (CQUPTHXC)
 │
-├── 📁 skills/                                  ← 🤖 149 个 AI Coding Skills (44 MB)
+├── 📁 skills/                                  ← 🤖 150 个 AI Coding Skills (44 MB)
 │   ├── lark-*/                                 (飞书办公 ×25)
 │   ├── qclaw-*/                                (QClaw 平台 ×6)
 │   ├── tencent-*/                              (腾讯生态 ×4)
@@ -149,7 +149,7 @@ python send_cmd.py "s"        # 停止
 | 第一次搭建环境 | [环境搭建指南](docs/development-setup.md) | 前置依赖、安装步骤、验证清单 |
 | 快速调试电机 | [Vibe Coding 调试](docs/vibe-coding-debug.md) | 调试工作流、命令速查、故障处理 |
 | 理解板级设计 | [HXC_A 使用说明](projects/embedded/HXC_A_Usage_Guide.md) | 硬件参数、CAN/串口约定、三类工程用法 |
-| 浏览全部技能 | [Skills 目录](skills/) | 149 个 AI Coding Skills |
+| 浏览全部技能 | [Skills 目录](skills/) | 150 个 AI Coding Skills |
 
 ---
 
@@ -223,7 +223,7 @@ Trae IDE 支持 Skill 市场（marketplace），已安装 60+ Skills，包括 `l
 
 ### 概览
 
-本仓库收录了 **149 个** AI Coding Skills，整合自 6 个平台的本地 Skill 生态：
+本仓库收录了 **150 个** AI Coding Skills，整合自 6 个平台的本地 Skill 生态：
 
 | 来源 | Skills | 代表性技能 |
 |------|--------|-----------|
@@ -252,11 +252,11 @@ Trae IDE 支持 Skill 市场（marketplace），已安装 60+ Skills，包括 `l
 
 `react-best-practices` `react-native-skills` `shadcn` `frontend-design` `frontend-skill` `web-design-guidelines` `web-artifacts-builder` `webapp-testing` `web-design` `canvas-design` `algorithmic-art` `brand-guidelines` `theme-factory` `chart-visualization`
 
-#### 🔧 开发工程 & 工作流 (17)
+#### 🔧 开发工程 & 工作流 (18)
 
 > 从代码规范到 CI/CD、从规划到执行的完整工程链路。
 
-`clean-code-zh` `security-best-practices` `git-commit` `gh-cli` `github-skill` `test-driven-development` `spec-to-implementation` `composition-patterns` `hook-analyzer-skill` `screenshot` `writing-plans` `executing-plans` `defuddle` `planning-with-files` `harness` `agentic-loop` `agent-browser`
+`clean-code-zh` `security-best-practices` `git-commit` `gh-cli` `github-skill` `test-driven-development` `spec-to-implementation` `composition-patterns` `hook-analyzer-skill` `screenshot` `writing-plans` `executing-plans` `defuddle` `planning-with-files` `harness` `agentic-loop` `agent-browser` `kimi-web-tunnel`
 
 #### 🔍 搜索 & 资讯聚合 (8)
 
@@ -396,7 +396,7 @@ skill-name/
 
 <div align="center">
   <strong>HXC ESP A Board — AI 增强核心设备仓库</strong><br>
-  <sub>SKill 分支 · 149 Skills · 5 AI 工具链 · ESP32-S3</sub><br><br>
+  <sub>SKill 分支 · 150 Skills · 5 AI 工具链 · ESP32-S3</sub><br><br>
   <em>Innovation · Technology · Sustainability</em><br><br>
   <img src="https://img.shields.io/badge/Made%20with-❤️-red.svg" alt="Made with Love">
 </div>
