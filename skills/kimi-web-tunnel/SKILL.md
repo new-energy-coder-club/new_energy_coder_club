@@ -79,6 +79,15 @@ cd D:\Project_env\SolarGlyph\.devkit\cloudflared
 # 同步更新 config.yml 里的 tunnel id 和 credentials-file 路径
 ```
 
+## 性能说明（远程刷新慢的原因与对策）
+
+远程链路：浏览器 → Cloudflare CDN → cloudflared(香港落地) → 本机。每个会话的新内容走 WebSocket 流式推送，以下因素会放大延迟：
+
+- **多个对话窗口同时跑 Agent**：每个会话独立 worker 进程，本机 CPU/模型 API 成为瓶颈，流式输出互相排队 → 减少并行会话数
+- **QUIC 被运营商限速**：cloudflared 默认走 QUIC/UDP7844，若日志里频繁重连可在 config.yml 加 `protocol: http2` 换 TCP
+- **同 Wi-Fi 下别走隧道**：局域网直接访问 `http://192.168.8.168:5490/?token=...`，延迟低一个数量级
+- **访客本地代理**：远程浏览器若挂 Clash/V2Ray 全局代理，会多一跳境外节点，建议对 `*.newenergycoder.club` 走直连
+
 ## 注意
 
 - 两个组件是**分离的隐藏进程**，不依赖任何终端会话；关机/重启后需重新运行启动脚本（如需开机自启可再加计划任务）
