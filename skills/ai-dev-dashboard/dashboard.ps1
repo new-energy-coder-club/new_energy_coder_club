@@ -3,13 +3,19 @@
 #  Defines Show-AIDashboard. Auto-runs only when invoked directly
 #  (i.e., `pwsh dashboard.ps1`); when dot-sourced from a profile
 #  it just registers the function.
+#
+#  Data sources (top5 合并):
+#    Skills   : ~/.kimi/skills, ~/.claude/skills, ~/.atomcode/skills,
+#               ~/.config/agents/skills
+#    Projects : ~/.kimi/kimi.json, ~/.claude/projects/,
+#               ~/.atomcode/recent_dirs.txt
 # ============================================================
 
 function Show-AIDashboard {
     [CmdletBinding()]
     param(
-        [int]$RecentSkillsCount = 16,
-        [int]$RecentProjectsCount = 6,
+        [int]$RecentSkillsCount = 5,
+        [int]$RecentProjectsCount = 5,
         [string[]]$ProjectRoots = @('D:\Project_env', 'D:\Dev_env', 'D:\Work_dev'),
         [string[]]$ExtraProjectPaths = @('D:\NEC-Claw')
     )
@@ -48,6 +54,15 @@ function Show-AIDashboard {
         return $true
     }
 
+    # ── helper: Claude 项目目录编码 ↔ 路径 ────────────────────
+    #   "D--Project-env-SolarGlyph"  →  "D:\Project_env\SolarGlyph"
+    function ConvertFrom-ClaudeProjectDir([string]$name) {
+        if ($name -notmatch '^[A-Z]-') { return $null }
+        $drive = $name.Substring(0, 1)
+        $rest  = $name.Substring(2) -replace '-', '\'
+        return "${drive}:\${rest}"
+    }
+
     # ── header ────────────────────────────────────────────────
     Write-Host ''
     Write-Host '  ╔══════════════════════════════════════════════════╗' -ForegroundColor Cyan
@@ -58,9 +73,10 @@ function Show-AIDashboard {
     # ── AI CLIs ──────────────────────────────────────────────
     Write-Host '  [ AI CLIs ]' -ForegroundColor Cyan
     $ais = @(
-        @{ cmd = 'kimi';   label = 'Kimi CLI (Moonshot)'     },
-        @{ cmd = 'claude'; label = 'Claude Code (Anthropic)' },
-        @{ cmd = 'gemini'; label = 'Gemini CLI (Google)'     }
+        @{ cmd = 'kimi';     label = 'Kimi CLI (Moonshot)'       },
+        @{ cmd = 'claude';   label = 'Claude Code (Anthropic)'   },
+        @{ cmd = 'gemini';   label = 'Gemini CLI (Google)'       },
+        @{ cmd = 'atomcode'; label = 'AtomCode (AtomGit)'        }
     )
     foreach ($ai in $ais) {
         $found = Get-Command $ai.cmd -ErrorAction SilentlyContinue
@@ -72,65 +88,153 @@ function Show-AIDashboard {
     }
     Write-Host ''
 
-    # ── Recent Skills ─────────────────────────────────────────
+    # ── Recent Skills (Kimi + Claude + AtomCode) ──────────────
     Write-Host '  [ Recent Skills ]' -ForegroundColor Cyan
-    $skillRoots = @(
-        "$env:USERPROFILE\.config\agents\skills",
-        "$env:USERPROFILE\.kimi\skills"
+    $skillSources = @(
+        @{ root = "$env:USERPROFILE\.kimi\skills";             tag = 'K' },
+        @{ root = "$env:USERPROFILE\.claude\skills";           tag = 'C' },
+        @{ root = "$env:USERPROFILE\.atomcode\skills";         tag = 'A' },
+        @{ root = "$env:USERPROFILE\.config\agents\skills";    tag = 'G' }
     )
     $skillItems = @()
-    foreach ($sr in $skillRoots) {
-        if (Test-Path $sr) {
-            $skillItems += Get-ChildItem $sr -Directory -ErrorAction SilentlyContinue | Select-Object Name, LastWriteTime, FullName
+    foreach ($ss in $skillSources) {
+        if (Test-Path $ss.root) {
+            Get-ChildItem $ss.root -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+                $skillItems += [PSCustomObject]@{
+                    Name         = $_.Name
+                    LastWriteTime= $_.LastWriteTime
+                    Source       = $ss.tag
+                }
+            }
         }
     }
     if ($skillItems.Count -eq 0) {
         Write-Host '    (no skills found)' -ForegroundColor DarkGray
     } else {
         $now = Get-Date
-        $top = $skillItems | Sort-Object LastWriteTime -Descending | Select-Object -First $RecentSkillsCount
+        # 同名 skill 跨工具合并（保留最新）
+        $merged = $skillItems | Group-Object Name | ForEach-Object {
+            $latest = $_.Group | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+            $tags   = ($_.Group | Sort-Object Source -Unique | ForEach-Object Source) -join ''
+            [PSCustomObject]@{
+                Name          = $latest.Name
+                LastWriteTime = $latest.LastWriteTime
+                Source        = $tags
+            }
+        }
+        $top = $merged | Sort-Object LastWriteTime -Descending | Select-Object -First $RecentSkillsCount
         foreach ($e in $top) {
             $delta = $now - $e.LastWriteTime
             $rel = if     ($delta.TotalMinutes -lt 60) { '{0}m ago' -f [int]$delta.TotalMinutes }
                    elseif ($delta.TotalHours   -lt 24) { '{0}h ago' -f [int]$delta.TotalHours }
                    elseif ($delta.TotalDays    -lt 30) { '{0}d ago' -f [int]$delta.TotalDays }
                    else                                { $e.LastWriteTime.ToString('MM-dd') }
-            Write-Host ("    ·  {0}  {1}" -f $e.Name.PadRight(32), $rel) -ForegroundColor White
+            $tagBadge = "[{0}]" -f $e.Source
+            Write-Host ("    ·  {0}  {1,-7} {2}" -f $e.Name.PadRight(32), $tagBadge, $rel) -ForegroundColor White
         }
     }
     Write-Host ''
 
-    # ── Recent Projects (from kimi.json work_dirs) ────────────
+    # ── Recent Projects (Kimi + Claude + AtomGit 合并) ────────
     Write-Host '  [ Recent Projects ]' -ForegroundColor Cyan
-    $kimiJson = "$env:USERPROFILE\.kimi\kimi.json"
     $projectList = [System.Collections.Generic.List[PSObject]]::new()
+    $seenPath = @{}   # path → index in $projectList (for merging)
 
+    # 1) Kimi: ~/.kimi/kimi.json
+    $kimiJson = "$env:USERPROFILE\.kimi\kimi.json"
     if (Test-Path $kimiJson) {
         try {
             $kj = Get-Content $kimiJson -Raw -Encoding UTF8 | ConvertFrom-Json
             if ($kj.work_dirs) {
-                $seen = @{}
                 foreach ($wd in $kj.work_dirs) {
                     $p = $wd.path
                     if (-not (Test-IsValidProjectPath $p -Strict)) { continue }
-                    if ($seen.ContainsKey($p)) { continue }
-                    $seen[$p] = $true
-
                     $item = Get-Item $p -ErrorAction SilentlyContinue
                     if (-not $item) { continue }
-
-                    $projectList.Add([PSCustomObject]@{
-                        Path       = $p
-                        Name       = $item.Name
-                        LastWrite  = $item.LastWriteTime
-                        IsActive   = [bool]$wd.last_session_id
-                    })
+                    if (-not $seenPath.ContainsKey($p)) {
+                        $seenPath[$p] = $projectList.Count
+                        $projectList.Add([PSCustomObject]@{
+                            Path       = $p
+                            Name       = $item.Name
+                            LastWrite  = $item.LastWriteTime
+                            IsActive   = [bool]$wd.last_session_id
+                            Source     = 'K'
+                        })
+                    }
                 }
             }
         } catch {}
     }
 
-    # Fallback: scan filesystem if kimi.json yields too few
+    # 2) Claude: ~/.claude/projects/ (目录名编码 + mtime)
+    $claudeRoot = "$env:USERPROFILE\.claude\projects"
+    if (Test-Path $claudeRoot) {
+        Get-ChildItem $claudeRoot -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+            $realPath = ConvertFrom-ClaudeProjectDir $_.Name
+            if (-not $realPath) { return }
+            if (-not (Test-IsValidProjectPath $realPath -Strict)) { return }
+            $item = Get-Item $realPath -ErrorAction SilentlyContinue
+            if (-not $item) { return }
+            if ($seenPath.ContainsKey($realPath)) {
+                $idx = $seenPath[$realPath]
+                $existing = $projectList[$idx]
+                if ($existing.Source -notmatch 'C') {
+                    $existing.Source = ($existing.Source + 'C')
+                }
+                # Claude projects 目录 mtime 通常比 fs 更"近"，取较新的
+                if ($_.LastWriteTime -gt $existing.LastWrite) {
+                    $existing.LastWrite = $_.LastWriteTime
+                    $existing.IsActive  = $true
+                }
+            } else {
+                $seenPath[$realPath] = $projectList.Count
+                $projectList.Add([PSCustomObject]@{
+                    Path       = $realPath
+                    Name       = $item.Name
+                    LastWrite  = $_.LastWriteTime
+                    IsActive   = $true   # 出现在 claude/projects 即视为活跃
+                    Source     = 'C'
+                })
+            }
+        }
+    }
+
+    # 3) AtomGit / AtomCode: recent_dirs.txt（按行序=由新到旧）
+    $atomRecent = "$env:USERPROFILE\.atomcode\recent_dirs.txt"
+    if (Test-Path $atomRecent) {
+        $rank = 0
+        Get-Content $atomRecent -Encoding UTF8 -ErrorAction SilentlyContinue | ForEach-Object {
+            $p = $_.Trim()
+            if (-not $p) { return }
+            if (-not (Test-IsValidProjectPath $p -Strict)) { return }
+            $item = Get-Item $p -ErrorAction SilentlyContinue
+            if (-not $item) { return }
+            # 给 atomcode 一个伪 mtime：越靠前越新（向前推 1 小时 × rank）
+            $pseudoTime = (Get-Date).AddHours(-1 * $rank)
+            $rank++
+            if ($seenPath.ContainsKey($p)) {
+                $idx = $seenPath[$p]
+                $existing = $projectList[$idx]
+                if ($existing.Source -notmatch 'A') {
+                    $existing.Source = ($existing.Source + 'A')
+                }
+                # AtomGit 的"最近"权重最高
+                $existing.LastWrite = $pseudoTime
+                $existing.IsActive  = $true
+            } else {
+                $seenPath[$p] = $projectList.Count
+                $projectList.Add([PSCustomObject]@{
+                    Path       = $p
+                    Name       = $item.Name
+                    LastWrite  = $pseudoTime
+                    IsActive   = $true
+                    Source     = 'A'
+                })
+            }
+        }
+    }
+
+    # Fallback: filesystem scan
     if ($projectList.Count -lt $RecentProjectsCount) {
         $fsProjects = @()
         foreach ($ep in $ExtraProjectPaths) {
@@ -141,15 +245,16 @@ function Show-AIDashboard {
                 $fsProjects += Get-ChildItem $root -Directory -ErrorAction SilentlyContinue
             }
         }
-        $existingNames = $projectList | ForEach-Object { $_.Name }
         foreach ($fp in ($fsProjects | Sort-Object LastWriteTime -Descending)) {
-            if ($fp.Name -in $existingNames) { continue }
+            if ($seenPath.ContainsKey($fp.FullName)) { continue }
             if (-not (Test-IsValidProjectPath $fp.FullName -Strict)) { continue }
+            $seenPath[$fp.FullName] = $projectList.Count
             $projectList.Add([PSCustomObject]@{
                 Path      = $fp.FullName
                 Name      = $fp.Name
                 LastWrite = $fp.LastWriteTime
                 IsActive  = $false
+                Source    = ''
             })
         }
     }
@@ -166,15 +271,18 @@ function Show-AIDashboard {
             $badge = if ($p.IsActive) { '[active] ' } else { '         ' }
             $badgeColor = if ($p.IsActive) { 'Green' } else { 'White' }
             $name = $p.Name.PadRight(28)
+            $srcBadge = if ($p.Source) { "[{0,-3}]" -f $p.Source } else { '     ' }
             $shortPath = if ($p.Path.Length -gt 45) { '...' + $p.Path.Substring($p.Path.Length - 42) } else { $p.Path }
             Write-Host "    " -NoNewline
             Write-Host $badge -NoNewline -ForegroundColor $badgeColor
             Write-Host "$age  $name  " -NoNewline -ForegroundColor Gray
+            Write-Host "$srcBadge " -NoNewline -ForegroundColor Magenta
             Write-Host $shortPath -ForegroundColor DarkGray
         }
     }
 
     Write-Host ''
+    Write-Host '  Legend: K=Kimi  C=Claude  A=AtomGit  G=~/.config/agents' -ForegroundColor DarkGray
     Write-Host "  Type 'kimi' to start · '/skills' to browse · 'dev' to refresh" -ForegroundColor Gray
     Write-Host ''
 }

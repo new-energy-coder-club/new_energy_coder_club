@@ -1,16 +1,15 @@
 ---
 name: ai-dev-dashboard
-description: Prints the PowerShell AI Dev Dashboard (AI CLIs status, recently called Skills with counts, recent Claude tasks, recent local projects). Use when the user asks to "show dashboard", "run dev", "refresh dashboard", or to inspect recent Skill usage stats on the local machine.
+description: Prints the PowerShell AI Dev Dashboard — AI CLIs status, recently-used Skills across Kimi/Claude/AtomCode, and recent projects merged from Kimi Code, Claude Code, and AtomGit. Use when the user asks to "show dashboard", "run dev", "refresh dashboard", or to inspect recent Skill/project activity on the local machine.
 ---
 
 # AI Dev Dashboard
 
 A PowerShell-based startup dashboard for a local dev workstation. It reports:
 
-- **AI CLIs** — presence check for `claude`, `kimi`, `gemini` on PATH
-- **Recent Skills** — top N Skills called in Claude Code, by most-recent invocation, with call counts. Parsed from `%USERPROFILE%\.claude\projects\*.jsonl` (only real `"name":"Skill"` tool_use entries are counted).
-- **Recent Tasks** — most recent Claude task files from `%USERPROFILE%\.claude\tasks\`
-- **Recent Projects** — newest project directories under configurable roots (`D:\Project_env`, `D:\Dev_env`, `D:\Work_dev`, plus `D:\NEC-Claw`)
+- **AI CLIs** — presence check for `kimi`, `claude`, `gemini`, `atomcode` on PATH
+- **Recent Skills** — top N Skills (default 5) across **Kimi Code**, **Claude Code**, **AtomCode**, and `~/.config/agents/skills`, merged by name (latest wins) with a source badge `[K C A G]`
+- **Recent Projects** — top N projects (default 5) merged from three sources, deduped by absolute path, each tagged with which AI tools touched it
 
 ## How to invoke
 
@@ -24,29 +23,55 @@ Three equivalent ways:
 3. **As a function**, after dot-sourcing:
    ```powershell
    . "$HOME\.claude\skills\ai-dev-dashboard\dashboard.ps1"
-   Show-AIDashboard -RecentSkillsCount 12
+   Show-AIDashboard -RecentSkillsCount 8 -RecentProjectsCount 6
    ```
 
 ## Parameters (Show-AIDashboard)
 
-| Parameter               | Default                                             | Purpose                        |
-| ----------------------- | --------------------------------------------------- | ------------------------------ |
-| `-RecentSkillsCount`    | `8`                                                 | Rows in [Recent Skills]        |
-| `-RecentTasksCount`     | `6`                                                 | Rows in [Recent Tasks]         |
-| `-RecentProjectsCount`  | `3`                                                 | Rows in [Recent Projects]      |
-| `-ProjectRoots`         | `D:\Project_env, D:\Dev_env, D:\Work_dev`           | Roots scanned for subfolders   |
-| `-ExtraProjectPaths`    | `D:\NEC-Claw`                                       | Individual paths added as-is   |
+| Parameter               | Default                                       | Purpose                                  |
+| ----------------------- | --------------------------------------------- | ---------------------------------------- |
+| `-RecentSkillsCount`    | `5`                                           | Rows in `[Recent Skills]`                |
+| `-RecentProjectsCount`  | `5`                                           | Rows in `[Recent Projects]`              |
+| `-ProjectRoots`         | `D:\Project_env, D:\Dev_env, D:\Work_dev`     | Roots scanned for fallback project list  |
+| `-ExtraProjectPaths`    | `D:\NEC-Claw`                                 | Individual paths added as-is             |
 
-## Customization
+## Source badges
 
-Edit `dashboard.ps1` to:
-- Add/remove AI CLIs — modify the `$ais` array in the `[AI CLIs]` section.
-- Change column widths — adjust `.PadRight(...)` in the respective sections.
-- Switch the banner title or colors — look for `AI Dev Dashboard` at the top.
+Each row is tagged with which tool's data store contributed the entry:
+
+| Badge | Tool         | Skills scanned at                | Projects scanned at              |
+| ----- | ------------ | -------------------------------- | -------------------------------- |
+| `K`   | Kimi Code    | `~/.kimi/skills/`                | `~/.kimi/kimi.json → work_dirs`  |
+| `C`   | Claude Code  | `~/.claude/skills/`              | `~/.claude/projects/<enc>/` (decoded from dir name) |
+| `A`   | AtomGit      | `~/.atomcode/skills/`            | `~/.atomcode/recent_dirs.txt`    |
+| `G`   | Generic      | `~/.config/agents/skills/`       | —                                |
+
+A row like `[KCA]` means "this skill/project was recently used by Kimi, Claude, and AtomGit."
+
+## Project merge algorithm
+
+1. Read `~/.kimi/kimi.json` → `work_dirs[]`, mark `IsActive = (last_session_id != null)`
+2. Scan `~/.claude/projects/`, decode dir names like `D--Project-env-SolarGlyph` → `D:\Project_env\SolarGlyph`, treat presence as `IsActive = true`, use dir `LastWriteTime`
+3. Read `~/.atomcode/recent_dirs.txt` top-down; assign pseudo-mtime `(now - rank)` so the most-recent line wins the sort, force `IsActive = true`
+4. Fallback to scanning `$ProjectRoots` + `$ExtraProjectPaths` if merged list < `-RecentProjectsCount`
+5. Sort by `(IsActive desc, LastWrite desc)`, take top N
+
+Skill merge: same name across multiple `Source` dirs is collapsed into one row, with the latest `LastWriteTime` and the source badges concatenated (`[KC]`).
+
+## Filtering rules
+
+`Test-IsValidProjectPath` rejects:
+- Drive roots (`C:\`, `D:\`)
+- System dirs (`C:\Windows`, `C:\Program Files`, `C:\Users\29711` itself)
+- Generic folder names (`Downloads`, `Desktop`, `Documents`, `temp`, `docs`, `dist`, `build`, …)
+- Container roots (`Project_env`, `Dev_env`, `Work_dev`, `Paper_env`) in `-Strict` mode
+- WeChat cache paths (`xwechat_files`), `system32`
+
+## Encoding
+
+`dashboard.ps1` is saved as **UTF-8 with BOM** so Windows PowerShell 5.1 parses the box-drawing characters and `·` correctly. Do not strip the BOM — without it, PS 5.1 misreads the file as ANSI and the parse fails with `字符串缺少终止符`.
 
 ## Integration with PowerShell profile
-
-The profile (`$PROFILE`) should dot-source this script so the `dev` / `dash` aliases persist:
 
 ```powershell
 . "$HOME\.claude\skills\ai-dev-dashboard\dashboard.ps1"
@@ -58,13 +83,4 @@ Set-Alias dev  Show-AIDashboard
 
 ## Performance
 
-Full parse across `~/.claude/projects/*.jsonl` is ~500 ms for ~20 MB of logs on a typical workstation. Stats are computed fresh on every call — no cache. If log volume grows large (>100 MB), consider adding a cache file keyed by `LastWriteTime` of the jsonl files.
-
-## Data sources
-
-| Section          | Source                                                |
-| ---------------- | ----------------------------------------------------- |
-| AI CLIs          | `Get-Command` on PATH                                 |
-| Recent Skills    | `%USERPROFILE%\.claude\projects\*.jsonl` (regex scan) |
-| Recent Tasks     | `%USERPROFILE%\.claude\tasks\*\*.json`                |
-| Recent Projects  | Directories under `$ProjectRoots` + `$ExtraProjectPaths` |
+Skill scan is a `Get-ChildItem` over 4 small dirs (<100 entries total). Project scan reads one JSON, one text file, and one directory listing — all cheap. Total runtime is well under 1 s on a typical workstation.
