@@ -30,6 +30,7 @@
 | ESP32 / ESP32-S3 人脸与颜色识别 | [projects/robotics/机器狗-k230/code/](../../../projects/robotics/机器狗-k230/code/) | Arduino 工程 |
 | 星闪 SLE 遥控手柄 | [projects/星闪手柄/](../../../projects/星闪手柄/) | OSPP 2024 参与项目 |
 | AGL × openEuler 适配结项 | [projects/research-horizontal/AGL-openEuler.md](../../../projects/research-horizontal/AGL-openEuler.md) | OSPP 结项报告范例 |
+| NEC-EMF 嵌入式框架方案 | [docs/design/esp32-modular-robot-framework.md](../../design/esp32-modular-robot-framework.md) | ESP32 主控+子控模块化，RISC-V C3/C6 电调节点 |
 
 ## 外部资源索引
 

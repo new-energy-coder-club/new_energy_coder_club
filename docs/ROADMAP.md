@@ -24,6 +24,10 @@
 - K230 / ESP32-S3 / 树莓派 5 推理横评（📋 OSPP 课题 #4）
 - nncase 模型 zoo 中文文档与 K230 案例贡献上游（📋 OSPP 课题 #6）
 
+**控制域：NEC-EMF ESP32 模块化框架（RISC-V ESP32-C3/C6）**
+- 重构方案已发布：[docs/design/esp32-modular-robot-framework.md](./design/esp32-modular-robot-framework.md)
+- 路线：R1 总线契约 → R2 视觉节点归化 → R3 C3 电调节点 → R4 主控+星闪闭环 → R5 节点生态
+
 ## OSPP 2027 时间线
 
 | 时间 | 里程碑 |
