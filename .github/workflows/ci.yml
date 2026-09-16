@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !**/node_modules/**
+        # 配置文件：.markdownlint.jsonc
+
+  link-check:
+    name: Dead Link Check
+    runs-on: ubuntu-latest
+    # TODO(阶段1): 存量外部链接清理完成后，移除此行将死链检查转为强制门禁
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link Checker (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --retry-wait-time 5
+            --max-retries 3
+            --accept 200,204,206,301,302,307,308,403,429
+            --exclude-path .git
+            --exclude "feishu.cn"
+            "**/*.md"
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
