@@ -17,14 +17,14 @@
 
 ### 🤖 机器人与自动化
 
-#### [🦾 人形机器人UMI低成本灵巧手](./dexterous-hand/)
+#### [🦾 人形机器人UMI低成本灵巧手](./dexterous-hand.md)
 - **项目周期**: 2025.03 - 进行中
 - **技术栈**: 空心杯电机、腱绳传动、多传感器融合
 - **预算控制**: 1万元以内
 - **核心特色**: 高灵活性、高性价比、模块化设计
 - **应用场景**: 工业、医疗、家庭服务
 
-#### [⚙️ 气缸控制系统](./pneumatic-system/)
+#### [⚙️ 气缸控制系统](./pneumatic-system.md)
 - **项目状态**: ✅ 已完成
 - **负责人**: @BINBIN（吴洛斌）
 - **技术方案**: 电磁阀-气瓶-气缸-快速泄压阀控制链
@@ -64,7 +64,7 @@
 - **应用领域**: 工业流体控制
 - **技术特点**: 精密控制、自动化操作
 
-#### [🖨️ 3D打印成型组](./3d-printing-team/)
+#### [🖨️ 3D打印成型组](./3d-printing-sig.md)
 - **团队成员**: 
   - @王于豪041005
   - @王露洁041101
@@ -77,6 +77,15 @@
 - **硬件平台**: ESP32-S3
 - **技术文档**: [ESP32官方文档](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/api-reference/peripherals/mcpwm.html)
 - **复用模块**: [BoardA模块库](https://gitee.com/darrenpig/BoardA.git)
+
+### 🌐 openEuler 生态与开源之夏
+
+#### [🚗 AGL × openEuler Embedded 适配（开源之夏结项）](./AGL-openEuler.md)
+- **项目类型**: OSPP（开源之夏）结项项目
+- **负责人**: 朱佩韦（300 小时）
+- **技术路线**: QEMU + 树莓派 5 交叉编译 Automotive Grade Linux
+- **状态**: ✅ 已结项，含完整 PR 提交清单与评审流程记录
+- **价值**: NEC 参与 OSPP 的范例文档，见 [OSPP 专区](../../docs/ospp/)
 
 ## 🛠️ 技术栈总览
 
