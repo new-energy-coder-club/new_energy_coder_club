@@ -23,6 +23,8 @@
 
 # NEC · New Energy Coder Club
 
+> [English README](./README_EN.md)
+
 [![License](https://img.shields.io/badge/License-Mulan%20PSL%20v2-green)](LICENSE.md)[![Chat](https://img.shields.io/badge/Chat-QQ-blue?style=flat-square)](https://gitee.com/darrenpig/new_energy_coder_club/issues/IDATOS)[![Open Issues](https://img.shields.io/github/issues/darrenpig/new_energy_coder_club?label=open%20issues)](https://github.com/darrenpig/new_energy_coder_club/issues)[![Open PRs](https://img.shields.io/github/issues-pr/darrenpig/new_energy_coder_club?label=open%20PRs)](https://github.com/darrenpig/new_energy_coder_club/pulls)[![Docs](https://img.shields.io/badge/docs-%E2%9C%94%20complete-brightgreen)](docs/)
 [![Version](https://img.shields.io/github/v/tag/darrenpig/new_energy_coder_club?label=Version)](https://github.com/darrenpig/new_energy_coder_club/releases)[![Project Status](https://img.shields.io/badge/Project%20Status-Active-green)](https://github.com/darrenpig/new_energy_coder_club)[![Website](https://img.shields.io/badge/Website-newenergycoder.club-orange?style=flat-square)](https://www.newenergycoder.club/)[![Knowledge Base](https://img.shields.io/badge/Knowledge%20Base-Feishu-blue?style=flat-square)](https://scn0bdoc8zxg.feishu.cn/wiki/S10LwzVZdiWLwxkEnEqcTcmEn6e)
 
@@ -119,8 +121,9 @@ NEC 诞生于自由的开源文化之上，立足新能源与机器人技术浪�
 
 ## 🧭 Start Here（导航）
 - 快速上手: [60min](./docs/start-here/60min.md) · [First Good Issue](./docs/start-here/first-good-issue.md)
-- 学习路线: [岗位路线图](./docs/learn/roles.md)
+- 学习路线: [岗位路线图](./docs/learn/roles.md) · [RISC-V × AI](./docs/learn/riscv-ai/)
 - 竞赛与项目: [竞赛](./competitions/README.md) · [项目](./projects/README.md)
+- 开源之夏: [OSPP 专区](./docs/ospp/)
 - 社区与团队: [维护者/SIG](./docs/community/maintainers.md) · [团队与致谢](./docs/community/TEAM.md)
 
 
@@ -194,10 +197,12 @@ new_energy_coder_club/
 </table>
 
 ## 📊 项目快览（Project Overview）
-| 项目名称 | 分类 | 状态 | 快速通道 |
-|---|---|---|---|
-| 🤖 2025 ROBOCON | 竞赛 | 🟢 开发中 | [赛季仓](./competitions/2025-robocon/) / [竞赛索引](./docs/indexes/competition_index.md) |
-| 🦾 Duma 人形机器人 | 项目 | 🟡 维护中 | [项目主页](./projects/robotics/人形机器人/) / [岗位路线图](./docs/learn/roles.md) |
+| 项目名称 | 分类 | 技术栈 | 状态 | 快速通道 |
+|---|---|---|---|---|
+| 🤖 2025 ROBOCON | 竞赛 | STM32 / 树莓派 5 | 🟢 开发中 | [赛季仓](./competitions/2025-robocon/) / [竞赛索引](./docs/indexes/competition_index.md) |
+| 🦾 Duma 人形机器人 | 项目 | — | 🟡 维护中 | [项目主页](./projects/robotics/人形机器人/) / [岗位路线图](./docs/learn/roles.md) |
+| 🐶 轮腿机器狗 K230 | 项目 | **RISC-V K230 + KPU** / nncase kmodel / ESP32-S3 | 🟢 活跃 | [项目主页](./projects/robotics/机器狗-k230/) / [K230 上手指南](./docs/learn/riscv-ai/k230-getting-started.md) |
+| ⚡ 星闪手柄 | 项目 | **RISC-V WS63** / 星闪 SLE / openEuler Embedded | 🟢 活跃 | [项目主页](./projects/星闪手柄/) / [星闪开发指南](./docs/learn/riscv-ai/ws63-nearlink-guide.md) |
 
 <table>
   <tr>
@@ -245,6 +250,20 @@ new_energy_coder_club/
 <!-- Follow is usage -->
 <!-- TABLE OF CONTENTS -->
 
+
+<!-- RISC-V × AI -->
+## 🔧 RISC-V × AI 开源实践
+
+NEC 以 **RISC-V 端侧 AI（KPU/NPU 推理 × 机器人 × 星闪互联）** 为技术主线，依托 openEuler Embedded / RT-Thread 生态，承接开源之夏（OSPP）课题。
+
+| 方向 | 核心资产 | 现状 | 入口 |
+|---|---|---|---|
+| 🐶 K230 端侧推理 | 嘉楠 K230（RISC-V 双核 C908 + KPU NPU）轮腿机器狗，已跑通 kmodel 图像分类部署（nncase 2.9.0） | ✅ 可部署；📋 检测管线开源化已列入 OSPP 课题 | [项目](./projects/robotics/机器狗-k230/) · [上手指南](./docs/learn/riscv-ai/k230-getting-started.md) |
+| ⚡ 星闪 × openEuler | 海思 WS63（RISC-V 内核）星闪 SLE 遥控手柄，OSPP 2024 参与项目 | ✅ 有样例与 OSPP 结项经验 | [项目](./projects/星闪手柄/) · [开发指南](./docs/learn/riscv-ai/ws63-nearlink-guide.md) |
+| 👁️ CURC2026 视觉 SIG | K230 / 树莓派 5 / Jetson Nano 视觉计算平台规划，直接继承机器狗 K230 部署经验 | 📋 规划中 | [视觉 SIG](./competitions/CURC2026ROBOCON/视觉SIG/) |
+| 🏆 OSPP 结项归档 | AGL × openEuler Embedded 适配（开源之夏结项） | ✅ 已结项 | [结项报告](./projects/research-horizontal/AGL-openEuler.md) · [OSPP 专区](./docs/ospp/) |
+
+> 🌱 **想参与开源之夏？** 课题池、导师与学生指南见 [docs/ospp/](./docs/ospp/)；转型路线图见 [RISC-V × AI OSPP 方案](./docs/ospp/RISCV_AI_OSPP_PLAN.md)。
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project 关于项目
