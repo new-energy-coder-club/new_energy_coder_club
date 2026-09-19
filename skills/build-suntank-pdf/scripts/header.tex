@@ -1,0 +1,179 @@
+% ============================================================
+% SunTank 产品方案 PDF 头文件（Pandoc + XeLaTeX）视觉增强版
+% ============================================================
+
+% ---------- 字体 ----------
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Microsoft YaHei}[BoldFont=Microsoft YaHei]
+\setmainfont{Microsoft YaHei}[BoldFont=Microsoft YaHei]
+\setmonofont{Consolas}[Scale=0.9]
+
+% emoji / 特殊符号兜底
+\newfontfamily\emojifont{Segoe UI Emoji}[Renderer=Harfbuzz]
+\usepackage{newunicodechar}
+\newunicodechar{✅}{{\emojifont ✅}}
+\newunicodechar{❌}{{\emojifont ❌}}
+\newunicodechar{☀}{{\emojifont ☀}}
+\newunicodechar{❄}{{\emojifont ❄}}
+\newunicodechar{💧}{{\emojifont 💧}}
+\newunicodechar{🌬}{{\emojifont 🌬}}
+\newunicodechar{🔌}{{\emojifont 🔌}}
+\newunicodechar{🔧}{{\emojifont 🔧}}
+\newunicodechar{⚡}{{\emojifont ⚡}}
+\newunicodechar{💰}{{\emojifont 💰}}
+\newunicodechar{💸}{{\emojifont 💸}}
+\newunicodechar{🔋}{{\emojifont 🔋}}
+\newunicodechar{💡}{{\emojifont 💡}}
+\newunicodechar{️}{} % 吞掉变体选择符 U+FE0F
+
+% ---------- 页面 ----------
+\usepackage[a4paper,margin=2.2cm,top=2.6cm,bottom=2.6cm]{geometry}
+\setlength{\footskip}{1.3cm}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+% ---------- 颜色 ----------
+\usepackage[table]{xcolor}
+\definecolor{brand}{RGB}{0,92,150}      % 主色：深冰蓝
+\definecolor{brandlt}{RGB}{226,240,249} % 主色浅底
+\definecolor{accent}{RGB}{0,158,150}    % 辅色：青绿
+\definecolor{codebg}{RGB}{246,248,250}  % 代码底色
+\definecolor{codeframe}{RGB}{210,220,228}
+\definecolor{midgray}{RGB}{120,130,138}
+\definecolor{zebra}{RGB}{241,246,250}   % 表格斑马纹
+
+% ---------- 链接 ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=brand, urlcolor=accent, citecolor=brand}
+
+% ---------- 标题层级 ----------
+\usepackage{titlesec}
+
+% 章：上下双细线 + 大号品牌色标题
+\titleformat{\chapter}[block]
+  {\normalfont}{}{0pt}
+  {\begingroup\normalsize\bfseries\color{accent}\MakeUppercase{SUNTANK PRODUCT PLAN}\endgroup\\[2pt]%
+   \color{brand}\titlerule[1.4pt]\vspace{5pt}\huge\bfseries\color{brand}}
+  [\vspace{3pt}{\color{brand!55}\titlerule[0.7pt]}]
+\titlespacing*{\chapter}{0pt}{-28pt}{26pt}
+
+\titleformat{\section}{\Large\bfseries\color{brand}}{\thesection}{0.8em}{}
+\titlespacing*{\section}{0pt}{16pt}{8pt}
+\titleformat{\subsection}{\large\bfseries\color{brand!85}}{\thesubsection}{0.7em}{}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{black!75}}{\thesubsubsection}{0.6em}{}
+
+% ---------- 页眉页脚 ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{midgray}SunTank 日光冰罐 · 产品方案}
+\fancyhead[R]{\small\color{midgray}2026-08 · V1.1}
+\fancyfoot[C]{\small\color{midgray}— \thepage\ —}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{brand!45}\hrule width\headwidth height 0.4pt}
+
+% ---------- 表格：booktabs + 斑马纹 ----------
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\renewcommand{\arraystretch}{1.35}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small\rowcolors{2}{zebra}{white}}
+\AtEndEnvironment{longtable}{\rowcolors{1}{}{}}
+
+% ---------- 代码块：浅色底 + 细框 ----------
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{%
+  fontsize=\footnotesize,breaklines=true,breakanywhere=true,%
+  frame=single,framerule=0.4pt,framesep=2.5mm,%
+  rulecolor=\color{codeframe},fillcolor=\color{codebg}}
+
+% ---------- 引用块：品牌色左侧竖条 ----------
+\usepackage[most]{tcolorbox}
+\newtcolorbox{quotebox}{%
+  enhanced, colback=brandlt!55, colframe=brandlt!55, sharp corners,
+  borderline west={2.2pt}{0pt}{brand},
+  left=9pt, right=9pt, top=5pt, bottom=5pt, boxsep=0pt}
+\let\oldquote\quote
+\let\endoldquote\endquote
+\renewenvironment{quote}{\begin{quotebox}}{\end{quotebox}}
+
+% ---------- 列表 ----------
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt}
+\setlist[itemize,1]{label=\textcolor{accent}{\textbullet}}
+
+% ---------- 自定义封面（含产品概念图） ----------
+\usepackage{titling}
+\usepackage{graphicx}
+\graphicspath{{build/}{build/figures/}}
+\renewcommand{\maketitle}{%
+\begin{titlepage}
+  % 顶部色带
+  \noindent\colorbox{brand}{%
+    \begin{minipage}[c][3.9cm][c]{\dimexpr\textwidth-2\fboxsep}
+      \color{white}\bfseries
+      {\fontsize{29}{35}\selectfont SunTank 日光冰罐}\\[8pt]
+      {\large 光伏直驱 + 水蓄冷 · 家用空调系统 · 产品方案}
+    \end{minipage}}
+
+  \vspace{0.7cm}
+
+  % 产品概念图
+  \begin{center}
+    \includegraphics[width=0.94\textwidth]{fig0_cover.png}
+  \end{center}
+
+  \vspace{0.5cm}
+
+  % 一句话定位
+  \noindent\begin{minipage}{\textwidth}
+    \large\color{black!80}
+    白天光伏免费制冷，夜晚水箱冷水续冷 —— 不装电池、不交电费、不怕停电的家用清凉站。
+  \end{minipage}
+
+  \vspace{0.5cm}
+
+  % 关键数字卡片
+  \noindent\colorbox{brandlt}{%
+    \begin{minipage}[c][3.6cm][c]{\dimexpr\textwidth-2\fboxsep}
+      \vspace{5pt}
+      \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        {\Large\bfseries\color{accent}500 L}\\[2pt]
+        {\small 水蓄冷保温水箱}\\[8pt]
+        {\Large\bfseries\color{accent}8 小时}\\[2pt]
+        {\small 夜间无电制冷续航}
+      \end{minipage}\hfill
+      \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        {\Large\bfseries\color{accent}1200 Wp}\\[2pt]
+        {\small 光伏直驱阵列}\\[8pt]
+        {\Large\bfseries\color{accent}RMB 6,500--7,500}\\[2pt]
+        {\small 终端零售价（含光伏）}
+      \end{minipage}
+      \vspace{5pt}
+    \end{minipage}}
+
+  \vfill
+
+  % 底部信息
+  \noindent{\color{brand!55}\rule{\textwidth}{0.7pt}}
+
+  \vspace{8pt}
+  \noindent\begin{minipage}{0.5\textwidth}
+    \small\color{midgray}
+    目标市场：巴基斯坦 · 孟加拉\\
+    产品组 \quad 2026-08-08
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \raggedleft\small\color{midgray}
+    版本 V1.1（RMB 计价 · 压缩时间线）\\
+    死线：2026-11 广交会样机 / 2027-04 上市
+  \end{minipage}
+\end{titlepage}}
+
+% ---------- 目录 ----------
+\setcounter{tocdepth}{2}
