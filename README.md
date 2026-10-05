@@ -4,22 +4,18 @@
 
 从 NEC 主仓 `SKill` 分支独立出来的电机控制专项分支，面向机器人电控、电机调试与嵌入式驱动开发场景。
 
-## 📁 目录结构
+## 📁 目录导航
 
-```
-├── skills/            # Agent Skills（调试/控制指南）
-│   └── ak10-motor-debug/          # Cubemars AK10-9 电机 MIT/CAN 控制调试指南
-├── projects/          # 可编译的参考工程
-│   ├── motor-demos/
-│   │   ├── am32_board_a/          # AM32 电调工程（STM32）
-│   │   │   └── module/            # DSHOT、EMM V5.0 步进闭环、SBUS/DBUS、
-│   │   │                          # 舵机、底盘解算（麦克纳姆/舵轮）、
-│   │   │                          # ESP-NOW、PCNT 编码器、VOFA 调试等模块
-│   │   └── hcx_a_n630/            # HXC N630 板 PlatformIO 工程（含 merge_bins.py）
-│   └── ESP32_platformio_temple_project/   # ESP32 PlatformIO 工程模板
-└── docs/              # 说明文档
-    └── hxc-motor-control-projects-skill.md   # HXC 电机控制项目 skill 说明
-```
+| 路径 | 内容 | 适用场景 |
+|---|---|---|
+| [`skills/ak10-motor-debug/`](skills/ak10-motor-debug/) | Cubemars AK10-9 电机 MIT/CAN 控制调试指南 | AK 系列电机上电调试、丢反馈/飞车诊断 |
+| [`skills/hxc-esp-a-board/`](skills/hxc-esp-a-board/) | HXC ESP32-S3 主控板开发环境自动化配置 skill | PlatformIO 编译/烧录/串口调试一键工作流 |
+| [`boards/am32_board_a/`](boards/am32_board_a/) | AM32 电调工程（STM32） | DSHOT、EMM V5.0 步进闭环、SBUS/DBUS、麦克纳姆/舵轮底盘解算、ESP-NOW、VOFA 调试 |
+| [`boards/hcx_a_n630/`](boards/hcx_a_n630/) | HXC N630 板 PlatformIO 工程 | N630 板固件开发（含 `merge_bins.py` 合并烧录） |
+| [`boards/hxc_a_c620/`](boards/hxc_a_c620/) | HXC A 板 + C620 电调工程 | RoboMaster C620 电调控制开发 |
+| [`boards/hxc_wireless_flash/`](boards/hxc_wireless_flash/) | HXC 无线烧录 + 串口控制工程 | 无线烧录（禁用自动复位）、UART0 串口控制 |
+| [`boards/hxc-motor-control-projects-skill.md`](boards/hxc-motor-control-projects-skill.md) | HXC 电机控制项目 skill 总说明 | 了解 HXC 系列板卡与项目全貌 |
+| [`templates/esp32_platformio/`](templates/esp32_platformio/) | ESP32 PlatformIO 工程模板 | 新项目起步脚手架 |
 
 ## 🚀 快速开始
 
@@ -33,12 +29,19 @@
 
 关键参数速查：Motor ID `1–8`，位置 `±12.56 rad`，速度 `±60 rad/s`，力矩 `±12 N·m`。
 
-### 编译 motor-demos
+### 编译板级工程
 
 ```bash
 # 需要安装 PlatformIO
-cd projects/motor-demos/am32_board_a
+cd boards/am32_board_a
 pio run
+```
+
+### 用模板起新项目
+
+```bash
+cp -r templates/esp32_platformio my_motor_project
+cd my_motor_project && pio run
 ```
 
 ## 🔗 相关分支
@@ -50,4 +53,8 @@ pio run
 
 ## 🤝 贡献
 
-欢迎提交电机驱动、调试工具类 skill 与工程模板。新增内容请遵循现有目录分类：调试指南进 `skills/`，可编译工程进 `projects/`，说明文档进 `docs/`。
+欢迎提交电机驱动、调试工具类 skill 与工程模板。新增内容请遵循现有目录分类：
+
+- 调试/控制指南 → `skills/`
+- 可编译板级工程 → `boards/<板名>/`（目录名用 ASCII）
+- 工程模板 → `templates/`
