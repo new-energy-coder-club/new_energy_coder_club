@@ -1,0 +1,34 @@
+# 编译PlatformIO项目的github action配置
+name: Build PlatformIO project
+
+on: [push]  # 触发条件，这里是代码被推送到仓库时
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 运行环境，这里是最新的Ubuntu系统
+
+    steps:
+    - name: Checkout code  # 检出代码
+      uses: actions/checkout@v2
+    - name: Get project name
+      id: project-name
+      run: |
+        # 从环境定义中提取项目名称
+        PROJECT_NAME=$(grep -E '^\[env:([^]]+)' platformio.ini | head -1 | sed -E 's/^\[env:([^]]+).*/\1/')
+        echo "project_name=${PROJECT_NAME}" >> $GITHUB_OUTPUT
+        echo "提取到的项目名称: ${PROJECT_NAME}"
+        
+    - name: Setup PlatformIO  # 设置PlatformIO
+      uses: n-vr/setup-platformio-action@v1
+
+    - name: Build PlatformIO project  # 构建PlatformIO项目
+      run: pio run
+
+    - name: Create Release and Upload Bin  # 创建Release并上传.bin文件
+      uses: softprops/action-gh-release@v1
+      #如果是标签推送，则执行Release操作,将.bin文件上传
+      if: startsWith(github.ref, 'refs/tags/')  
+      with:
+        files: .pio/build/${{ steps.project-name.outputs.project_name }}/${{ steps.project-name.outputs.project_name }}.bin  # 上传合并后的固件
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用GitHub提供的token
