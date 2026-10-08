@@ -20,10 +20,10 @@ jobs:
 
       - name: Push to Gitee (new_energy_coder_club)
         run: |
-          git push "https://darrenpig:${{ secrets.GITEE_TOKEN }}@gitee.com/darrenpig/new_energy_coder_club.git" \
-            --all --tags --force 2>&1 | grep -v "remote:" || true
+          REMOTE="https://darrenpig:${{ secrets.GITEE_TOKEN }}@gitee.com/darrenpig/new_energy_coder_club.git"
+          git push --force "$REMOTE" "refs/remotes/origin/*:refs/heads/*" "refs/tags/*:refs/tags/*"
 
       - name: Push to AtomGit (new_energy_coder_club)
         run: |
-          git push "https://Darrenpig:${{ secrets.ATOMGIT_TOKEN }}@atomgit.com/cnec/new_energy_coder_club.git" \
-            --all --tags --force 2>&1 | grep -v "remote:" || true
+          REMOTE="https://Darrenpig:${{ secrets.ATOMGIT_TOKEN }}@atomgit.com/cnec/new_energy_coder_club.git"
+          git push --force "$REMOTE" "refs/remotes/origin/*:refs/heads/*" "refs/tags/*:refs/tags/*"
